@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Cards Battlle of Heroes</h1>
+      <h1>Cards Battle of Heroes</h1>
 
     </div>
   );
