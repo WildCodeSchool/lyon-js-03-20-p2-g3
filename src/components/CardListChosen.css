@@ -1,20 +1,13 @@
 * {
     font-family: 'Press Start 2P', cursive;
-    font-size: 0.9rem;
+    font-size: 1rem;
     box-sizing: border-box;
 }
-
-.cardlist {
-    /* border:2px solid blue; */
-    width: 100%;
-}
-
 .cardlistchosen {
     height: 20%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    border: 1px solid red;
     padding: 0 0;
 }
 
@@ -29,9 +22,4 @@ p {
     float:right;
 }
 
-button {
-    border-radius: 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-}
 
