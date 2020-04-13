@@ -1,0 +1,40 @@
+* {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.aside {
+    /* border: 2px solid red; */
+    width: 20%;
+    background-color: rgb(70, 28, 167);
+}
+
+.deck_aside {
+    /* border:2px solid black; */
+    width: 100%;
+    background-color: #BAC3E1;
+}
+
+.deck_aside h3 {
+    font-size: 1.2rem;
+    /* border: 2px solid green;     */
+    margin : 0;
+}
+
+#player_btn {
+    margin-top: 5px;
+    background-color: #70F840;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    height: 30%;
+}
+
+#pw_btn {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color:#F28F32;
+    border: 2px solid #CFAE38;
+    width: 100%;
+    height: 30%;
+}
