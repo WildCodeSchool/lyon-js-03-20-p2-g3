@@ -1,0 +1,98 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.home-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    width: 80vw;
+    height: 20vh;
+    left: 120px;
+    top: 40px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    text-align: center;
+    color: #FFAA29;
+}
+
+h2 {
+    width: 80vw;
+    height: 5vh;
+    left: 258px;
+    top: 145px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+    height: 40vh;
+}
+
+li {
+    display: flex;
+    width: 15vw;
+    list-style: none;
+}
+
+li:last-of-type {
+    flex-basis: 100%;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+a {
+    padding: 10px;
+    width: inherit;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background: #6F6F6F;
+    border: 1px solid #A3A3A3;
+    box-sizing: border-box;
+    border-radius: 30px;
+}
+
+#play-button {
+    background-color: #FFAA29;
+}
+
+#saitama-home {
+    position: absolute;
+    width: 177px;
+    height: 148px;
+    left: 0px;
+    top: 266px;
+}
+
+#social-media-container {
+    display: flex;
+    justify-content: center;
+}
+
+#social-media-container img {
+    margin: 0px 5px;
+    height: 40px;
+}
+
+@media only screen and (min-width: 897px) {
+    #saitama-home {
+        bottom: 0;
+    }
+}
