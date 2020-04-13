@@ -1,13 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import NavBarDeckChoice from './NavBarDeckChoice';
+import DeckList from './DeckList';
+import CardList from './CardList';
 
 function DeckChoice ({ heroes }) {
     return (
         <div>
-            <li>
-                <Link to="/">Home</Link>
-            </li>
-        <p>{heroes[0].name}</p>
+          <NavBarDeckChoice heroes={heroes}/>
+          <DeckList heroes={heroes}/>
+          <CardList heroes={heroes}/>
         </div>
     )
 }
