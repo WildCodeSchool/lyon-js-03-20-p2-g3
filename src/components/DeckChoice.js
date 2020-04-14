@@ -3,12 +3,12 @@ import NavBarDeckChoice from './NavBarDeckChoice';
 import DeckList from './DeckList';
 import CardList from './CardList';
 
-function DeckChoice ({ heroes }) {
+function DeckChoice ({ heroes, addToDeck}) {
     return (
         <div>
           <NavBarDeckChoice heroes={heroes}/>
           <DeckList heroes={heroes}/>
-          <CardList heroes={heroes}/>
+          <CardList heroes={heroes} addToDeck={addToDeck}/>
         </div>
     )
 }

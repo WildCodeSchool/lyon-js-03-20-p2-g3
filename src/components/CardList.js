@@ -2,12 +2,12 @@ import React from 'react';
 import Card from './Card';
 import './CardList.css'
 
-function CardList ({ heroes }) {
+function CardList ({ heroes, addToDeck }) {
     return (
         <div className="cardList">
           {heroes.map(heroe => {
                return (
-                 <Card heroe={heroe} />
+                 <Card heroe={heroe} addToDeck={addToDeck} />
                )
           }
             )}
