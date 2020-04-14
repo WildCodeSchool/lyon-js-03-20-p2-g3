@@ -47,7 +47,9 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/options" component={Options} />
             <Route path="/rules" component={Rules} />
-            <Route path="/deckchoice" component={DeckChoice} />
+            <Route path="/deckchoice" >
+              <DeckChoice heroes={this.state.cards}/>
+            </Route>
           </Switch>
       </Router>
       </div>
