@@ -11,11 +11,11 @@
     padding: 0 0;
 }
 
-p {
+.para_chosen_card {
  text-align: left;
  background-color: #D9EEDE;
  width: 90%;
-}
+} 
 
 .cardlistchosen p span {
     align-self:end;

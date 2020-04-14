@@ -25,11 +25,23 @@ class App extends Component {
           power : heroe.powerstats.power,
         }
       }),
-      deck: heroes,
+      deck:[]
     };
   }
+ 
+  addToDeck = (event) => {
+    let copieDeck = this.state.deck
+    const cardName = event.target.className;
+    if(copieDeck.filter( heroe => cardName.includes(heroe.name)).length === 0){
+      copieDeck.push(this.state.cards.filter( heroe => cardName.includes(heroe.name))[0])
+    }
+    else{
+      copieDeck = copieDeck.filter( heroe => !cardName.includes(heroe.name))
+    }
+    this.setState({ deck: copieDeck }) 
+  }
   render(){
-    console.log(this.state.cards)
+
     return (
       <div className="App">
         <Router>
@@ -38,7 +50,7 @@ class App extends Component {
             <Route path="/options" component={Options} />
             <Route path="/rules" component={Rules} />
             <Route path="/deckchoice" >
-              <DeckChoice heroes={this.state.cards} heroesChosen = {this.state.deck}/>
+              <DeckChoice heroes={this.state.cards} heroesChosen = {this.state.deck} addToDeck={this.addToDeck}/>
             </Route>
           </Switch>
       </Router>
@@ -49,4 +61,3 @@ class App extends Component {
 }
 
 export default App;
-

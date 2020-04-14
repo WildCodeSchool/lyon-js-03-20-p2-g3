@@ -9,7 +9,7 @@ function CardList(props) {
         <div className ='aside'>
             <button type="text" className="player_button" id="player_btn"> Player 1</button>
             <div className="deck_aside">
-                <h3>Deck</h3>
+                <h3 id="title_deck_chosen_cards">Deck</h3>
                 <div className="cardlist">
                     {props.heroesChosen.map(heroe => <CardListChosen heroechoice={heroe} />)}
                 </div>

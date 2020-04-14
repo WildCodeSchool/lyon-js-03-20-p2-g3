@@ -5,7 +5,7 @@ const CardListChosen = props => {
     const {name, atk, hp} = props.heroechoice
     return(
         <div className="cardlistchosen">
-            <p> {name} <span>{atk} / {hp}</span> </p>
+            <p className='para_chosen_card'> {name} <span>{atk} / {hp}</span> </p>
         </div>
     )
 }
