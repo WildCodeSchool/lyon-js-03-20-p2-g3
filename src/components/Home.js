@@ -11,7 +11,7 @@ function Home () {
                 <NavBar />
             </main>
             <section id="social-media-container">  
-                <img src={require('./images/iconfinder_square-facebook.png')} alt="saitama-ok"/>          
+                <img src={require('./images/iconfinder_square-facebook.png')} alt="saitama-ok"/>       
                 <img src={require('./images/iconfinder_instagram.png')} alt="saitama-ok"/>
                 <img src={require('./images/iconfinder_square-twitter.png')} alt="saitama-ok"/>
             </section>

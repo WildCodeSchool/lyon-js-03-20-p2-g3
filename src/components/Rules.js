@@ -5,7 +5,7 @@ function Rules () {
     return (
         <div>
             <li>
-                <Link to="/">Home</Link>
+                <Link to="/">&lt; Home</Link>
             </li>
             <h2>This is Rules</h2>
         </div>

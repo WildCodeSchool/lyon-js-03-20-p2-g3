@@ -5,7 +5,7 @@ function Options () {
     return (
         <div>
             <li>
-                <Link to="/">Home</Link>
+                <Link to="/">&lt; Home</Link>
             </li>
             <h2>This is Options</h2>
         </div>
