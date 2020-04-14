@@ -1,0 +1,38 @@
+.card{
+  width: 120px;
+  height: 150px;
+  font-size: 10px;
+  padding-top: 5px;
+  background-color:#D1AD2B ;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+.imageCard{
+  width: 55px;
+  height: 73.33px;
+  border-radius: 5px;
+}
+.containerBottom{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.atk, .hp{
+  
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  align-self: flex-end;
+}
+.atk p, .hp p{
+  text-align: center;
+}
+.atk{
+  background-color: rgba(255,0,0,0.8);
+}
+.hp{
+  background-color:rgba(20, 255, 0, 0.8)
+} 
