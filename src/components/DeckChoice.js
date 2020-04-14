@@ -7,7 +7,7 @@ function DeckChoice ({ heroes,heroesChosen,addToDeck }) {
     return (
         <div>
           <NavBarDeckChoice heroes={heroes}/>
-          <DeckList heroes={heroes} heroesChosen={heroesChosen}/>
+          <DeckList heroes={heroes} heroesChosen={heroesChosen} />
           <CardList heroes={heroes} heroesChosen={heroesChosen} addToDeck={addToDeck}/>
         </div>
     )
