@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import Button from './Button';
 
 function Rules () {
     return (
         <div>
             <li>
-                <Link to="/">&lt; Home</Link>
+                <Button link="/" linkName="&lt; Home"/>
             </li>
             <h2>This is Rules</h2>
         </div>

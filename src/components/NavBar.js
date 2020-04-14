@@ -1,19 +1,19 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import './Home.css';
+import Button from './Button';
 
 function NavBar () {
     return (
         <div>
             <nav>
                 <li>
-                    <Link to="/options">Options</Link>
+                    <Button link="/options" linkName="Options"/>
                 </li>
                 <li>
-                    <Link to="/rules">Rules</Link>
+                    <Button link="/rules" linkName="Rules"/>
                 </li>
                 <li>
-                    <Link to="/deckchoice" id="play-button">Play</Link>
+                    <Button link="/deckchoice" linkName="Play" buttonId="play-button"/>
                 </li>
             </nav>
         </div>

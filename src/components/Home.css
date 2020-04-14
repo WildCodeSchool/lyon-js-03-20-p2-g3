@@ -57,22 +57,6 @@ li:last-of-type {
     justify-content: center;
 }
 
-a {
-    padding: 10px;
-    width: inherit;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    background: #6F6F6F;
-    border: 1px solid #A3A3A3;
-    box-sizing: border-box;
-    border-radius: 30px;
-}
-
-#play-button {
-    background-color: #FFAA29;
-}
-
 #saitama-home {
     position: absolute;
     width: 177px;
@@ -91,8 +75,16 @@ a {
     height: 40px;
 }
 
+#social-media-container a img {
+    background-color: white;
+}
+
 @media only screen and (min-width: 897px) {
     #saitama-home {
-        bottom: 0;
+        top: 505px;
+    }
+
+    #social-media-container {
+        margin-top: 80px;
     }
 }
