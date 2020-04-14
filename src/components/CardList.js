@@ -11,7 +11,7 @@ function CardList(props) {
             <div className="deck_aside">
                 <h3>Deck</h3>
                 <div className="cardlist">
-                    {props.heroes.map(heroe => <CardListChosen heroechoice={heroe} />)}
+                    {props.heroesChosen.map(heroe => <CardListChosen heroechoice={heroe} />)}
                 </div>
             </div>
                 <button type="text" className="pw_button" id="pw_btn"> Power: 000/300 </button>

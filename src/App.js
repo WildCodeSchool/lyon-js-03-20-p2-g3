@@ -23,9 +23,9 @@ class App extends Component {
           atk : heroe.powerstats.combat,
           hp : heroe.powerstats.durability,
           power : heroe.powerstats.power,
-          deck : false
         }
-      })
+      }),
+      deck: heroes,
     };
   }
   render(){
@@ -38,7 +38,7 @@ class App extends Component {
             <Route path="/options" component={Options} />
             <Route path="/rules" component={Rules} />
             <Route path="/deckchoice" >
-              <DeckChoice heroes={this.state.cards}/>
+              <DeckChoice heroes={this.state.cards} heroesChosen = {this.state.deck}/>
             </Route>
           </Switch>
       </Router>
