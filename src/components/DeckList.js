@@ -2,7 +2,7 @@ import React from 'react';
 import CardListChosen from './CardListChosen';
 import './DeckList.css'
 
-function CardList(props) {
+function DeckList(props) {
     // const {name, atk, hp } = props.heroes[1]
 
     return (
@@ -19,4 +19,4 @@ function CardList(props) {
     )   
 }
 
-export default CardList;
+export default DeckList;
