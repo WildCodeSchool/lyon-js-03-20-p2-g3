@@ -31,15 +31,14 @@ body {
 
 .home-main {
     display: flex;
+    height: 70vh;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 }
 
 h1 {
     width: 80vw;
-    height: 20vh;
-    left: 120px;
-    top: 40px;
+    height: 30%;
     font-style: normal;
     font-weight: normal;
     font-size: 36px;
@@ -49,15 +48,15 @@ h1 {
 }
 
 h2 {
+    display: flex;
     width: 80vw;
-    height: 5vh;
-    left: 258px;
-    top: 145px;
+    height: 30%;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     text-align: center;
-
+    align-items: center;
+    justify-content: center;
     color: #FFFFFF;
 }
 
@@ -66,7 +65,7 @@ nav {
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-content: center;
-    height: 40vh;
+    height: 40%;
 }
 
 li {
@@ -81,21 +80,32 @@ li:last-of-type {
     justify-content: center;
 }
 
+footer {
+    display: flex;
+    height: 30vh;
+    width: 100%;
+}
+
+#saitama-container {
+    width: 20%;
+    height: inherit;
+}
+
 #saitama-home {
-    position: absolute;
-    width: 177px;
-    height: 148px;
-    left: 0px;
-    top: 64%;
+
+    width: 100%;
+    height: 100%;
 }
 
 #social-media-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 80%;
+    height: inherit;
 }
 
 #social-media-container img {
-    margin: 0px 5px;
     height: 40px;
 }
 
@@ -104,6 +114,7 @@ li:last-of-type {
 }
 
 @media only screen and (min-width: 897px) {
+    
     h1 {
         font-size: 72px;
     }
@@ -111,14 +122,5 @@ li:last-of-type {
     h2 {
         font-size: 36px;
     }
-    
-    #saitama-home {
-        top: 680px;
-        width: 354px;
-        height: 296px;
-    }
 
-    #social-media-container {
-        margin-top: 80px;
-    }
 }

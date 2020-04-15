@@ -4,7 +4,6 @@ import Button from './Button';
 
 function NavBar () {
     return (
-        <div>
             <nav>
                 <li>
                     <Button link="/options" linkName="Options"/>
@@ -16,8 +15,6 @@ function NavBar () {
                     <Button link="/deckchoice" linkName="Play" buttonId="play-button"/>
                 </li>
             </nav>
-        </div>
-        
     )
 }
 
