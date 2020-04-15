@@ -20,9 +20,9 @@ class App extends Component {
         return {
           name : heroe.name,
           img : heroe.image.url,
-          atk : heroe.powerstats.combat,
-          hp : heroe.powerstats.durability,
-          power : heroe.powerstats.power,
+          atk : parseInt(heroe.powerstats.combat, 10),
+          hp : parseInt(heroe.powerstats.durability, 10),
+          power : parseInt(heroe.powerstats.power, 10),
         }
       }),
       deck:[]
