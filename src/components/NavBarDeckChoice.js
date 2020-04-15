@@ -1,9 +1,9 @@
 import React from 'react';
 
-function NavBarDeckChoice ({ heroes }) {
+function NavBarDeckChoice({ heroes }) {
     return (
         <div>
-         
+
         </div>
     )
 }
