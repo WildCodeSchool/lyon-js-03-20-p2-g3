@@ -40,8 +40,9 @@ class App extends Component {
     }
     this.setState({ deck: copieDeck }) 
   }
+  
   render(){
-
+    console.log(this.state.cards)
     return (
       <div className="App">
         <Router>
