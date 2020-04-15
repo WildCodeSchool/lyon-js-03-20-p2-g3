@@ -13,3 +13,13 @@
 #play-button {
     background-color: #FFAA29;
 }
+
+@media only screen and (min-width: 897px) {
+    .button-config {
+        font-size: 26px;
+    }
+
+    #play-button {
+        margin-top: 60px ;
+    }
+}

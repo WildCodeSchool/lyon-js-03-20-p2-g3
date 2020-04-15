@@ -1,4 +1,4 @@
-@media screen and (max-width: 896px) and (orientation: portrait) {
+@media screen  and (max-width: 896px) and (orientation: portrait) {
     html {
       transform: rotate(-90deg);
       transform-origin: left top;
