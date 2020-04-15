@@ -1,0 +1,30 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.singleCard {
+    border: 1px solid black;
+    border-radius: 7px;
+    background-color: yellow;
+    width: 30%;
+    min-height: 90%;
+}
+
+.image {
+    border: 1px solid black; 
+    border-radius: 7px;
+}
+
+.explanation {
+    font-size: 0.5rem;
+    margin: 5px;
+}
+
+.RulesCard {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+}
