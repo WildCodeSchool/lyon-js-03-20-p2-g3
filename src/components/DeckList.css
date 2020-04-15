@@ -5,58 +5,49 @@
 }
 
 .aside {
-    /* border: 2px solid red; */
-    width: 20%;
+    width: 25%;
     background-color: rgb(70, 28, 167);
     padding: 5px 5px    ;
 }
 
+#player_indicator {
+    border-radius: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 5px;
+    background-color: #70F840;
+    border: 1px solid #C6F3B0;
+    margin-bottom: 1.2em;
+    width: 100%;
+    height: 30%;
+    text-align: center;
+}
+
 .deck_aside {
-    /* border:2px solid black; */
     width: 100%;
     background-color: #BAC3E1;
 }
 
-#title_deck_chosen_cards
-{
-    font-size: 1.2rem;
+#title_deck_chosen_cards{
+    font-size: 1.2em;
     font-weight: 530;
-    /* border: 2px solid green;     */
     margin : 0;
     text-align: center;
 }
 
-.cardlist {
-    /* border:2px solid blue; */
+.cardlistdeck {
     width: 100%;
 }
 
-button {
+#total_power_indicator {
     border-radius: 20px;
     font-size: 1.2em;
     font-weight: bold;
-}
-
-#player_btn {
-    margin-top: 5px;
-    background-color: #70F840;
-    border: 1px solid #C6F3B0;
-    margin-bottom: 0.5rem;
-    width: 100%;
-    height: 30%;
-}
-
-#pw_btn {
     margin-top: 5px;
     margin-bottom: 5px;
     background-color:#F28F32;
     border: 2px solid #CFAE38;
     width: 100%;
     height: 30%;
+    text-align: center;
 }
-/* 
-p {
-    text-align: left;
-    background-color: #D9EEDE;
-    width: 90%;
-   } */

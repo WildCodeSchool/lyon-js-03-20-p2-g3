@@ -15,11 +15,11 @@
  text-align: left;
  background-color: #D9EEDE;
  width: 90%;
+ padding: 10px;
 } 
 
 .cardlistchosen p span {
+    padding: 10px;
     align-self:end;
     float:right;
 }
-
-
