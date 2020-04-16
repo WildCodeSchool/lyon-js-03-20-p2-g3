@@ -6,7 +6,7 @@ function Home () {
   return (
     <div>
       <main className='home-main'>
-        <h1>Cards Battle of Heroes</h1>
+        <h1>Cards Battle of Heroes !</h1>
         <h2>What kind of hero are you ?</h2>
         <NavBar />
       </main>
