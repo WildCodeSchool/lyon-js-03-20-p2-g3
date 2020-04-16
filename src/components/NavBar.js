@@ -5,15 +5,19 @@ import Button from './Button';
 function NavBar () {
     return (
             <nav>
-                <li>
-                    <Button link="/options" linkName="Options"/>
-                </li>
-                <li>
-                    <Button link="/rules" linkName="Rules"/>
-                </li>
-                <li>
-                    <Button link="/deckchoice" linkName="Play" buttonId="play-button"/>
-                </li>
+                <div id="options-rules-container">
+                    <li>
+                        <Button link="/options" linkName="Options"/>
+                    </li>
+                    <li>
+                        <Button link="/rules" linkName="Rules"/>
+                    </li>
+                </div>
+                <div id="play-container">
+                    <li>
+                        <Button link="/deckchoice" linkName="Play" buttonId="play-button"/>
+                    </li>
+                </div>
             </nav>
     )
 }

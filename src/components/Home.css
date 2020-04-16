@@ -1,5 +1,5 @@
 :root {
-    --neon-text-color: rgb(255, 153, 0);
+    --neon-text-color: rgb(247, 148, 0);
 }
 
 @keyframes flicker {
@@ -62,22 +62,27 @@ h2 {
 
 nav {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-content: center;
+    flex-direction: column;
+    justify-content: center;
     height: 40%;
+    width: 50%;
+}
+
+#options-rules-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#play-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
 }
 
 li {
     display: flex;
-    width: 15vw;
     list-style: none;
-}
-
-li:last-of-type {
-    flex-basis: 100%;
-    margin-top: 20px;
-    justify-content: center;
 }
 
 footer {
@@ -101,7 +106,8 @@ footer {
 
 #social-media-container img {
     height: 40px;
-    margin: 0px 10px 10px 0px;
+    margin: 0px 0px 20px 10px;
+    border-radius: 5px;
 }
 
 #social-media-container a img {
@@ -116,6 +122,10 @@ footer {
 
     h2 {
         font-size: 36px;
+    }
+
+    nav {
+        width: 30%;
     }
 
 }
