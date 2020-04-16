@@ -10,11 +10,13 @@ function DeckList (props) {
     for (let i = 0; i < powerArray.length; i = i + 1) {
       totalPower += powerArray[i];
     }
-    if (totalPower > PowerMax) {
+/*     if (totalPower > PowerMax) {
       return 'Please lower your deck power';
-    } else {
+    } 
+    else {
       return totalPower;
-    }
+    } */
+    return totalPower;
   }
   
   return (

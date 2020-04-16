@@ -42,7 +42,7 @@ class App extends Component {
           power : parseInt(heroe.powerstats.power, 10),
         }
       }),
-      deck:[]
+      deck:[],
     };
   }
  
@@ -50,10 +50,17 @@ class App extends Component {
 
 
   addToDeck = (event) => {
-    let copieDeck = this.state.deck
+    let copieDeck = this.state.deck;
     const cardName = event.target.className;
+    const maxPower = 300;
+    const totalPower = this.state.deck.map(card => card.power).reduce((acc, cur)=> acc + cur , 0);
     if(copieDeck.filter( heroe => cardName.includes(heroe.name)).length === 0){
-      copieDeck.push(this.state.cards.filter( heroe => cardName.includes(heroe.name))[0])
+      if (totalPower + this.state.cards.filter( heroe => cardName.includes(heroe.name))[0].power <= maxPower ){
+        copieDeck.push(this.state.cards.filter( heroe => cardName.includes(heroe.name))[0])
+      }    
+      else{
+        alert("la puissance max est dépassé")
+      }
     }
     else{
       copieDeck = copieDeck.filter( heroe => !cardName.includes(heroe.name))

@@ -16,6 +16,9 @@
 .card *{
   cursor: pointer;
 }
+.selected{
+  opacity: 50%;
+}
 .imageCard{
   width: 75px;
   height: 100px;

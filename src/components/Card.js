@@ -2,9 +2,10 @@ import React from 'react';
 import './Card.css'
 
 
-function Card ({ heroe, addToDeck }) {
+function Card ({ heroe, addToDeck, heroesChosen }) {
+  console.log(heroesChosen.filter(heroeDeck => heroeDeck.name === heroe.name))
     return (
-        <div className={heroe.name + ' card'} onClick={addToDeck}>
+        <div className={heroesChosen.filter(heroeDeck => heroeDeck.name === heroe.name).length === 0 ? heroe.name + ' card' : heroe.name + ' card selected'} onClick={addToDeck}>
           <section className={heroe.name + ' pw'}>
             {heroe.power} PW
           </section>
