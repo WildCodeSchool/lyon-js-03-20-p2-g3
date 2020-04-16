@@ -3,19 +3,12 @@ import CardListChosen from './CardListChosen';
 import './DeckList.css';
 
 function DeckList (props) {
-    const PowerMax = 300;
     function SumPower () {
     let totalPower = 0;
     const powerArray = props.heroesChosen.map(heroe => heroe.power);
-    for (let i = 0; i < powerArray.length; i = i + 1) {
+    for (let i = 0; i < powerArray.length; i++) {
       totalPower += powerArray[i];
     }
-/*     if (totalPower > PowerMax) {
-      return 'Please lower your deck power';
-    } 
-    else {
-      return totalPower;
-    } */
     return totalPower;
   }
   
@@ -27,7 +20,7 @@ function DeckList (props) {
       <div className='deck_aside'>
         <h3 id='title_deck_chosen_cards'>Deck</h3>
         <div className='cardlistdeck'>
-          {props.heroesChosen.map(heroe => <CardListChosen heroechoice={heroe} />)}
+          {props.heroesChosen.map(heroe => <CardListChosen key={heroe.name} heroechoice={heroe} />)}
         </div>
       </div>
       <div type='text' id='total_power_indicator'>

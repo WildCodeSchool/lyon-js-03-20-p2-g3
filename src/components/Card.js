@@ -3,14 +3,12 @@ import './Card.css'
 
 
 function Card ({ heroe, addToDeck, heroesChosen }) {
-  console.log(heroesChosen.filter(heroeDeck => heroeDeck.name === heroe.name))
     return (
         <div className={heroesChosen.filter(heroeDeck => heroeDeck.name === heroe.name).length === 0 ? heroe.name + ' card' : heroe.name + ' card selected'} onClick={addToDeck}>
           <section className={heroe.name + ' pw'}>
             {heroe.power} PW
           </section>
           <img className={heroe.name + ' imageCard'} src={heroe.img} alt={heroe.name}/>
-         {/*  <section className={heroe.name + ' name'}>{heroe.name}</section> */}
           <section className={heroe.name + ' containerBottom'}>
             <div className={heroe.name + ' atk'}><p className={heroe.name}>{heroe.atk}</p></div>
             <div className={heroe.name + ' hp'}><p className={heroe.name}>{heroe.hp}</p></div>

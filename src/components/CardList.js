@@ -7,7 +7,7 @@ function CardList({ heroes, addToDeck, heroesChosen }) {
         <main className="cardList">
             {heroes.map(heroe => {
                 return (
-                    <Card heroe={heroe} heroesChosen={heroesChosen} addToDeck={addToDeck} />
+                    <Card key={heroe.name} heroe={heroe} heroesChosen={heroesChosen} addToDeck={addToDeck} />
                 )
             }
             )}

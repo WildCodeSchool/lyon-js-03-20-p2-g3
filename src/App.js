@@ -9,24 +9,7 @@ import Home from './components/Home';
 import Options from './components/Options';
 import Rules from './components/Rules';
 import DeckChoice from './components/DeckChoice';
-import axios from 'axios';
 import heroes from './components/heroes'
-
-/* const heroes = [];
-const getHeroes = () => {
-  const idHeroe = [2,8,24,29,42,61];
-  for (let i = 0 ; i < idHeroe.length ; i++){
-    axios
-    .get(`https://www.superheroapi.com/api.php/10222211119006297/${idHeroe[i]}`)
-    .then(response => response.data)
-    .then(data => {
-      heroes.push(data)
-    });
-  } 
-}
-
-getHeroes()
-console.log(heroes) */
 
 class App extends Component {
 
@@ -45,9 +28,6 @@ class App extends Component {
       deck:[],
     };
   }
- 
-
-
 
   addToDeck = (event) => {
     let copieDeck = this.state.deck;
@@ -59,7 +39,7 @@ class App extends Component {
         copieDeck.push(this.state.cards.filter( heroe => cardName.includes(heroe.name))[0])
       }    
       else{
-        alert("la puissance max est dépassé")
+        alert("Please, select a less powerful card or start the game")
       }
     }
     else{
