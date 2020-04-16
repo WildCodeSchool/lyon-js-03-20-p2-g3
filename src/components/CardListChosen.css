@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 .cardlistchosen {
-    height: 20%;
+    height: 75px;
     margin: 0 auto;
     display: flex;
     justify-content: center;

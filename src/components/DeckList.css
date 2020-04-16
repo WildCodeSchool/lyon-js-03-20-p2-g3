@@ -1,34 +1,33 @@
 * {
     font-family: 'Press Start 2P', cursive;
     font-size: 0.8rem;
-    box-sizing: border-box;
 }
 
 .aside {
     width: 25%;
-    background-color: rgb(70, 28, 167);
-    padding: 5px 5px    ;
-    height: 100vh;
+    background-color: black;
+    padding: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 #player_indicator {
     border-radius: 20px;
     font-size: 1.2em;
     font-weight: bold;
-    margin-top: 5px;
     background-color: #70F840;
     border: 1px solid #C6F3B0;
-    margin-bottom: 1.2em;
-    width: 100%;
-    height: 15vh;
-    text-align: center;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .deck_aside {
     width: 100%;
-    height: 60vh;
-    overflow: scroll;
     background-color: #BAC3E1;
+    border-radius: 7px;
 }
 
 #title_deck_chosen_cards{
@@ -36,18 +35,27 @@
     font-weight: 530;
     margin : 0;
     text-align: center;
+    padding: 10px;
 }
 
 .cardlistdeck {
     width: 100%;
+    overflow: scroll;
+    height: 50vh; 
 }
 
 #total_power_indicator {
     border-radius: 20px;
     font-size: 1.2em;
     font-weight: bold;
-    height: 15vh;
+    height: 10vh;
     background-color:#F28F32;
     border: 2px solid #CFAE38;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#total_power_indicator span{
+  padding: 5px;
 }

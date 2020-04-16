@@ -29,7 +29,7 @@ function DeckList (props) {
         </div>
       </div>
       <div type='text' id='total_power_indicator'>
-        Total Power {SumPower()} / 300
+        <span>Total Power</span> <span>{SumPower()} / 300</span>
       </div>
     </div>
   );
