@@ -86,27 +86,22 @@ footer {
     width: 100%;
 }
 
-#saitama-container {
-    width: 20%;
-    height: inherit;
-}
-
 #saitama-home {
-
-    width: 100%;
-    height: 100%;
+    height: 30vh;
 }
 
 #social-media-container {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    width: 80%;
+    width: 80vw;
     height: inherit;
+
 }
 
 #social-media-container img {
     height: 40px;
+    margin: 0px 10px 10px 0px;
 }
 
 #social-media-container a img {

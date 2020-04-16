@@ -11,9 +11,7 @@ function Home () {
                 <NavBar />
             </main>
             <footer>
-                <aside id="saitama-container">
-                    <img id="saitama-home" src={require('./images/saitama-home.png')} alt="saitama-ok"/>
-                </aside>
+                <img id="saitama-home" src={require('./images/saitama-home.png')} alt="saitama-ok"/>
                 <section id="social-media-container">
                     <a href="https://www.facebook.com/javascriptJS/" target="_blank" rel="noopener noreferrer">
                         <img src={require('./images/iconfinder_square-facebook.png')} alt="saitama-ok"/> 
