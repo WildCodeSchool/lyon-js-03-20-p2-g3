@@ -9,10 +9,27 @@ import Home from './components/Home';
 import Options from './components/Options';
 import Rules from './components/Rules';
 import DeckChoice from './components/DeckChoice';
+import axios from 'axios';
 import heroes from './components/heroes'
 
+/* const heroes = [];
+const getHeroes = () => {
+  const idHeroe = [2,8,24,29,42,61];
+  for (let i = 0 ; i < idHeroe.length ; i++){
+    axios
+    .get(`https://www.superheroapi.com/api.php/10222211119006297/${idHeroe[i]}`)
+    .then(response => response.data)
+    .then(data => {
+      heroes.push(data)
+    });
+  } 
+}
+
+getHeroes()
+console.log(heroes) */
 
 class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -29,6 +46,9 @@ class App extends Component {
     };
   }
  
+
+
+
   addToDeck = (event) => {
     let copieDeck = this.state.deck
     const cardName = event.target.className;
@@ -42,7 +62,7 @@ class App extends Component {
   }
   
   render(){
-    console.log(this.state.cards)
+ 
     return (
       <div className="App">
         <Router>

@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-@media screen and (max-width: 896px) and (orientation: portrait) {
+@media screen and (max-width: 896px/*896px  */) and (orientation: portrait) {
   html {
     transform: rotate(-90deg);
     transform-origin: left top;

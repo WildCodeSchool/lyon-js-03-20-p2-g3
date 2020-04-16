@@ -4,14 +4,14 @@ import './CardList.css'
 
 function CardList({ heroes, addToDeck }) {
     return (
-        <div className="cardList">
+        <main className="cardList">
             {heroes.map(heroe => {
                 return (
                     <Card heroe={heroe} addToDeck={addToDeck} />
                 )
             }
             )}
-        </div>
+        </main>
     )
 }
 
