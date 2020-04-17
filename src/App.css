@@ -1,15 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-@media screen and (max-width: 896px/*896px  */) and (orientation: portrait) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
+@media screen  and (max-width: 896px) and (orientation: portrait) {
+    html {
+      transform: rotate(-90deg);
+      transform-origin: left top;
+      max-width: 100vw;
+      max-height: 100vh;
+      overflow-x: hidden;
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body{
   font-family: 'Press Start 2P', cursive;
 }
+

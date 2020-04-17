@@ -1,23 +1,25 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import './Home.css';
+import Button from './Button';
 
 function NavBar () {
-    return (
-        <div>
-            <nav>
-                <li>
-                    <Link to="/options">Options</Link>
-                </li>
-                <li>
-                    <Link to="/rules">Rules</Link>
-                </li>
-                <li>
-                    <Link to="/deckchoice">Start</Link>
-                </li>
-            </nav>
-        </div>
-        
-    )
+  return (
+    <nav>
+      <div id='options-rules-container'>
+        <li>
+          <Button link='/options' linkName='Options' />
+        </li>
+        <li>
+          <Button link='/rules' linkName='Rules' />
+        </li>
+      </div>
+      <div id='play-container'>
+        <li>
+          <Button link='/deckchoice' linkName='Play' buttonId='play-button' />
+        </li>
+      </div>
+    </nav>
+  );
 }
 
 export default NavBar;

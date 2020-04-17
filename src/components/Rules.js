@@ -1,15 +1,15 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import Button from './Button';
 
 function Rules () {
-    return (
-        <div>
-            <li>
-                <Link to="/">Home</Link>
-            </li>
-            <h2>This is Rules</h2>
-        </div>
-    )
+  return (
+    <div>
+      <li>
+        <Button link='/' linkName='&lt; Home' />
+      </li>
+      <h2>This is Rules</h2>
+    </div>
+  );
 }
 
 export default Rules;
