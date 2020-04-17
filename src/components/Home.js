@@ -4,10 +4,10 @@ import './Home.css';
 
 function Home () {
   return (
-    <div>
+    <div className="home-container">
       <main className='home-main'>
-        <h1>Cards Battle of Heroes !</h1>
-        <h2>What kind of hero are you ?</h2>
+        <h1 className="h1-home">Cards Battle of Heroes !</h1>
+        <h2 className="h2-home">What kind of hero are you ?</h2>
         <NavBar />
       </main>
       <footer>

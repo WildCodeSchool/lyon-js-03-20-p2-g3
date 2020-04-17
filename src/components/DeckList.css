@@ -1,0 +1,61 @@
+* {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+}
+
+.aside {
+    width: 25%;
+    background-color: black;
+    padding: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#player_indicator {
+    border-radius: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #70F840;
+    border: 1px solid #C6F3B0;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deck_aside {
+    width: 100%;
+    background-color: #BAC3E1;
+    border-radius: 7px;
+}
+
+#title_deck_chosen_cards{
+    font-size: 1.2em;
+    font-weight: 530;
+    margin : 0;
+    text-align: center;
+    padding: 10px;
+}
+
+.cardlistdeck {
+    width: 100%;
+    overflow: scroll;
+    height: 50vh; 
+}
+
+#total_power_indicator {
+    border-radius: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 10vh;
+    background-color:#F28F32;
+    border: 2px solid #CFAE38;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#total_power_indicator span{
+  padding: 5px;
+}
