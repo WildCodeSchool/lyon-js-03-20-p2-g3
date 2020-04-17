@@ -82,7 +82,7 @@ function Rules () {
                         img=''
                         alt="image doesn't showing Deus Sex Machina clicking on the 'Rage Quit' button"
                         nameOfRule="Board, Deus Sex Machina's turn - 4"
-                        textRule=''
+                        textRule='He’ll never click on the “Rage Quit” button, he assumes. (It’s the only game he’s allowed to play, so have some compassion for his Serenissima).'
                     />
                     <RulesCard
                         img=''
