@@ -8,7 +8,7 @@ function NavBarDeckChoice({ heroes }) {
             <nav>
                 <ul className="container" >
                     <li>
-                        <Link to="/"> <button id='button-home' >&lt; Home</button> </Link>
+                        <Link className="homeButton" to="/"> <button id='button-home' >&lt; Home</button> </Link>
                     </li>
                     <li id='title'>Choose your Heroes</li>
                     <li>
