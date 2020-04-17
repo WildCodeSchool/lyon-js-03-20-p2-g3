@@ -24,9 +24,12 @@
 body {
     display: flex;
     justify-content: center;
-    background-color: black;
-    color: white;
     font-family: 'Press Start 2P', cursive;
+
+}
+.home-container{
+  background-color: black;
+  color: white;
 }
 
 .home-main {
@@ -36,7 +39,7 @@ body {
     align-items: center;
 }
 
-h1 {
+.h1-home {
     width: 80vw;
     height: 30%;
     font-style: normal;
@@ -47,7 +50,7 @@ h1 {
     color: #FFAA29;
 }
 
-h2 {
+.h2-home {
     display: flex;
     width: 80vw;
     height: 30%;
@@ -60,13 +63,13 @@ h2 {
     color: #FFFFFF;
 }
 
-nav {
+.nav-home {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 40%;
     width: 50%;
-}
+} 
 
 #options-rules-container {
     display: flex;
@@ -116,15 +119,15 @@ footer {
 
 @media only screen and (min-width: 897px) {
     
-    h1 {
+    .h1-home {
         font-size: 72px;
     }
 
-    h2 {
+    .h2-home {
         font-size: 36px;
     }
 
-    nav {
+    .nav-home {
         width: 30%;
     }
 

@@ -1,18 +1,18 @@
 import React from 'react';
 import './NavBarDekChoice.css'
-import { Link } from 'react-router-dom';
+import Button from './Button';
 
 function NavBarDeckChoice({ heroes }) {
     return (
-        <div>
-            <nav>
-                <ul className="container" >
+        <div className="super-container-nav">
+            <nav  >
+                <ul className="container-nav">
                     <li>
-                        <Link className="homeButton" to="/"> <button id='button-home' >&lt; Home</button> </Link>
-                    </li>
+                      <Button id='button-home' link='/' linkName='&lt; Home' />
+                    </li> 
                     <li id='title'>Choose your Heroes</li>
                     <li>
-                        <button id='button-battle' link='/Battle' >Let's Battle</button>
+                      <Button id='button-battle' link='/' linkName="Start" />
                     </li>
                 </ul>
             </nav>

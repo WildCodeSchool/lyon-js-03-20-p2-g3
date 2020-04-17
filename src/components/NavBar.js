@@ -4,7 +4,7 @@ import Button from './Button';
 
 function NavBar () {
   return (
-    <nav>
+    <nav className="nav-home">
       <div id='options-rules-container'>
         <li>
           <Button link='/options' linkName='Options' />
