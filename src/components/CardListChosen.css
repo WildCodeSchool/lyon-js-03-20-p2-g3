@@ -1,0 +1,25 @@
+* {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.cardlistchosen {
+    height: 75px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 0 0;
+}
+
+.para_chosen_card {
+ text-align: left;
+ background-color: #D9EEDE;
+ width: 90%;
+ padding: 10px;
+} 
+
+.cardlistchosen p span {
+    padding: 10px;
+    align-self:end;
+    float:right;
+}

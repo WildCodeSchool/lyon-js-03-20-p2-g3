@@ -1,0 +1,134 @@
+:root {
+    --neon-text-color: rgb(247, 148, 0);
+}
+
+@keyframes flicker {
+    
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      
+        text-shadow:
+            -0.2rem -0.2rem 1rem #fff,
+            0.2rem 0.2rem 1rem black,
+            0 0 2rem var(--neon-text-color),
+            0 0 4rem var(--neon-text-color),
+            0 0 6rem var(--neon-text-color),
+            0 0 8rem var(--neon-text-color),
+            0 0 10rem var(--neon-text-color);
+    }
+
+    20%, 24%, 55% {        
+        text-shadow: none;
+    }    
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    font-family: 'Press Start 2P', cursive;
+
+}
+.home-container{
+  background-color: black;
+  color: white;
+}
+
+.home-main {
+    display: flex;
+    height: 70vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h1-home {
+    width: 80vw;
+    height: 30%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    text-align: center;
+    animation: flicker 1.5s infinite alternate;
+    color: #FFAA29;
+}
+
+.h2-home {
+    display: flex;
+    width: 80vw;
+    height: 30%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.nav-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40%;
+    width: 50%;
+} 
+
+#options-rules-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#play-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+li {
+    display: flex;
+    list-style: none;
+}
+
+footer {
+    display: flex;
+    height: 30vh;
+    width: 100%;
+}
+
+#saitama-home {
+    height: 30vh;
+}
+
+#social-media-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 80vw;
+    height: inherit;
+
+}
+
+#social-media-container img {
+    height: 40px;
+    margin: 0px 0px 20px 10px;
+    border-radius: 5px;
+}
+
+#social-media-container a img {
+    background-color: white;
+}
+
+@media only screen and (min-width: 897px) {
+    
+    .h1-home {
+        font-size: 72px;
+    }
+
+    .h2-home {
+        font-size: 36px;
+    }
+
+    .nav-home {
+        width: 30%;
+    }
+
+}

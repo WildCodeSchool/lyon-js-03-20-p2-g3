@@ -1,0 +1,5 @@
+#container-deck-card{
+  display: flex;
+  height: 90vh;
+  background-color: black;
+}
