@@ -3,7 +3,7 @@ import CardListChosen from './CardListChosen';
 import './DeckList.css';
 
 function DeckList (props) {
-    function SumPower () {
+  function SumPower () {
     let totalPower = 0;
     const powerArray = props.heroesChosen.map(heroe => heroe.power);
     for (let i = 0; i < powerArray.length; i++) {
@@ -11,7 +11,7 @@ function DeckList (props) {
     }
     return totalPower;
   }
-  
+
   return (
     <div className='aside'>
       <div type='text' id='player_indicator'>
