@@ -9,6 +9,10 @@
     height: 10vh;
 }
 
+button[type="button"]:hover {
+  cursor: pointer;
+}
+
 #title{
     display: flex;
     justify-content: center;
