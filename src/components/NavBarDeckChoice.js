@@ -12,7 +12,7 @@ function NavBarDeckChoice ({ heroes }) {
           </li>
           <li id='title'>Choose your Heroes</li>
           <li>
-            <Button id='button-battle' link='/' linkName='Start' />
+            <Button id='button-battle' link='/deckboard' linkName='Start' />
           </li>
         </ul>
       </nav>
