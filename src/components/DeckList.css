@@ -40,7 +40,8 @@
 
 .cardlistdeck {
     width: 100%;
-    overflow: scroll;
+    overflow: auto;
+    overflow-x: hidden;
     height: 50vh; 
 }
 
