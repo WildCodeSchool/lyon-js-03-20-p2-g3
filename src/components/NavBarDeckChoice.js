@@ -30,15 +30,14 @@ class NavBarDeckChoice extends Component {
               <li id='title'>Choose your Heroes</li>
               <li>
                 <button type='button' className='button-config' onClick={this.handleShowModal}>Start</button>/>
-                <Modal show={this.state.show} heroesChosen={this.props.heroesChosen} handleClose={this.handleHideModal}>
+                <Modal show={this.state.show} heroesChosen={this.props.heroesChosen} onHandleClose={this.handleHideModal}>
                   {this.props.heroesChosen
                     .map(heroe => {
                       return (
-                        <CardDeckRecap heroe={heroe}/>
+                        <CardDeckRecap key={heroe.name} heroe={heroe} />
                       );
                     }
-                    )
-                  }
+                    )}
                 </Modal>
               </li>
             </ul>
@@ -48,7 +47,7 @@ class NavBarDeckChoice extends Component {
     }
 }
 
-const Modal = ({ handleClose, show, children }) => {
+const Modal = ({ onHandleClose, show, children }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
   return (
@@ -59,7 +58,7 @@ const Modal = ({ handleClose, show, children }) => {
           {children}
         </div>
         <div className='button-modal-container'>
-          <button type='button' className='button-config' onClick={handleClose}>Close</button>
+          <button type='button' className='button-config' onClick={onHandleClose}>Close</button>
           <Button id='button-battle' link='/' linkName='Start' />
         </div>
       </section>
