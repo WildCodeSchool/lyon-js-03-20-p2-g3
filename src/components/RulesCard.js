@@ -6,9 +6,9 @@ import './Rules.css';
 function RulesCard(props) {
     return (
         <div className='singleCard'>
-            <figure className='image'>
+            <picture className='image'>
                 <img src={props.image} alt={props.alt} />
-            </figure>
+            </picture>
             <div className='explanation'>
                 <h3>{props.nameOfRule}</h3>
                 <p>{props.textRule}</p>
