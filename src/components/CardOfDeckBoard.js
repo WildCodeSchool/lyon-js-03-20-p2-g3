@@ -1,17 +1,18 @@
 import React from 'react';
 import './Card.css';
 
-function CardOfDeckBoard ({ heroesChosen }) {
+function CardOfDeckBoard ({ heroe }) {
   return (
     <div className='card'>
       <section className='pw'>
-        {heroesChosen.power} PW
+        {heroe.power} PW
       </section>
-      <img className='imageCard' src={heroesChosen.img} alt={heroesChosen.name} />
+      <img className='imageCard' src={heroe.img} alt={heroe.name} />
       <section className='containerBottom'>
-        <div className='atk'><p className={heroesChosen.name}>{heroesChosen.atk}</p></div>
-        <div className='hp'><p className={heroesChosen.name}>{heroesChosen.hp}</p></div>
+        <div className='atk'><p className={heroe.name}>{heroe.atk}</p></div>
+        <div className='hp'><p className={heroe.name}>{heroe.hp}</p></div>
       </section>
+      Hello
     </div>
   );
 }

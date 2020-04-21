@@ -1,24 +1,13 @@
 import React from 'react';
-import CardOfDeckBoard from './CardOfDecKBoard';
+import CardOfDeckBoard from './CardOfDeckBoard';
 import './Card.css';
 
-function HandCards ({ heroesChosen }) {
-  // Choisir 3 cartes parmi celles du deck ? Quid du mec qui ne veut prendre que 2 cartes
-
-  const arrayOfRandomNumbers = [];
-  const numberOfRandomNumbersWanted = heroesChosen.length;
-  while (arrayOfRandomNumbers.length < numberOfRandomNumbersWanted) {
-    const randomNumber = Math.floor(Math.random() * numberOfRandomNumbersWanted) + 1;
-    if (arrayOfRandomNumbers.indexOf(randomNumber) === -1) {
-      arrayOfRandomNumbers.push(randomNumber);
-    }
-  }
+function HandCards (props) {
+  // props.randomizeHeroesChosen(props.heroesChosen);
   return (
     <div>
-      <p>Helllllllo</p>
-      {heroesChosen.map(heroe => <CardOfDeckBoard heroe={heroe} key={heroe.id} />)}
+      {props.player1Hand.map(heroe => <CardOfDeckBoard heroe={heroe} key={(heroe.atk)*(heroe.hp)} />)}
     </div>
   );
 }
-
 export default HandCards;
