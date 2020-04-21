@@ -12,7 +12,6 @@ function CardOfDeckBoard ({ heroe }) {
         <div className='atk'><p className={heroe.name}>{heroe.atk}</p></div>
         <div className='hp'><p className={heroe.name}>{heroe.hp}</p></div>
       </section>
-      Hello
     </div>
   );
 }
