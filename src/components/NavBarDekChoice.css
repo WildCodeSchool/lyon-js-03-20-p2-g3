@@ -44,12 +44,23 @@
 
 .modal .modal-main h2 {
   color: #FFAA29;
-  font-size: 26px;
+  font-size: 16px;
+  line-height: 25px;
+  margin: 0;
+  text-align: center;
 }
 
 .modal-heroesChosen-container {
   display: flex;
   flex-wrap: wrap;
+  overflow-x: auto;
+  height: 50vh;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.modal-heroesChosen-container .card {
+  margin: 10px;
 }
 
 .display-block {
@@ -63,10 +74,15 @@
 .button-modal-container {
   display: flex;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 @media screen and (min-width: 897px) {
   #title{
+    font-size: 25px;
+  }
+
+  .modal .modal-main h2 {
     font-size: 25px;
   }
   
