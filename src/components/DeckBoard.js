@@ -1,6 +1,5 @@
 import React from 'react';
 import HiddenCards from './HiddenCards';
-import heroes from './heroes';
 import HandCards from './HandCards';
 
 class DeckBoard extends React.Component {
@@ -65,8 +64,8 @@ class DeckBoard extends React.Component {
     return (
       <div>
         <HandCards heroesChosen={this.state.heroesChosen} player1Hand={this.state.player1Hand} />
-        <HiddenCards deck={this.state.computerDeck} />
-        <HiddenCards deck={this.state.heroesChosen} />
+        <HiddenCards deck={this.state.cardsAvalaibleForIA} />
+        <HiddenCards deck={this.state.player1Deck} />
       </div>
     );
   }
