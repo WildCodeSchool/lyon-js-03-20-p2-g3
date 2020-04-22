@@ -56,7 +56,7 @@ class DeckBoard extends React.Component {
 
   render () {
     return (
-      <div style={{ display: 'flex' }}>
+      <div>
         <div className='player1and'>
           <HandCards heroesChosen={this.state.heroesChosen} onHandleHandToBoard={this.handleHandToBoard} />
         </div>
