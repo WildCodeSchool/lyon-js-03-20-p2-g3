@@ -1,0 +1,8 @@
+.handcards {
+    display: flex;
+    align-items: flex-end;
+    border: 3px solid red;
+    transform: scale(0.5);
+    float:bottom;
+
+}

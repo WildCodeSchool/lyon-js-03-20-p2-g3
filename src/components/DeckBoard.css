@@ -1,8 +1,23 @@
-.player1and {
-    display: flex;
+.deckBoard  {
+  display: flex;
 }
+/* 
+.player1handboard {
+    border: 10px solid blue;
+    flex-flow: column-reverse;
+}
+
+.player1hand {
+    display: inline;
+    border: 10px solid red;
+} 
+
+.board{
+  border : 2px solid black
+}
+
 
 .iahand {
     display: flex;
-    border: 10px solid red;
-}
+    border: 10px solid green;
+}     */

@@ -2,15 +2,14 @@ import React from 'react';
 import CardOfDeckBoard from './CardOfDeckBoard';
 import './CardList.css';
 import './Card.css';
+import './HandCards.css'
 
 function HandCards (props) {
-  const threeFirstCards = props.randomizeHeroesChosen(props.heroesChosen, 3);
   return (
-    <div>
-      {threeFirstCards.map(heroe => {
-        heroe.position = 'hand';
+    <div className="handcards">
+      {props.heroesChosen.filter(heroe => heroe.position === 'hand').map(heroe => {
         return (
-          <CardOfDeckBoard heroe={heroe} key={(heroe.atk) * (heroe.hp)} HandleHandToBoard={props.HandleHandToBoard} />
+          <CardOfDeckBoard heroe={heroe} key={(heroe.atk) * (heroe.hp)} onHandleHandToBoard={props.onHandleHandToBoard} />
         );
       })}
     </div>
