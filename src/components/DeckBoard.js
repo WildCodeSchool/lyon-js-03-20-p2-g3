@@ -3,10 +3,10 @@ import HandCards from './HandCards';
 import './DeckBoard.css';
 import Board from './Board';
 import HiddenCards from './HiddenCards';
-import heroes from './heroes'
+import heroes from './heroes';
 
 class DeckBoard extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       heroesChosen: props.heroesChosen,
@@ -19,11 +19,11 @@ class DeckBoard extends React.Component {
           power: parseInt(heroe.powerstats.power, 10),
           position: 'deck'
         };
-      }),
+      })
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.randomizeHeroesChosen(this.state.heroesChosen);
     this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
   }
@@ -72,17 +72,17 @@ class DeckBoard extends React.Component {
     this.setState({ heroesChosen: newHeroesChosen });
   }
 
-  render() {
+  render () {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
           Je suis gauche
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
-          <div className="iahand"> {/* hand of computer */}
+          <div className='iahand'> {/* hand of computer */}
             <HandCards heroesChosen={this.state.cardsAvalaibleForIA} randomizeHeroesChosen={this.randomizeHeroesChosen} />
           </div>
-          <div className="boardContainer">
+          <div className='boardContainer'>
             <div className='boardia'> {/* board of computer */}
             Je suis IA
               <Board heroesChosen={this.state.cardsAvalaibleForIA} />
@@ -99,7 +99,7 @@ class DeckBoard extends React.Component {
           <div className='deckia'>
             <HiddenCards deck={this.state.cardsAvalaibleForIA} />
           </div>
-          <div className="timerAndEndTurn">
+          <div className='timerAndEndTurn'>
             <p>59 s</p>
             <button>End Turn</button>
           </div>
@@ -107,7 +107,6 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.heroesChosen} />
           </div>
         </div>
-
 
       </div>
     );

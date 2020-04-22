@@ -12,7 +12,7 @@ function CardOfDeckBoard ({ heroe, onHandleHandToBoard }) {
         <div className='atkBoard'><p className={heroe.name}>{heroe.atk}</p></div>
         <div className='hpBoard'><p className={heroe.name}>{heroe.hp}</p></div>
       </section>
-    </div>  
+    </div>
   );
 }
 
