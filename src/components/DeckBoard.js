@@ -74,26 +74,38 @@ class DeckBoard extends React.Component {
 
   render() {
     return (
-      <div className='deckboard'>
+      <div className='deckBoard'>
         <div className='leftBoardContainer'>
-
+          Je suis gauche
         </div>
-        <div className='centerBoardContainer'>
-          <div className="iahand">
+        <div className='centerBoardContainer'> {/* Board Total */}
+          <div className="iahand"> {/* hand of computer */}
             <HandCards heroesChosen={this.state.cardsAvalaibleForIA} randomizeHeroesChosen={this.randomizeHeroesChosen} />
           </div>
-          <div className='boardia'>
-            <Board heroesChosen={this.state.cardsAvalaibleForIA} />
+          <div className="boardContainer">
+            <div className='boardia'> {/* board of computer */}
+            Je suis IA
+              <Board heroesChosen={this.state.cardsAvalaibleForIA} />
+            </div>
+            <div className='boardPlayer1'> {/* board of Player1 */}
+              <Board heroesChosen={this.state.heroesChosen} />
+            </div>
           </div>
-          <div className='boardPlayer1'>
-            <Board heroesChosen={this.state.heroesChosen} />
-          </div>
-          <div className='player1hand'>
+          <div className='player1hand'> {/* hand of Player1 */}
             <HandCards heroesChosen={this.state.heroesChosen} onHandleHandToBoard={this.handleHandToBoard} />
           </div>
         </div>
-        <div className='rightBoardContainer'>
-          <HiddenCards deck={this.state.heroesChosen} />
+        <div className='rightBoardContainer'> {/* right board container : decks, timer, "End Turn" button, pseudos */}
+          <div className='deckia'>
+            <HiddenCards deck={this.state.cardsAvalaibleForIA} />
+          </div>
+          <div className="timerAndEndTurn">
+            <p>59 s</p>
+            <button>End Turn</button>
+          </div>
+          <div className='deckplayer1'>
+            <HiddenCards deck={this.state.heroesChosen} />
+          </div>
         </div>
 
 

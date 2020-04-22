@@ -6,13 +6,13 @@ import './HandCards.css';
 
 function HandCards (props) {
   return (
-    <div className='handcards'>
+    <React.Fragment>
       {props.heroesChosen.filter(heroe => heroe.position === 'hand').map(heroe => {
         return (
           <CardOfDeckBoard heroe={heroe} key={(heroe.atk) * (heroe.hp)} onHandleHandToBoard={props.onHandleHandToBoard} />
         );
       })}
-    </div>
+    </React.Fragment>
   );
 }
 export default HandCards;
