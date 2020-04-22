@@ -45,6 +45,10 @@ class App extends Component {
     this.setState({ deck: copieDeck });
   }
 
+  removeDeck = () => {
+    this.setState({deck: []});
+  }
+
   render () {
     return (
       <div className='App'>
@@ -54,7 +58,7 @@ class App extends Component {
             <Route path='/options' component={Options} />
             <Route path='/rules' component={Rules} />
             <Route path='/deckchoice'>
-              <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} />
+              <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} />
             </Route>
           </Switch>
         </Router>

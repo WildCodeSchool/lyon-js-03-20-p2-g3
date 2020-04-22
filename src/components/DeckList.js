@@ -18,9 +18,9 @@ function DeckList (props) {
         Player 1
       </div>
       <div className='deck_aside'>
-        <h3 id='title_deck_chosen_cards'>Deck</h3>
+        <h3 id='title_deck_chosen_cards'>Deck</h3><span onClick={props.removeDeck}><i class="fas fa-times"></i></span>
         <div className='cardlistdeck'>
-          {props.heroesChosen.map(heroe => <CardListChosen key={heroe.name} heroechoice={heroe} />)}
+          {props.heroesChosen.map(heroe => <CardListChosen key={heroe.name} heroechoice={heroe} addToDeck={props.addToDeck} />)}
         </div>
       </div>
       <div type='text' id='total_power_indicator'>
