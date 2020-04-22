@@ -17,6 +17,7 @@
 }
 .selected{
   opacity: 50%;
+  z-index: 0;
 }
 .imageCard{
   width: 75px;

@@ -7,7 +7,7 @@ import './DeckChoice.css';
 function DeckChoice ({ heroes, heroesChosen, addToDeck }) {
   return (
     <div>
-      <NavBarDeckChoice heroes={heroes} />
+      <NavBarDeckChoice heroesChosen={heroesChosen} />
       <div id='container-deck-card'>
         <DeckList heroes={heroes} heroesChosen={heroesChosen} />
         <CardList heroes={heroes} heroesChosen={heroesChosen} addToDeck={addToDeck} />
