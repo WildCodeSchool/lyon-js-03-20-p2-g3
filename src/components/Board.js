@@ -9,10 +9,10 @@ function Board (props) {
     <div>
       {props.heroesChosen.filter(heroe => heroe.position === 'board').map(heroe => {
         return (
-        <CardOfDeckBoard heroe={heroe} key={(heroe.atk) * (heroe.hp)} />
-      )})
-       }
+          <CardOfDeckBoard heroe={heroe} key={(heroe.atk) * (heroe.hp)} />
+        );
+      })}
     </div>
-  ) ;  
+  );
 }
 export default Board;

@@ -24,7 +24,7 @@ class App extends Component {
           atk: parseInt(heroe.powerstats.combat, 10),
           hp: parseInt(heroe.powerstats.durability, 10),
           power: parseInt(heroe.powerstats.power, 10),
-          position : 'deck'
+          position: 'deck'
         };
       }),
       deck: [],
