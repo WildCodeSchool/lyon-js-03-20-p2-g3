@@ -1,71 +1,77 @@
 import React from 'react';
-import HiddenCards from './HiddenCards';
 import HandCards from './HandCards';
+import './DeckBoard.css'
+import Board from './Board';
+import HiddenCards from './HiddenCards';
 
 class DeckBoard extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      heroes: props.heroes,
       heroesChosen: props.heroesChosen,
-      cardsAvalaibleForIA: [],
-      player1Hand: [],
-      player1Deck: []
+      cardsAvalaibleForIA: props.heroes,
     };
   }
 
-  componentDidMount () {
-    // Looping on heroesChosen array to select the heroes not chosen  :
-    const arrayOfAllHeroes = this.state.heroes;
-    const arrayOfPlayerOneHeroes = this.state.heroesChosen;
-    const cardsAvalaibleForIA = this.extractItemsNotPresentArr1FromArr2(arrayOfPlayerOneHeroes, arrayOfAllHeroes);
-    const threeFirstCards = this.randomizeHeroesChosen(arrayOfPlayerOneHeroes, 3);
-    console.log(arrayOfPlayerOneHeroes);
-    console.log(threeFirstCards);
+  componentDidMount(){
+    this.randomizeHeroesChosen()
+  }
+    
 
-    const cardsInDeckPlayer1 = this.extractItemsNotPresentArr1FromArr2(threeFirstCards, arrayOfPlayerOneHeroes);
-    // Update Player 1's hand cards
-    this.setState({ player1Hand: threeFirstCards });
-    // Update cards in the Player's Deck :
-    this.setState({ player1Deck: cardsInDeckPlayer1 });
-    // Update cards available for IA
-    this.setState({ cardsAvalaibleForIA: cardsAvalaibleForIA });
+  handleHandToBoard = (heroeName) => {
+    const newDeck=this.state.heroesChosen.map(heroe => {
+      if (heroe.name === heroeName){
+        return {...heroe, position : "board"}
+      }
+      else {
+        return heroe
+      }
+    })
+    this.setState({heroesChosen: newDeck})
   }
 
-  randomizeHeroesChosen = (arrayOfHeroes, nbCardsToRandomize) => {
-    let outputArray = [];
-    const heroesChosenRandomized = [];
+  randomizeHeroesChosen =()=>{
+    const newHeroesChosen = this.state.heroesChosen
     const arrayOfRandomNumbers = [];
-    while (arrayOfRandomNumbers.length < arrayOfHeroes.length) {
-      const randomNumber = Math.floor(Math.random() * arrayOfHeroes.length);
+    while (arrayOfRandomNumbers.length < 3) {
+      const randomNumber = Math.floor(Math.random() * newHeroesChosen.length);
       if (arrayOfRandomNumbers.indexOf(randomNumber) === -1) {
         arrayOfRandomNumbers.push(randomNumber);
       }
     }
-    for (let i = 0; i < arrayOfHeroes.length; i++) {
-      heroesChosenRandomized.push(arrayOfHeroes[arrayOfRandomNumbers[i]]);
-    }
-    outputArray = heroesChosenRandomized.slice(0, nbCardsToRandomize);
-    return outputArray;
-  }
-
-  extractItemsNotPresentArr1FromArr2 = (arr1, arr2) => {
-    // length of arr1 < length of arr2, all items in arr 1 are included in arr2
-    const outputArray = [];
-    for (let i = 0; i < arr2.length; i++) {
-      if (arr1.indexOf(arr2[i]) === -1) {
-        outputArray.push(arr2[i]);
+    for (let i=0; i < newHeroesChosen.length ; i++){
+      for(let j=0; j < arrayOfRandomNumbers.length ; j++){
+        if (newHeroesChosen.indexOf(newHeroesChosen[i])===arrayOfRandomNumbers[j]){
+          newHeroesChosen[i].position = "hand";
+        }
       }
     }
-    return outputArray;
+    this.setState({ heroesChosen: newHeroesChosen })
+  }
+
+  handleDraw =()=>{
+    const newHeroesChosen = this.state.heroesChosen
+    const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length);
+    newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand';
+    this.setState({ heroesChosen: newHeroesChosen })
   }
 
   render () {
     return (
-      <div>
-        <HandCards heroesChosen={this.state.heroesChosen} player1Hand={this.state.player1Hand} />
-        <HiddenCards deck={this.state.cardsAvalaibleForIA} />
-        <HiddenCards deck={this.state.player1Deck} />
+      <div style={{display:"flex"}}>
+        <div className="player1and">
+         <HandCards heroesChosen={this.state.heroesChosen}  handleHandToBoard={this.handleHandToBoard} />  
+        </div>
+        <div className="board">
+          board
+          <Board heroesChosen={this.state.heroesChosen}/>
+        </div>
+        <HiddenCards deck={this.state.heroesChosen} />
+        <button onClick={this.handleDraw}>draw</button>
+{/*         <div className="iahand">
+        Hello
+        <HandCards heroesChosen={this.state.cardsAvalaibleForIA} randomizeHeroesChosen={this.randomizeHeroesChosen} />
+        </div> */}
       </div>
     );
   }
