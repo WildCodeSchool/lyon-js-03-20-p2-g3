@@ -12,7 +12,11 @@ class NavBarDeckChoice extends Component {
   }
 
     handleShowModal = () => {
-      this.setState({ show: true });
+     if(this.props.heroesChosen.length === 0) {
+        window.alert('Warning ! Your deck is empty. You must choose at least one card');
+      } else {
+        this.setState({ show: true });
+      }
     }
 
     handleHideModal = () => {
@@ -29,7 +33,7 @@ class NavBarDeckChoice extends Component {
               </li>
               <li id='title'>Choose your Heroes</li>
               <li>
-                <button type='button' className='button-config' onClick={this.handleShowModal}>Start</button>/>
+                <button type='button' className={this.props.heroesChosen.length===0 ? "button-config button-config-disable" : "button-config button-config-enable"} onClick={this.handleShowModal}>Start</button>
                 <Modal show={this.state.show} heroesChosen={this.props.heroesChosen} onHandleClose={this.handleHideModal}>
                   {this.props.heroesChosen
                     .map(heroe => {
