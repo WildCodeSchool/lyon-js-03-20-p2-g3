@@ -9,7 +9,7 @@ function DeckChoice ({ heroes, heroesChosen, addToDeck }) {
     <div>
       <NavBarDeckChoice heroes={heroes} />
       <div id='container-deck-card'>
-        <DeckList heroes={heroes} heroesChosen={heroesChosen} />
+        <DeckList heroes={heroes} heroesChosen={heroesChosen} addToDeck={addToDeck}/>
         <CardList heroes={heroes} heroesChosen={heroesChosen} addToDeck={addToDeck} />
       </div>
     </div>
