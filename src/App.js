@@ -26,7 +26,7 @@ class App extends Component {
           power: parseInt(heroe.powerstats.power, 10)
         };
       }),
-      deck: [], 
+      deck: [],
       heroesAPI: []
     };
   }

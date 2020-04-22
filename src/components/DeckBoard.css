@@ -1,0 +1,8 @@
+.player1and {
+    display: flex;
+}
+
+.iahand {
+    display: flex;
+    border: 10px solid red;
+}

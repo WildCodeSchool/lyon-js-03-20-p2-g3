@@ -4,10 +4,15 @@ import './CardList.css';
 import './Card.css';
 
 function HandCards (props) {
-  // props.randomizeHeroesChosen(props.heroesChosen);
+  const threeFirstCards = props.randomizeHeroesChosen(props.heroesChosen, 3);
   return (
     <div>
-      {props.player1Hand.map(heroe => <CardOfDeckBoard heroe={heroe} key={(heroe.atk) * (heroe.hp)} />)}
+      {threeFirstCards.map(heroe => {
+        heroe.position = 'hand';
+        return (
+          <CardOfDeckBoard heroe={heroe} key={(heroe.atk) * (heroe.hp)} HandleHandToBoard={props.HandleHandToBoard} />
+        );
+      })}
     </div>
   );
 }
