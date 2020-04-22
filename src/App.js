@@ -38,7 +38,7 @@ class App extends Component {
 
   getHeroesFromAPI = () => {
     const totalHeroesAPI = 731;
-    const numberOfHeroes = 6;
+    const numberOfHeroes = 3;
     let randomId = 0;
     const arrUpdate = [];
     for (let i = 0; i < numberOfHeroes; i++) {
