@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   removeDeck = () => {
-    this.setState({deck: []});
+    this.setState({ deck: [] });
   }
 
   render () {
