@@ -28,26 +28,33 @@ class DeckBoard extends React.Component {
     this.setState({ heroesChosen: newDeck });
   }
 
-  randomizeHeroesChosen =() => {
+  randomizeHeroesChosen = () => {
     const newHeroesChosen = this.state.heroesChosen;
+    const heroesChosenRandomized = [];
     const arrayOfRandomNumbers = [];
-    while (arrayOfRandomNumbers.length < 3) {
+    while (arrayOfRandomNumbers.length < newHeroesChosen.length) {
       const randomNumber = Math.floor(Math.random() * newHeroesChosen.length);
       if (arrayOfRandomNumbers.indexOf(randomNumber) === -1) {
         arrayOfRandomNumbers.push(randomNumber);
       }
     }
+
     for (let i = 0; i < newHeroesChosen.length; i++) {
-      for (let j = 0; j < arrayOfRandomNumbers.length; j++) {
-        if (newHeroesChosen.indexOf(newHeroesChosen[i]) === arrayOfRandomNumbers[j]) {
-          newHeroesChosen[i].position = 'hand';
+      heroesChosenRandomized.push(newHeroesChosen[arrayOfRandomNumbers[i]]);
+    }
+
+    for (let i = 0; i < heroesChosenRandomized.length; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (heroesChosenRandomized.indexOf(heroesChosenRandomized[i]) === arrayOfRandomNumbers[j]) {
+          heroesChosenRandomized[i].position = 'hand';
         }
       }
     }
-    this.setState({ heroesChosen: newHeroesChosen });
+
+    this.setState({ heroesChosen: heroesChosenRandomized });
   }
 
-  handleDraw =() => {
+  handleDraw = () => {
     const newHeroesChosen = this.state.heroesChosen;
     const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length);
     newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand';
@@ -56,16 +63,18 @@ class DeckBoard extends React.Component {
 
   render () {
     return (
-      <div style={{ display: 'flex' }}>
-        <div className='player1and'>
-          <HandCards heroesChosen={this.state.heroesChosen} onHandleHandToBoard={this.handleHandToBoard} />
+      <div className='deckboard'>
+        <div className='player1handboard'>
+          <HiddenCards deck={this.state.heroesChosen} />
+          <button onClick={this.handleDraw}>draw</button>
+          <div className='board'>
+            board
+            <Board heroesChosen={this.state.heroesChosen} />
+          </div>
+          <div className='player1hand'>
+            <HandCards heroesChosen={this.state.heroesChosen} onHandleHandToBoard={this.handleHandToBoard} />
+          </div>
         </div>
-        <div className='board'>
-          board
-          <Board heroesChosen={this.state.heroesChosen} />
-        </div>
-        <HiddenCards deck={this.state.heroesChosen} />
-        <button onClick={this.handleDraw}>draw</button>
         {/*         <div className="iahand">
         Hello
         <HandCards heroesChosen={this.state.cardsAvalaibleForIA} randomizeHeroesChosen={this.randomizeHeroesChosen} />

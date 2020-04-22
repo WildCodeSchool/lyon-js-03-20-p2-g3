@@ -1,0 +1,13 @@
+.hiddenCardBlock {
+    width: 180px;
+    height: 120px;
+    background: no-repeat center/100% url('./images/dosDeCarte.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deckCount {
+    color: white;
+    font-size: 2em;
+}
