@@ -4,9 +4,8 @@ import './DeckBoard.css';
 import Board from './Board';
 import HiddenCards from './HiddenCards';
 
-
 class DeckBoard extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       heroesChosen: props.heroesChosen,
@@ -14,7 +13,7 @@ class DeckBoard extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.randomizeHeroesChosen();
   }
 
@@ -31,21 +30,21 @@ class DeckBoard extends React.Component {
 
   randomizeHeroesChosen = () => {
     const newHeroesChosen = this.state.heroesChosen;
-    let heroesChosenRandomized = [];
-    let arrayOfRandomNumbers = [];
+    const heroesChosenRandomized = [];
+    const arrayOfRandomNumbers = [];
     while (arrayOfRandomNumbers.length < newHeroesChosen.length) {
       const randomNumber = Math.floor(Math.random() * newHeroesChosen.length);
       if (arrayOfRandomNumbers.indexOf(randomNumber) === -1) {
         arrayOfRandomNumbers.push(randomNumber);
       }
     }
-    
-    for (let i=0;i<newHeroesChosen.length;i++) {
-      heroesChosenRandomized.push(newHeroesChosen[arrayOfRandomNumbers[i]])
+
+    for (let i = 0; i < newHeroesChosen.length; i++) {
+      heroesChosenRandomized.push(newHeroesChosen[arrayOfRandomNumbers[i]]);
     }
 
     for (let i = 0; i < heroesChosenRandomized.length; i++) {
-      for (let j = 0; j < 3 ; j++) {
+      for (let j = 0; j < 3; j++) {
         if (heroesChosenRandomized.indexOf(heroesChosenRandomized[i]) === arrayOfRandomNumbers[j]) {
           heroesChosenRandomized[i].position = 'hand';
         }
@@ -62,12 +61,12 @@ class DeckBoard extends React.Component {
     this.setState({ heroesChosen: newHeroesChosen });
   }
 
-  render() {
+  render () {
     return (
-      <div className="deckboard">
-        <div className="player1handboard">
-        <HiddenCards deck={this.state.heroesChosen} />
-        <button onClick={this.handleDraw}>draw</button>
+      <div className='deckboard'>
+        <div className='player1handboard'>
+          <HiddenCards deck={this.state.heroesChosen} />
+          <button onClick={this.handleDraw}>draw</button>
           <div className='board'>
             board
             <Board heroesChosen={this.state.heroesChosen} />
