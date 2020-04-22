@@ -38,7 +38,7 @@ class App extends Component {
 
   getHeroesFromAPI = () => {
     const totalHeroesAPI = 731;
-    const numberOfHeroes = 6;
+    const numberOfHeroes = 3;
     let randomId = 0;
     const arrUpdate = [];
     for (let i = 0; i < numberOfHeroes; i++) {
@@ -55,7 +55,8 @@ class App extends Component {
   }
 
   addToDeck = (event) => {
-    let copieDeck = this.state.deck.slice();
+    console.log('coucou');
+    let copieDeck = this.state.deck;
     const cardName = event.target.className;
     const maxPower = 300;
     const totalPower = this.state.deck.map(card => card.power).reduce((acc, cur) => acc + cur, 0);
