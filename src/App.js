@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   addToDeck = (event) => {
-    console.log('coucou')
+    console.log('coucou');
     let copieDeck = this.state.deck;
     const cardName = event.target.className;
     const maxPower = 300;

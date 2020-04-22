@@ -8,7 +8,7 @@ const CardListChosen = props => {
       <p className='para_chosen_card'> {name}
         <br />
         <span>{atk}/{hp}</span>
-        <button className={name} onClick={props.addToDeck}>X</button>
+        <button className={name}>X</button>
       </p>
     </div>
   );
