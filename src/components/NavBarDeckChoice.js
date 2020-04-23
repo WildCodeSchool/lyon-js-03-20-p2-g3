@@ -34,7 +34,7 @@ class NavBarDeckChoice extends Component {
               <li id='title'>Choose your Heroes</li>
               <li>
                 <button type='button' className={this.props.heroesChosen.length === 0 ? 'button-config button-config-disable' : 'button-config button-config-enable'} onClick={this.handleShowModal}>Start</button>
-                <Modal show={this.state.show} heroesChosen={this.props.heroesChosen} onHandleClose={this.handleHideModal}>
+                <Modal show={this.state.show} heroesChosen={this.props.heroesChosen} onClose={this.handleHideModal}>
                   {this.props.heroesChosen
                     .map(heroe => {
                       return (
@@ -57,7 +57,7 @@ const Modal = ({ onHandleClose, show, children }) => {
   return (
     <div className={showHideClassName}>
       <section className='modal-main'>
-        <h2>Are you sure of the composition of your deck ?</h2>
+        <h2>Are you sure of the composition of your deck ?????</h2>
         <div className='modal-heroesChosen-container'>
           {children}
         </div>

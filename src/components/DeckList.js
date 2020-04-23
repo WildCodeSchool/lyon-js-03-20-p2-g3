@@ -11,7 +11,7 @@ function DeckList (props) {
     }
     return totalPower;
   }
-
+  const handleRemoveDeck = props.removeDeck;
   return (
     <div className='aside'>
       <div type='text' id='player_indicator'>
@@ -20,7 +20,7 @@ function DeckList (props) {
       <div className='deck_aside'>
         <div className='deck_title_container'>
           <h3 id='title_deck_chosen_cards'>Deck</h3>
-          <span className='cross_title_container' onClick={props.removeDeck}>
+          <span className='cross_title_container' onClick={handleRemoveDeck}>
             <i className='fas fa-times' />
           </span>
         </div>
