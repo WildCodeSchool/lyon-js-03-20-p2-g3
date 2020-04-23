@@ -84,7 +84,6 @@ class DeckBoard extends React.Component {
           </div>
           <div className='boardContainer'>
             <div className='boardia'> {/* board of computer */}
-            Je suis IA
               <Board heroesChosen={this.state.cardsAvalaibleForIA} />
             </div>
             <div className='boardPlayer1'> {/* board of Player1 */}
