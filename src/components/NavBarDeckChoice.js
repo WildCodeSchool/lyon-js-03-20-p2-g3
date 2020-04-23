@@ -63,7 +63,7 @@ const Modal = ({ onHandleClose, show, children }) => {
         </div>
         <div className='button-modal-container'>
           <button type='button' className='button-config' onClick={onHandleClose}>Close</button>
-          <Button id='button-battle' link='/' linkName='Start' />
+          <Button id='button-battle' link='/deckboard' linkName='Start' />
         </div>
       </section>
     </div>

@@ -4,6 +4,7 @@ import './DeckBoard.css';
 import Board from './Board';
 import HiddenCards from './HiddenCards';
 import heroes from './heroes';
+import Button from './Button';
 
 class DeckBoard extends React.Component {
   constructor (props) {
@@ -76,7 +77,7 @@ class DeckBoard extends React.Component {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
-          Je suis gauche
+          <Button id='button-rageQuit' link='/' linkName='Rage Quit' />
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
           <div className='iahand'> {/* hand of computer */}
