@@ -57,7 +57,7 @@ const Modal = ({ onHandleClose, show, children }) => {
   return (
     <div className={showHideClassName}>
       <section className='modal-main'>
-        <h2>Are you sure of the composition of your deck ?????</h2>
+        <h2>Are you sure of the composition of your deck ?</h2>
         <div className='modal-heroesChosen-container'>
           {children}
         </div>
