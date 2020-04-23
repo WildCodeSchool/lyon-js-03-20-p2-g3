@@ -49,10 +49,9 @@
     flex: 0 0 calc(100% / 3);
 }
 
-.fas.fa-times{
-    pointer-events: none;
+.cross_cardList_container {
+    cursor: pointer;
 }
-
 
 #title_deck_chosen_cards{
     font-size: 1.2em;
