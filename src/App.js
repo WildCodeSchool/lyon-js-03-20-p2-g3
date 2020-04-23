@@ -11,7 +11,6 @@ import Rules from './components/Rules';
 import DeckChoice from './components/DeckChoice';
 import heroes from './components/heroes';
 import axios from 'axios';
-import DeckBoard from './components/DeckBoard';
 
 class App extends Component {
   constructor (props) {
@@ -23,11 +22,10 @@ class App extends Component {
           img: heroe.image.url,
           atk: parseInt(heroe.powerstats.combat, 10),
           hp: parseInt(heroe.powerstats.durability, 10),
-          power: parseInt(heroe.powerstats.power, 10),
+          power: parseInt(heroe.powerstats.power, 10)
         };
       }),
-      deck: [],
-      heroesAPI: []
+      deck: []
     };
   }
 
@@ -80,9 +78,6 @@ class App extends Component {
             <Route path='/rules' component={Rules} />
             <Route path='/deckchoice'>
               <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} />
-            </Route>
-            <Route path='/deckboard'>
-              <DeckBoard heroes={this.state.cards} heroesChosen={this.state.deck} />
             </Route>
           </Switch>
         </Router>

@@ -17,6 +17,22 @@
     background: rgb(95, 95, 95);
 }
 
+.button-config-disable {
+    background-color: red;
+}
+
+.button-config-disable:hover {
+    background-color: rgb(238, 5, 5);
+}
+
+.button-config-enable {
+    background-color: #FFAA29;
+}
+
+.button-config-enable:hover {
+    background-color: rgb(247, 148, 0);
+}
+
 #play-button {
     background-color: #FFAA29;
 }
