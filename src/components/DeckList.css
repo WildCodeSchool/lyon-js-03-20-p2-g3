@@ -34,6 +34,7 @@
     color: red;
     font-size: 20px;
 }
+
 .deck_title_container{
     display: flex;
     justify-content:flex-end ;
@@ -43,10 +44,11 @@
 .cross_title_container{
     display: flex;    
     align-items:  center;
-    
+    cursor: pointer;
     justify-content: center;
     flex: 0 0 calc(100% / 3);
 }
+
 .fas.fa-times{
     pointer-events: none;
 }
