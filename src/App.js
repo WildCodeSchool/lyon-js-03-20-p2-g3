@@ -54,9 +54,8 @@ class App extends Component {
     }
   }
 
-  addToDeck = (event) => {
+  addToDeck = (cardName) => {
     let copieDeck = this.state.deck;
-    const cardName = event.target.className;
     const maxPower = 300;
     const totalPower = this.state.deck.map(card => card.power).reduce((acc, cur) => acc + cur, 0);
     if (copieDeck.filter(heroe => cardName.includes(heroe.name)).length === 0) {
