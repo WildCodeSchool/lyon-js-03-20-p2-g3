@@ -9,6 +9,7 @@ const CardListChosen = props => {
         <span className='cross_cardList_container' onClick={() => props.addToDeck(name)}><i className='fas fa-times' /></span>
         <br />
         <span>{atk}/{hp}</span>
+        <button className={name}>X</button>
       </p>
     </div>
   );

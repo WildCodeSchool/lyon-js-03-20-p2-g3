@@ -51,7 +51,7 @@ class NavBarDeckChoice extends Component {
     }
 }
 
-const Modal = ({ onHandleClose, show, children }) => {
+const Modal = ({ handleClose, show, children }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
   return (
@@ -62,8 +62,8 @@ const Modal = ({ onHandleClose, show, children }) => {
           {children}
         </div>
         <div className='button-modal-container'>
-          <button type='button' className='button-config' onClick={onHandleClose}>Close</button>
-          <Button id='button-battle' link='/' linkName='Start' />
+          <button type='button' className='button-config' onClick={handleClose}>Close</button>
+          <Button id='button-battle' link='/deckboard' linkName='Start' />
         </div>
       </section>
     </div>
