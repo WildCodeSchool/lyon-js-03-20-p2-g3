@@ -1,0 +1,52 @@
+.deckBoard  {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+.leftBoardContainer {
+ /*  border: 4px solid blue; */
+  width: 15vw;
+}
+.centerBoardContainer {
+  display: flex;
+  flex-direction: column;
+  /* border: 4px solid blue; */
+  width: 60vw;
+}
+
+.iahand, .player1hand {
+  background: green;
+  height: 25vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.boardContainer {
+  background: green;
+  height: 50vh
+}
+
+.boardPlayer1, .boardia {
+  background: pink;
+  height: 25vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.rightBoardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+ /*  border: 4px solid blue; */
+  width: 25vw;
+}
+
+.timerAndEndTurn {
+  width: 25vw;
+  display: flex;
+  justify-content: space-around;
+}
+

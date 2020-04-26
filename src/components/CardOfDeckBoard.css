@@ -1,6 +1,6 @@
-.card{
-  width: 120px;
-  height: 150px;
+  .cardBoard{
+  width: 10vw;
+  height: 100%;
   font-size: 10px;
   padding-top: 5px;
   background:no-repeat center/100% url('https://cdn.pixabay.com/photo/2014/10/04/15/29/paper-473630_960_720.jpg');
@@ -10,62 +10,38 @@
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
-  margin-bottom: 10px;
 }
-.card *{
+.cardBoard *{
   cursor: pointer;
 }
-.selected{
-  opacity: 50%;
-  z-index: 0;
-}
-.imageCard{
-  width: 75px;
-  height: 100px;
+
+.imageCardBoard{
+  height: 70%;
   border-radius: 5px;
 }
 
-.containerBottom{
+.containerBottomBoard{
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.atk, .hp{
-  width: 30px;
-  height: 30px;
-  border-radius: 20px;
+.atkBoard, .hpBoard{
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
   align-self: flex-end;
   display: flex;
   justify-content: center;
   align-self: center;
 }
-.atk p, .hp p{
+.atkBoard p, .hpBoard p{
   display: flex;
   justify-content: center;
   align-self: center;
 }
-.atk{
+.atkBoard{
   background-color: rgba(255,0,0,0.8);
 }
-.hp{
+.hpBoard{
   background-color:rgba(20, 255, 0, 0.8)
-} 
-
-@media screen and (min-width: 897px) {
-  .card{
-    width: 240px;
-    height: 300px;
-  }
-  .imageCard{
-    width: 150px;
-    height: 200px;
-  }
-  .atk, .hp{
-    width: 40px;
-    height: 40px;
-    border-radius: 40px;
-  }
-  .pw, .atk p, .hp p{
-    font-size: 15px;
-  }
 }
