@@ -11,16 +11,23 @@ function DeckList (props) {
     }
     return totalPower;
   }
-
+  const handleRemoveDeck = props.removeDeck;
   return (
     <div className='aside'>
       <div type='text' id='player_indicator'>
         Player 1
       </div>
       <div className='deck_aside'>
-        <h3 id='title_deck_chosen_cards'>Deck</h3>
+        <div className='deck_title_container'>
+          <h3 id='title_deck_chosen_cards'>Deck</h3>
+          <span className='cross_title_container' onClick={handleRemoveDeck}>
+            <i className='fas fa-times' />
+          </span>
+        </div>
+
         <div className='cardlistdeck'>
-          {props.heroesChosen.map(heroe => <CardListChosen key={heroe.name} heroechoice={heroe} />)}
+          {props.heroesChosen.map(heroe => <CardListChosen key={heroe.name} heroechoice={heroe} addToDeck={props.addToDeck} />)}
+
         </div>
       </div>
       <div type='text' id='total_power_indicator'>

@@ -30,12 +30,38 @@
     border-radius: 7px;
 }
 
+.deck_aside i {
+    color: red;
+    font-size: 20px;
+}
+
+.deck_title_container{
+    display: flex;
+    justify-content:flex-end ;
+    
+}
+
+.cross_title_container{
+    display: flex;    
+    align-items:  center;
+    cursor: pointer;
+    justify-content: center;
+    flex: 0 0 calc(100% / 3);
+}
+
+.cross_cardList_container {
+    cursor: pointer;
+}
+
 #title_deck_chosen_cards{
     font-size: 1.2em;
     font-weight: 530;
     margin : 0;
     text-align: center;
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex: 0 0 calc(100% / 3);
 }
 
 .cardlistdeck {

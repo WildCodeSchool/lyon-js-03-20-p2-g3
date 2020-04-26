@@ -54,10 +54,8 @@ class App extends Component {
     }
   }
 
-  addToDeck = (event) => {
-    console.log('coucou');
+  addToDeck = (cardName) => {
     let copieDeck = this.state.deck;
-    const cardName = event.target.className;
     const maxPower = 300;
     const totalPower = this.state.deck.map(card => card.power).reduce((acc, cur) => acc + cur, 0);
     if (copieDeck.filter(heroe => cardName.includes(heroe.name)).length === 0) {
@@ -72,6 +70,10 @@ class App extends Component {
     this.setState({ deck: copieDeck });
   }
 
+  removeDeck = () => {
+    this.setState({ deck: [] });
+  }
+
   render () {
     return (
       <div className='App'>
@@ -81,7 +83,7 @@ class App extends Component {
             <Route path='/options' component={Options} />
             <Route path='/rules' component={Rules} />
             <Route path='/deckchoice'>
-              <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} />
+              <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} />
             </Route>
             <Route path='/deckboard'>
               <DeckBoard heroes={this.state.cards} heroesChosen={this.state.deck} />
