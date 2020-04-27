@@ -73,11 +73,16 @@ class DeckBoard extends React.Component {
     this.setState({ heroesChosen: newHeroesChosen });
   }
 
+  /* removeFromBoard = () => {
+    this.props.removeDeck();
+    this.setState({heroesChosen: []})
+  } */
+
   render () {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
-          <Button id='button-rageQuit' link='/' linkName='Rage Quit' />
+          <Button removeDeck={this.props.removeDeck} id='button-rageQuit' link='/' linkName='Rage Quit' />
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
           <div className='iahand'> {/* hand of computer */}

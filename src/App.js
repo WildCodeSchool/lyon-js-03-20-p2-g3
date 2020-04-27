@@ -71,6 +71,7 @@ class App extends Component {
   }
 
   removeDeck = () => {
+    console.log('Hello je suis là');
     this.setState({ deck: [] });
   }
 
@@ -86,7 +87,7 @@ class App extends Component {
               <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} />
             </Route>
             <Route path='/deckboard'>
-              <DeckBoard heroes={this.state.cards} heroesChosen={this.state.deck} />
+              <DeckBoard heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} />
             </Route>
           </Switch>
         </Router>
