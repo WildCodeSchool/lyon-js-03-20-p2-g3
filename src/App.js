@@ -17,7 +17,7 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      cards: heroes.map(heroe => {
+       cards: heroes.map(heroe => {
         return {
           name: heroe.name,
           img: heroe.image.url,
@@ -26,34 +26,36 @@ class App extends Component {
           power: parseInt(heroe.powerstats.power, 10),
           position: 'deck'
         };
-      }),
-      deck: [],
-      heroesAPI: []
+      }), 
+      deck: []
     };
   }
 
-  componentDidMount () {
+/*   componentDidMount () {
     this.getHeroesFromAPI();
-  }
+  } */
 
-  getHeroesFromAPI = () => {
-    const totalHeroesAPI = 731;
-    const numberOfHeroes = 3;
-    let randomId = 0;
+/*   getHeroesFromAPI = () => {
     const arrUpdate = [];
-    for (let i = 0; i < numberOfHeroes; i++) {
-      // const copyHeroesAPI = { ...this.state.heroesAPI };
-      randomId = Math.round(Math.random() * totalHeroesAPI);
-      const url = `https://www.superheroapi.com/api.php/10222211119006297/${randomId}`;
+    const idHeroe = [354,310,307,165,341,383,30,352,107,634,201,370,106,729,649,69,487,717,213,176,485,38,396,389,157,195,502];
+    for (let i = 0; i < idHeroe.length; i++) {
+      const url = `https://www.superheroapi.com/api.php/10222211119006297/${idHeroe[i]}`;
       axios.get(url)
         .then(res => res.data)
         .then(data => {
-          arrUpdate[i] = data;
-          this.setState({ heroesAPI: arrUpdate });
+          arrUpdate.push({
+            name : data.name,
+            img: data.image.url,
+            atk: parseInt(data.powerstats.strength, 10),
+            hp: parseInt(data.powerstats.durability, 10),
+            power: (parseInt(data.powerstats.strength, 10) + parseInt(data.powerstats.durability, 10)) / 2,
+            position: 'deck'
+          })
+          this.setState({ cards: arrUpdate });
         });
     }
-  }
-
+  } */
+ 
   addToDeck = (cardName) => {
     let copieDeck = this.state.deck;
     const maxPower = 300;
@@ -71,6 +73,7 @@ class App extends Component {
   }
 
   removeDeck = () => {
+    console.log('hello')
     this.setState({ deck: [] });
   }
 
@@ -83,10 +86,10 @@ class App extends Component {
             <Route path='/options' component={Options} />
             <Route path='/rules' component={Rules} />
             <Route path='/deckchoice'>
-              <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} />
+              <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} />
             </Route>
             <Route path='/deckboard'>
-              <DeckBoard heroes={this.state.cards} heroesChosen={this.state.deck} />
+              <DeckBoard heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck}/>
             </Route>
           </Switch>
         </Router>
