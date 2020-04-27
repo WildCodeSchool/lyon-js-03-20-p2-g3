@@ -10,12 +10,13 @@ class DeckBoard extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      playerTurn: true,
       heroesChosen: props.heroesChosen,
       cardsAvalaibleForIA: heroes.map(heroe => {
         return {
           name: heroe.name,
           img: heroe.image.url,
-          atk: parseInt(heroe.powerstats.combat, 10),
+          atk: parseInt( heroe.powerstats.combat, 10),
           hp: parseInt(heroe.powerstats.durability, 10),
           power: parseInt(heroe.powerstats.power, 10),
           position: 'deck'
@@ -28,6 +29,9 @@ class DeckBoard extends React.Component {
     this.randomizeHeroesChosen(this.state.heroesChosen);
     this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
   }
+/*   componentWillUnmount () {
+    window.clearTimeout(timeOutIaDrawId)
+  } */
 
   handleHandToBoard = (heroeName) => {
     const newDeck = this.state.heroesChosen.map(heroe => {
@@ -38,6 +42,13 @@ class DeckBoard extends React.Component {
       }
     });
     this.setState({ heroesChosen: newDeck });
+  }
+
+  handleHandToBoardIa = () => {
+    let newIaDeck = this.state.cardsAvalaibleForIA;
+    const randomNumber = Math.floor(Math.random() * newIaDeck.filter(heroe => heroe.position === 'hand').length);
+    newIaDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
+    this.setState({ cardsAvalaibleForIA : newIaDeck})
   }
 
   randomizeHeroesChosen = (deck) => {
@@ -66,11 +77,21 @@ class DeckBoard extends React.Component {
     this.setState({ deck: heroesChosenRandomized });
   }
 
-  handleDraw = () => {
-    const newHeroesChosen = this.state.heroesChosen;
-    const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length);
-    newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand';
-    this.setState({ heroesChosen: newHeroesChosen });
+  handleDraw = (deck) => {
+    const newHeroesChosen = deck;
+    if(newHeroesChosen.filter(heroe => heroe.position === 'deck').length !== 0){
+      const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length);
+      newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand';
+      this.setState({ deck: newHeroesChosen });
+    }
+  }
+
+  handleIaTurn = () =>{
+    this.setState({ playerTurn : false })
+    const timeOutIaDrawId = window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA), 1000)
+    const timeOutIaHandToBoardId = window.setTimeout(() => this.handleHandToBoardIa(), 4000)
+    const timeOutSetState =  window.setTimeout(() => this.setState({ playerTurn : true }), 6000)
+    const timeOutPlayerDraw =  window.setTimeout(() => this.handleDraw(this.state.heroesChosen), 6000)
   }
 
   render () {
@@ -92,7 +113,7 @@ class DeckBoard extends React.Component {
             </div>
           </div>
           <div className='player1hand'> {/* hand of Player1 */}
-            <HandCards heroesChosen={this.state.heroesChosen} onHandleHandToBoard={this.handleHandToBoard} />
+            <HandCards heroesChosen={this.state.heroesChosen} onHandleHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn}/>
           </div>
         </div>
         <div className='rightBoardContainer'> {/* right board container : decks, timer, "End Turn" button, pseudos */}
@@ -101,7 +122,7 @@ class DeckBoard extends React.Component {
           </div>
           <div className='timerAndEndTurn'>
             <p>59 s</p>
-            <button>End Turn</button>
+            <button onClick={this.state.playerTurn ? this.handleIaTurn : '' }>End Turn</button>
           </div>
           <div className='deckplayer1'>
             <HiddenCards deck={this.state.heroesChosen} />

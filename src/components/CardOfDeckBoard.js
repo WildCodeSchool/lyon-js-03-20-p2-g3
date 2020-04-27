@@ -1,9 +1,9 @@
 import React from 'react';
 import './CardOfDeckBoard.css';
 
-function CardOfDeckBoard ({ heroe, onHandleHandToBoard }) {
+function CardOfDeckBoard ({ heroesChosen, heroe, onHandleHandToBoard, playerTurn }) {
   return (
-    <div className='cardBoard' onClick={heroe.position === 'hand' ? () => onHandleHandToBoard(heroe.name) : ''}>
+    <div className='cardBoard' onClick={heroe.position === 'hand' && playerTurn ? () => onHandleHandToBoard(heroe.name) : ''}>
       <section className='pwBoard'>
         {heroe.power} PW
       </section>
