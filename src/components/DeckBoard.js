@@ -103,7 +103,7 @@ class DeckBoard extends React.Component {
             </div>
           </div>
           <div className='player1hand'> {/* hand of Player1 */}
-            <HandCards heroesChosen={this.state.heroesChosen} onHandleHandToBoard={this.handleHandToBoard} />
+            <HandCards heroesChosen={this.state.heroesChosen} onHandToBoard={this.handleHandToBoard} />
           </div>
         </div>
         <div className='rightBoardContainer'> {/* right board container : decks, timer, "End Turn" button, pseudos */}

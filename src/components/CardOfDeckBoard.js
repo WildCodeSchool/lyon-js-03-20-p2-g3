@@ -1,11 +1,11 @@
 import React from 'react';
 import './CardOfDeckBoard.css';
 
-function CardOfDeckBoard ({ heroe, onhandleHandToBoard, onSelectedCard, heroesChosen }) {
+function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, heroesChosen }) {
   const handleClickOnCardOfDeckBoard = (event) => {
     console.log(event.currentTarget);
     if (heroe.position === 'hand') {
-      return onhandleHandToBoard(heroe.name);
+      return onHandToBoard(heroe.name);
     } else if (heroe.position === 'board') {
       // event.currentTarget.style.border ='2px solid red';
       return onSelectedCard(heroe.name);
