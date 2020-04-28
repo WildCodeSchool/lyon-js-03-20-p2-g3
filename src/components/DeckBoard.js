@@ -6,7 +6,7 @@ import HiddenCards from './HiddenCards';
 import heroes from './heroes';
 
 class DeckBoard extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       seconds: 3,
@@ -25,13 +25,14 @@ class DeckBoard extends React.Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.randomizeHeroesChosen(this.state.heroesChosen);
     this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.setState({ heroesChosen: [] });
+
   }
 
   handleHandToBoard = (heroeName) => {
@@ -157,10 +158,12 @@ class DeckBoard extends React.Component {
   };
 
   handleIaTurn = () => {
-    if (this.state.playerTurn === true) {
-      window.setTimeout(() => this.reloadTimer(), 6000);
-    }
+
+
     this.setState({ playerTurn: false });
+
+
+
     const attackTime =
       1000 *
       this.state.cardsAvalaibleForIA.filter(
@@ -176,6 +179,8 @@ class DeckBoard extends React.Component {
       () => this.setState({ playerTurn: true }),
       6000 + attackTime
     );
+    window.setTimeout(() => this.reloadTimer(), 6000);
+
 
     window.setTimeout(
       () => this.handleDraw(this.state.heroesChosen),
@@ -187,10 +192,14 @@ class DeckBoard extends React.Component {
     const myInterval = setInterval(() => {
       const { seconds } = this.state;
       if (seconds > 0) {
+        let x = -1;
         this.setState(({ seconds }) => ({
-          seconds: seconds - 1
+          seconds: seconds + x
+
         }));
+        console.log(x)
       } else {
+        window.setTimeout(() => this.handleIaTurn());
         clearInterval(myInterval);
         this.setState({
           seconds: 60
@@ -199,7 +208,7 @@ class DeckBoard extends React.Component {
     }, 1000);
   };
 
-  render () {
+  render() {
     const { seconds } = this.state;
     return (
       <div className='deckBoard'>
@@ -253,7 +262,7 @@ class DeckBoard extends React.Component {
           </div>
           <div className='timerAndEndTurn'>
             <div className={this.state.playerTurn === true ? 'timerAndEndTurn' : 'iaTurn'}>
-              <p className>Time Remaining for your: {seconds}</p>
+              <p className>End of your turn in : {seconds}</p>
             </div>
 
             <button onClick={this.state.playerTurn ? this.handleIaTurn : ''}>
