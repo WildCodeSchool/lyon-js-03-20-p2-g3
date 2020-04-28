@@ -87,26 +87,26 @@ class DeckBoard extends React.Component {
   }
 
   attackCardIa = () => {
-    let newDeckIa = this.state.cardsAvalaibleForIA
-    let newHeroesChosen = this.state.heroesChosen
-    for (let i=0 ; i < newDeckIa.filter(heroe => heroe.position === 'board').length ; i++){ // boucle pour chaque carte sur le board de l'IA
+    const newDeckIa = this.state.cardsAvalaibleForIA;
+    const newHeroesChosen = this.state.heroesChosen;
+    for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
       window.setTimeout(() => {
-          const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board')
-          const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board')
-          const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'board').length);
-          console.log(randomNumber)
-          if (cardBoardPlayer.length !== 0){
-            newDeckIa.filter(heroe => heroe.position === 'board')[i].hp -= cardBoardPlayer[randomNumber].atk // enlève la vie de la carte de l'IA
-            newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp -= cardBoardIa[i].atk // enlève la vie de la carte du joueur
-            if (newDeckIa.filter(heroe => heroe.position === 'board')[i].hp <= 0){ // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
-              newDeckIa.filter(heroe => heroe.position === 'board')[i].position = 'dead'
-            }
-            if (newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp <= 0){  // si les hp de la carte de du joueur est inferieur a 0, enleve la carte du board
-              newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].position = 'dead'
-            }
+        const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
+        const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board');
+        const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'board').length);
+        console.log(randomNumber);
+        if (cardBoardPlayer.length !== 0) {
+          newDeckIa.filter(heroe => heroe.position === 'board')[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
+          newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
+          if (newDeckIa.filter(heroe => heroe.position === 'board')[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
+            newDeckIa.filter(heroe => heroe.position === 'board')[i].position = 'dead';
           }
-      this.setState({cardsAvalaibleForIA : newDeckIa, heroesChosen : newHeroesChosen })
-      },1000*i)
+          if (newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur a 0, enleve la carte du board
+            newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].position = 'dead';
+          }
+        }
+        this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
+      }, 1000 * i);
     }
   }
 
@@ -115,11 +115,10 @@ class DeckBoard extends React.Component {
     const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length;
     window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA), 1000);
     window.setTimeout(() => this.handleHandToBoardIa(), 4000);
-    window.setTimeout(() => this.attackCardIa(),5000);
-    window.setTimeout(() => this.setState({ playerTurn: true }), 6000+attackTime);
-    window.setTimeout(() => this.handleDraw(this.state.heroesChosen), 6000+attackTime);
+    window.setTimeout(() => this.attackCardIa(), 5000);
+    window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime);
+    window.setTimeout(() => this.handleDraw(this.state.heroesChosen), 6000 + attackTime);
   }
-
 
   render () {
     return (
