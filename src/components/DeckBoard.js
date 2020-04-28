@@ -6,7 +6,7 @@ import HiddenCards from './HiddenCards';
 import heroes from './heroes';
 
 class DeckBoard extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       seconds: 3,
@@ -19,18 +19,18 @@ class DeckBoard extends React.Component {
           atk: parseInt(heroe.powerstats.combat, 10),
           hp: parseInt(heroe.powerstats.durability, 10),
           power: parseInt(heroe.powerstats.power, 10),
-          position: 'deck',
+          position: 'deck'
         };
-      }),
+      })
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.randomizeHeroesChosen(this.state.heroesChosen);
     this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.setState({ heroesChosen: [] });
   }
 
@@ -103,8 +103,8 @@ class DeckBoard extends React.Component {
   };
 
   attackCardIa = () => {
-    let newDeckIa = this.state.cardsAvalaibleForIA;
-    let newHeroesChosen = this.state.heroesChosen;
+    const newDeckIa = this.state.cardsAvalaibleForIA;
+    const newHeroesChosen = this.state.heroesChosen;
     for (
       let i = 0;
       i < newDeckIa.filter((heroe) => heroe.position === 'board').length;
@@ -150,7 +150,7 @@ class DeckBoard extends React.Component {
         }
         this.setState({
           cardsAvalaibleForIA: newDeckIa,
-          heroesChosen: newHeroesChosen,
+          heroesChosen: newHeroesChosen
         });
       }, 1000 * i);
     }
@@ -188,18 +188,18 @@ class DeckBoard extends React.Component {
       const { seconds } = this.state;
       if (seconds > 0) {
         this.setState(({ seconds }) => ({
-          seconds: seconds - 1,
+          seconds: seconds - 1
         }));
       } else {
         clearInterval(myInterval);
         this.setState({
-          seconds: 60,
+          seconds: 60
         });
       }
     }, 1000);
   };
 
-  render() {
+  render () {
     const { seconds } = this.state;
     return (
       <div className='deckBoard'>
@@ -210,7 +210,7 @@ class DeckBoard extends React.Component {
             href='http://localhost:3000/'
           >
             Rage Quit
-					</a>
+          </a>
         </div>
         <div className='centerBoardContainer'>
           {' '}
@@ -252,12 +252,13 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.cardsAvalaibleForIA} />
           </div>
           <div className='timerAndEndTurn'>
-            <div>
-              <p>Time Remaining: {seconds}</p>
+            <div className={this.state.playerTurn === true ? 'timerAndEndTurn' : 'iaTurn'}>
+              <p className>Time Remaining for your: {seconds}</p>
             </div>
+
             <button onClick={this.state.playerTurn ? this.handleIaTurn : ''}>
               End Turn
-						</button>
+            </button>
           </div>
           <div className='deckplayer1'>
             <HiddenCards deck={this.state.heroesChosen} />
