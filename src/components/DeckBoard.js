@@ -62,7 +62,6 @@ class DeckBoard extends React.Component {
         }
       }
     }
-
     this.setState({ deck: heroesChosenRandomized });
   }
 
@@ -70,6 +69,18 @@ class DeckBoard extends React.Component {
     const newHeroesChosen = this.state.heroesChosen;
     const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length);
     newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand';
+    this.setState({ heroesChosen: newHeroesChosen });
+  }
+
+  handleSelectedCard = (nameSelected) => {
+    const newHeroesChosen = this.state.heroesChosen.map(
+      heroe => {
+        if (heroe.name === nameSelected) {
+          return { ...heroe, selected: true };
+        } else {
+          return { ...heroe, selected: false };
+        }
+      });
     this.setState({ heroesChosen: newHeroesChosen });
   }
 
@@ -85,10 +96,10 @@ class DeckBoard extends React.Component {
           </div>
           <div className='boardContainer'>
             <div className='boardia'> {/* board of computer */}
-              <Board heroesChosen={this.state.cardsAvalaibleForIA} />
+              <Board heroesChosen={this.state.cardsAvalaibleForIA} cardPlayer1={false} cardSelected={false} />
             </div>
             <div className='boardPlayer1'> {/* board of Player1 */}
-              <Board heroesChosen={this.state.heroesChosen} />
+              <Board heroesChosen={this.state.heroesChosen} cardPlayer1 cardSelected={false} onSelectedCard={this.handleSelectedCard} />
             </div>
           </div>
           <div className='player1hand'> {/* hand of Player1 */}

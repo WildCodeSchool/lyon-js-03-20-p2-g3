@@ -13,7 +13,12 @@
 }
 .cardBoard *{
   cursor: pointer;
+} 
+
+.toggleCardSelect {
+  border:2px solid red;
 }
+
 
 .imageCardBoard{
   height: 70%;

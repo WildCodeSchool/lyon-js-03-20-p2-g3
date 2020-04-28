@@ -4,12 +4,11 @@ import './CardList.css';
 import './Card.css';
 
 function Board (props) {
-  /* const threeFirstCards = props.randomizeHeroesChosen(props.heroesChosen,3); */
   return (
     <>
       {props.heroesChosen.filter(heroe => heroe.position === 'board').map(heroe => {
         return (
-          <CardOfDeckBoard heroe={heroe} key={(heroe.atk) * (heroe.hp)} />
+          <CardOfDeckBoard heroe={heroe} key={heroe.name} onHandleHandToBoard={props.handleHandToBoard} onSelectedCard={props.onSelectedCard} heroesChosen={props.heroesChosen} />
         );
       })}
     </>

@@ -1,9 +1,19 @@
 import React from 'react';
 import './CardOfDeckBoard.css';
 
-function CardOfDeckBoard ({ heroe, onHandleHandToBoard }) {
+function CardOfDeckBoard ({ heroe, onhandleHandToBoard, onSelectedCard, heroesChosen }) {
+  const handleClickOnCardOfDeckBoard = (event) => {
+    console.log(event.currentTarget);
+    if (heroe.position === 'hand') {
+      return onhandleHandToBoard(heroe.name);
+    } else if (heroe.position === 'board') {
+      // event.currentTarget.style.border ='2px solid red';
+      return onSelectedCard(heroe.name);
+    }
+  };
+
   return (
-    <div className='cardBoard' onClick={heroe.position === 'hand' ? () => onHandleHandToBoard(heroe.name) : ''}>
+    <div className={heroe.selected === true ? 'cardBoard toggleCardSelect' : 'cardBoard'} onClick={handleClickOnCardOfDeckBoard}>
       <section className='pwBoard'>
         {heroe.power} PW
       </section>
