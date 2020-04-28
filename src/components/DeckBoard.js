@@ -126,7 +126,7 @@ class DeckBoard extends React.Component {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
-          <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a>
+          <a className='button-config' id='button-rageQuit' href='https://cards-battle-of-heroes-us11.netlify.app'>Rage Quit</a>
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
           <div className='iahand'> {/* hand of computer */}
