@@ -10,7 +10,7 @@ class DeckBoard extends React.Component {
     super(props);
     this.state = {
       playerTurn: true,
-      nbCardBoardStartTurnIa : 0,
+      nbCardBoardStartTurnIa: 0,
       heroesChosen: this.props.heroesChosen,
       cardsAvalaibleForIA: heroes.map(heroe => {
         return {
@@ -19,7 +19,7 @@ class DeckBoard extends React.Component {
           atk: parseInt(heroe.powerstats.combat, 10),
           hp: parseInt(heroe.powerstats.durability, 10),
           power: parseInt(heroe.powerstats.power, 10),
-          position: 'deck',
+          position: 'deck'
         };
       })
     };
@@ -87,32 +87,30 @@ class DeckBoard extends React.Component {
     }
   }
 
-
    attackCardIa = () => {
-    const newDeckIa = this.state.cardsAvalaibleForIA;
-    const newHeroesChosen = this.state.heroesChosen;
-    for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length ; i++) { // boucle pour chaque carte sur le board de l'IA
-      window.setTimeout(() => {
-        const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
-        const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board');
-        const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'board').length);
-        if (cardBoardPlayer.length !== 0) {
-          console.log(i)
-          console.log(newDeckIa.filter(heroe => heroe.position === 'board'))
-          newDeckIa.filter(heroe => heroe.position === 'board')[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
-          newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
-          if (newDeckIa.filter(heroe => heroe.position === 'board')[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
-            newDeckIa.filter(heroe => heroe.position === 'board')[i].position = 'board';
-          }
-          if (newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur a 0, enleve la carte du board
-            newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].position = 'board';
-          }
-        }
-        this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
-      }, 1000 * i);
-    }
-  } 
-
+     const newDeckIa = this.state.cardsAvalaibleForIA;
+     const newHeroesChosen = this.state.heroesChosen;
+     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
+       window.setTimeout(() => {
+         const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
+         const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board');
+         const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'board').length);
+         if (cardBoardPlayer.length !== 0) {
+           console.log(i);
+           console.log(newDeckIa.filter(heroe => heroe.position === 'board'));
+           newDeckIa.filter(heroe => heroe.position === 'board')[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
+           newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
+           if (newDeckIa.filter(heroe => heroe.position === 'board')[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
+             newDeckIa.filter(heroe => heroe.position === 'board')[i].position = 'board';
+           }
+           if (newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur a 0, enleve la carte du board
+             newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].position = 'board';
+           }
+         }
+         this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
+       }, 1000 * i);
+     }
+   }
 
   handleIaTurn = () => {
     this.setState({ playerTurn: false });
