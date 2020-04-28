@@ -101,10 +101,10 @@ class DeckBoard extends React.Component {
            newDeckIa.filter(heroe => heroe.position === 'board')[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
            newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
            if (newDeckIa.filter(heroe => heroe.position === 'board')[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
-             newDeckIa.filter(heroe => heroe.position === 'board')[i].position = 'board';
+             newDeckIa.filter(heroe => heroe.position === 'board')[i].position = 'dead';
            }
            if (newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur a 0, enleve la carte du board
-             newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].position = 'board';
+             newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].position = 'dead';
            }
          }
          this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
