@@ -4,7 +4,6 @@ import './DeckBoard.css';
 import Board from './Board';
 import HiddenCards from './HiddenCards';
 import heroes from './heroes';
-import Button from './Button';
 
 class DeckBoard extends React.Component {
   constructor (props) {
@@ -28,11 +27,11 @@ class DeckBoard extends React.Component {
   componentDidMount () {
     this.randomizeHeroesChosen(this.state.heroesChosen);
     this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
-  }  
+  }
 
   componentWillUnmount () {
-    this.setState({ heroesChosen :[]})
-  }  
+    this.setState({ heroesChosen: [] });
+  }
 
   handleHandToBoard = (heroeName) => {
     const newDeck = this.state.heroesChosen.map(heroe => {
@@ -87,19 +86,46 @@ class DeckBoard extends React.Component {
     }
   }
 
+  attackCardIa = () => {
+    let newDeckIa = this.state.cardsAvalaibleForIA
+    let newHeroesChosen = this.state.heroesChosen
+    for (let i=0 ; i < newDeckIa.filter(heroe => heroe.position === 'board').length ; i++){ // boucle pour chaque carte sur le board de l'IA
+      window.setTimeout(() => {
+          const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board')
+          const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board')
+          const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'board').length);
+          console.log(randomNumber)
+          if (cardBoardPlayer.length !== 0){
+            newDeckIa.filter(heroe => heroe.position === 'board')[i].hp -= cardBoardPlayer[randomNumber].atk // enlève la vie de la carte de l'IA
+            newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp -= cardBoardIa[i].atk // enlève la vie de la carte du joueur
+            if (newDeckIa.filter(heroe => heroe.position === 'board')[i].hp <= 0){ // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
+              newDeckIa.filter(heroe => heroe.position === 'board')[i].position = 'dead'
+            }
+            if (newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp <= 0){  // si les hp de la carte de du joueur est inferieur a 0, enleve la carte du board
+              newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].position = 'dead'
+            }
+          }
+      this.setState({cardsAvalaibleForIA : newDeckIa, heroesChosen : newHeroesChosen })
+      },1000*i)
+    }
+  }
+
   handleIaTurn = () => {
     this.setState({ playerTurn: false });
+    const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length;
     window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA), 1000);
     window.setTimeout(() => this.handleHandToBoardIa(), 4000);
-    window.setTimeout(() => this.setState({ playerTurn: true }), 6000);
-    window.setTimeout(() => this.handleDraw(this.state.heroesChosen), 6000);
+    window.setTimeout(() => this.attackCardIa(),5000);
+    window.setTimeout(() => this.setState({ playerTurn: true }), 6000+attackTime);
+    window.setTimeout(() => this.handleDraw(this.state.heroesChosen), 6000+attackTime);
   }
+
 
   render () {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
-          <a handleClick={this.clearDecks} className='button-config' id='button-rageQuit' onClick={this.clearDecks} href="http://localhost:3000/">Rage Quit</a>
+          <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a>
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
           <div className='iahand'> {/* hand of computer */}

@@ -33,7 +33,7 @@
 .atk, .hp{
   width: 30px;
   height: 30px;
-  border-radius: 20px;
+  border-radius: 15px;
   align-self: flex-end;
   display: flex;
   justify-content: center;
