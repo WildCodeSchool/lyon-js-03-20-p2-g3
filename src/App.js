@@ -9,7 +9,6 @@ import Home from './components/Home';
 import Options from './components/Options';
 import Rules from './components/Rules';
 import DeckChoice from './components/DeckChoice';
-import heroes from './components/heroes';
 import axios from 'axios'; 
 import DeckBoard from './components/DeckBoard';
 
