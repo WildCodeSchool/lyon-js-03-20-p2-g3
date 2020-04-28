@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 .selected{
-  opacity: 50%;
+  opacity: 0.5;
   z-index: 0;
 }
 .imageCard{
