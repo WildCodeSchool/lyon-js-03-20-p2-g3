@@ -10,6 +10,7 @@ class DeckBoard extends React.Component {
     super(props);
     this.state = {
       playerTurn: true,
+      nbCardBoardStartTurnIa: 0,
       heroesChosen: this.props.heroesChosen,
       cardsAvalaibleForIA: heroes.map(heroe => {
         return {
@@ -94,8 +95,9 @@ class DeckBoard extends React.Component {
         const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
         const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board');
         const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'board').length);
-        console.log(randomNumber);
         if (cardBoardPlayer.length !== 0) {
+          console.log(i);
+          console.log(newDeckIa.filter(heroe => heroe.position === 'board'));
           newDeckIa.filter(heroe => heroe.position === 'board')[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
           newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
           if (newDeckIa.filter(heroe => heroe.position === 'board')[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
@@ -124,7 +126,7 @@ class DeckBoard extends React.Component {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
-          <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a>
+          <a className='button-config' id='button-rageQuit' href='https://cards-battle-of-heroes-us11.netlify.app'>Rage Quit</a>
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
           <div className='iahand'> {/* hand of computer */}
