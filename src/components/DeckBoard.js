@@ -7,7 +7,7 @@ import heroes from './heroes';
 import Timer from './Timer';
 
 class DeckBoard extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       playerTurn: true,
@@ -25,14 +25,13 @@ class DeckBoard extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.randomizeHeroesChosen(this.state.heroesChosen);
     this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.setState({ heroesChosen: [] });
-
   }
 
   handleHandToBoard = (heroeName) => {
@@ -157,7 +156,7 @@ class DeckBoard extends React.Component {
     }
   };
 
-  handleIaTurn = () => { 
+  handleIaTurn = () => {
     this.setState({ playerTurn: false });
     const attackTime =
       1000 *
@@ -173,16 +172,14 @@ class DeckBoard extends React.Component {
     window.setTimeout(
       () => this.setState({ playerTurn: true }),
       6000 + attackTime
-    );  
+    );
     window.setTimeout(
       () => this.handleDraw(this.state.heroesChosen),
       6000 + attackTime
     );
   };
 
-  
-
-  render() {
+  render () {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
@@ -234,9 +231,9 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.cardsAvalaibleForIA} />
           </div>
           <div className='timerAndEndTurn'>
-            <div >
-              {this.state.playerTurn && <Timer handleIaTurn={this.handleIaTurn}/> }
-              
+            <div>
+              {this.state.playerTurn && <Timer onIaTurn={this.handleIaTurn} />}
+
             </div>
 
             <button onClick={this.state.playerTurn ? this.handleIaTurn : ''}>
