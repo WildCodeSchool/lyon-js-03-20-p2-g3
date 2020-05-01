@@ -19,7 +19,8 @@ class DeckBoard extends React.Component {
           atk: parseInt(heroe.powerstats.combat, 10),
           hp: parseInt(heroe.powerstats.durability, 10),
           power: parseInt(heroe.powerstats.power, 10),
-          position: 'deck'
+          position: 'deck',
+          deadOnBoard: false
         };
       })
     };
@@ -93,24 +94,40 @@ class DeckBoard extends React.Component {
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
       window.setTimeout(() => {
         const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
-        const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board');
-        const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'board').length);
+        const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board' && !heroe.deadOnBoard);
+        const randomNumber = Math.floor(Math.random() * cardBoardPlayer.length);
         if (cardBoardPlayer.length !== 0) {
-          console.log(i);
-          console.log(newDeckIa.filter(heroe => heroe.position === 'board'));
-          newDeckIa.filter(heroe => heroe.position === 'board')[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
-          newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
-          if (newDeckIa.filter(heroe => heroe.position === 'board')[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
-            newDeckIa.filter(heroe => heroe.position === 'board')[i].position = 'dead';
+          cardBoardIa[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
+          cardBoardPlayer[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
+          if (cardBoardIa[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
+          cardBoardIa[i].deadOnBoard = true;
           }
-          if (newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur a 0, enleve la carte du board
-            newHeroesChosen.filter(heroe => heroe.position === 'board')[randomNumber].position = 'dead';
+          if (cardBoardPlayer[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur a 0, enleve la carte du board
+            cardBoardPlayer[randomNumber].deadOnBoard = true;
           }
         }
         this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
       }, 1000 * i);
     }
   }
+  killCards = () => {
+    const newDeckIa = this.state.cardsAvalaibleForIA;
+    const newHeroesChosen = this.state.heroesChosen;
+    newDeckIa.map(heroe => {
+      if (heroe.deadOnBoard){
+        heroe.position = 'dead'
+        heroe.deadOnBoard = false
+      }
+    })
+    newHeroesChosen.map(heroe => {
+      if (heroe.deadOnBoard){
+        heroe.position = 'dead'
+        heroe.deadOnBoard = false
+      }
+    })
+    this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen })
+  }
+
 
   handleIaTurn = () => {
     this.setState({ playerTurn: false });
@@ -118,6 +135,7 @@ class DeckBoard extends React.Component {
     window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA), 1000);
     window.setTimeout(() => this.handleHandToBoardIa(), 4000);
     window.setTimeout(() => this.attackCardIa(), 5000);
+    window.setTimeout(() => this.killCards(), 6000 + attackTime);
     window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime);
     window.setTimeout(() => this.handleDraw(this.state.heroesChosen), 6000 + attackTime);
   }
@@ -126,7 +144,7 @@ class DeckBoard extends React.Component {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
-          <a className='button-config' id='button-rageQuit' href='https://cards-battle-of-heroes-us11.netlify.app'>Rage Quit</a>
+          <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/*https://cards-battle-of-heroes-us11.netlify.app*/}
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
           <div className='iahand'> {/* hand of computer */}
