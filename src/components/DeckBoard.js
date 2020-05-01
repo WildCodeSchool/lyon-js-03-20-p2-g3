@@ -100,7 +100,7 @@ class DeckBoard extends React.Component {
           cardBoardIa[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
           cardBoardPlayer[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
           if (cardBoardIa[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
-          cardBoardIa[i].deadOnBoard = true;
+            cardBoardIa[i].deadOnBoard = true;
           }
           if (cardBoardPlayer[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur a 0, enleve la carte du board
             cardBoardPlayer[randomNumber].deadOnBoard = true;
@@ -110,24 +110,24 @@ class DeckBoard extends React.Component {
       }, 1000 * i);
     }
   }
+
   killCards = () => {
     const newDeckIa = this.state.cardsAvalaibleForIA;
     const newHeroesChosen = this.state.heroesChosen;
     newDeckIa.map(heroe => {
-      if (heroe.deadOnBoard){
-        heroe.position = 'dead'
-        heroe.deadOnBoard = false
+      if (heroe.deadOnBoard) {
+        heroe.position = 'dead';
+        heroe.deadOnBoard = false;
       }
-    })
+    });
     newHeroesChosen.map(heroe => {
-      if (heroe.deadOnBoard){
-        heroe.position = 'dead'
-        heroe.deadOnBoard = false
+      if (heroe.deadOnBoard) {
+        heroe.position = 'dead';
+        heroe.deadOnBoard = false;
       }
-    })
-    this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen })
+    });
+    this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
   }
-
 
   handleIaTurn = () => {
     this.setState({ playerTurn: false });
@@ -144,7 +144,7 @@ class DeckBoard extends React.Component {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
-          <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/*https://cards-battle-of-heroes-us11.netlify.app*/}
+          <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/* https://cards-battle-of-heroes-us11.netlify.app */}
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
           <div className='iahand'> {/* hand of computer */}
