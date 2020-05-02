@@ -39,7 +39,7 @@ class App extends Component {
             hp: parseInt(heroe.powerstats.durability, 10),
             power: Math.round((parseInt(heroe.powerstats.strength, 10) + parseInt(heroe.powerstats.durability, 10)) / 2),
             position: 'deck',
-            deadOnBoard: false,
+            deadOnBoard: false
           };
         });
         this.setState({ cards: tabHeroes });

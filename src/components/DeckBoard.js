@@ -12,7 +12,7 @@ class DeckBoard extends React.Component {
       playerTurn: true, // initialise playerTurn à true pour débuter la partie avec le tour du joueur. Deus Sex Machina est généreux.
       nbCardBoardStartTurnIa: 0, // initialise le nombre de carte sur le board à 0 pour l'IA.
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
-      cardsAvalaibleForIA: heroes.map(heroe => { // 
+      cardsAvalaibleForIA: heroes.map(heroe => { //
         return {
           name: heroe.name,
           img: heroe.image.url,
@@ -20,7 +20,7 @@ class DeckBoard extends React.Component {
           hp: parseInt(heroe.powerstats.durability, 10),
           power: parseInt(heroe.powerstats.power, 10),
           position: 'deck',
-          deadOnBoard: false,
+          deadOnBoard: false
         };
       })
     };
@@ -89,7 +89,7 @@ class DeckBoard extends React.Component {
   }
 
   attackCardIa = () => {
-    const newDeckIa = this.state.cardsAvalaibleForIA; 
+    const newDeckIa = this.state.cardsAvalaibleForIA;
     const newHeroesChosen = this.state.heroesChosen;
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
       window.setTimeout(() => {
@@ -145,7 +145,7 @@ class DeckBoard extends React.Component {
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
           <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/* https://cards-battle-of-heroes-us11.netlify.app */}
-          <aside className="dead-card-container"> {/* Cimetiere */}
+          <aside className='dead-card-container'> {/* Cimetiere */}
             <p>je suis mort</p>
           </aside>
         </div>
