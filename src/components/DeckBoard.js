@@ -9,10 +9,10 @@ class DeckBoard extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      playerTurn: true,
-      nbCardBoardStartTurnIa: 0,
-      heroesChosen: this.props.heroesChosen,
-      cardsAvalaibleForIA: heroes.map(heroe => {
+      playerTurn: true, // initialise playerTurn à true pour débuter la partie avec le tour du joueur. Deus Sex Machina est généreux.
+      nbCardBoardStartTurnIa: 0, // initialise le nombre de carte sur le board à 0 pour l'IA.
+      heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
+      cardsAvalaibleForIA: heroes.map(heroe => { // 
         return {
           name: heroe.name,
           img: heroe.image.url,
@@ -20,7 +20,7 @@ class DeckBoard extends React.Component {
           hp: parseInt(heroe.powerstats.durability, 10),
           power: parseInt(heroe.powerstats.power, 10),
           position: 'deck',
-          deadOnBoard: false
+          deadOnBoard: false,
         };
       })
     };
@@ -81,15 +81,15 @@ class DeckBoard extends React.Component {
 
   handleDraw = (deck) => {
     const newHeroesChosen = deck;
-    if (newHeroesChosen.filter(heroe => heroe.position === 'deck').length !== 0) {
-      const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length);
-      newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand';
+    if (newHeroesChosen.filter(heroe => heroe.position === 'deck').length !== 0) { // (Flo) condition si clé position dans l'objet héro est 'deck' et que le la longueur du tableau n'est pas égal à 0
+      const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length); // (Flo) set const randomNumber : pioche aléatoire dans liste d'héro choisie ssi la clé position est à 'deck
+      newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand'; // (Flo) si condition est true : filter des héros ayant la valeur de la clé position à 'deck' à la position correspondant au randomNumber
       this.setState({ deck: newHeroesChosen });
     }
   }
 
   attackCardIa = () => {
-    const newDeckIa = this.state.cardsAvalaibleForIA;
+    const newDeckIa = this.state.cardsAvalaibleForIA; 
     const newHeroesChosen = this.state.heroesChosen;
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
       window.setTimeout(() => {
@@ -99,10 +99,10 @@ class DeckBoard extends React.Component {
         if (cardBoardPlayer.length !== 0) {
           cardBoardIa[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
           cardBoardPlayer[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
-          if (cardBoardIa[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur a 0, enleve la carte du board
+          if (cardBoardIa[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur ou égal à 0, enleve la carte du board
             cardBoardIa[i].deadOnBoard = true;
           }
-          if (cardBoardPlayer[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur a 0, enleve la carte du board
+          if (cardBoardPlayer[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur ou égal à 0, enleve la carte du board
             cardBoardPlayer[randomNumber].deadOnBoard = true;
           }
         }
@@ -114,13 +114,13 @@ class DeckBoard extends React.Component {
   killCards = () => {
     const newDeckIa = this.state.cardsAvalaibleForIA;
     const newHeroesChosen = this.state.heroesChosen;
-    newDeckIa.map(heroe => {
+    newDeckIa.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes de l'IA.
       if (heroe.deadOnBoard) {
         heroe.position = 'dead';
         heroe.deadOnBoard = false;
       }
     });
-    newHeroesChosen.map(heroe => {
+    newHeroesChosen.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes du joueur
       if (heroe.deadOnBoard) {
         heroe.position = 'dead';
         heroe.deadOnBoard = false;
@@ -130,14 +130,14 @@ class DeckBoard extends React.Component {
   }
 
   handleIaTurn = () => {
-    this.setState({ playerTurn: false });
-    const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length;
-    window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA), 1000);
-    window.setTimeout(() => this.handleHandToBoardIa(), 4000);
-    window.setTimeout(() => this.attackCardIa(), 5000);
-    window.setTimeout(() => this.killCards(), 6000 + attackTime);
-    window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime);
-    window.setTimeout(() => this.handleDraw(this.state.heroesChosen), 6000 + attackTime);
+    this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
+    const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length; // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
+    window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
+    window.setTimeout(() => this.handleHandToBoardIa(), 4000); // L'IA place sa carte sur le board et attend. Appel à la fonction vers la ligne 49.
+    window.setTimeout(() => this.attackCardIa(), 5000); // Lance la procédure d'attaque des cartes de l'IA vers les cartes du joueur et attend. Appel à la fonction vers la ligne 91.
+    window.setTimeout(() => this.killCards(), 6000 + attackTime); // Lance la procédure des cartes qui sont éliminées pour les mettre en position 'dead' et attend.
+    window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime); // set de playerTurn à true et attend.
+    window.setTimeout(() => this.handleDraw(this.state.heroesChosen), 6000 + attackTime); // fait piocher la carte au joueur et attend.
   }
 
   render () {
@@ -145,6 +145,9 @@ class DeckBoard extends React.Component {
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
           <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/* https://cards-battle-of-heroes-us11.netlify.app */}
+          <aside className="dead-card-container"> {/* Cimetiere */}
+            <p>je suis mort</p>
+          </aside>
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
           <div className='iahand'> {/* hand of computer */}

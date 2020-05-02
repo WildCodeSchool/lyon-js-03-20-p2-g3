@@ -1,5 +1,5 @@
   .cardBoard{
-  width: 10vw; 
+  width: 8vw; 
   height: 100%;
   padding-top: 10px;
   background:no-repeat center/100% url('https://cdn.pixabay.com/photo/2014/10/04/15/29/paper-473630_960_720.jpg');
@@ -18,6 +18,7 @@
 .imageCardBoard{
   height: 75%;
   border-radius: 5px;
+  
 }
 
 .containerBottomBoard{
@@ -47,6 +48,9 @@
   background-color:rgba(20, 255, 0, 0.8)
 }
 
+.isAttacking{
+  border: 5px solid red;
+}
 @media screen and (min-width: 897px) {
   .atkBoard, .hpBoard{
     width: 30px;
