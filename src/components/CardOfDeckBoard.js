@@ -1,14 +1,15 @@
-import React from 'react';
+  import React from 'react';
 import './CardOfDeckBoard.css';
 
-function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, heroesChosen }) {
+function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard }) {
   const handleClickOnCardOfDeckBoard = (event) => {
-    console.log(event.currentTarget);
+    // Ajoute la carte P1 sur le board
     if (heroe.position === 'hand') {
       return onHandToBoard(heroe.name);
-    } else if (heroe.position === 'board') {
-      // event.currentTarget.style.border ='2px solid red';
+    } else if (heroe.position === 'board' && !heroe.iaDeck) {
       return onSelectedCard(heroe.name);
+    } else if (heroe.iaDeck) {
+      return onAttackIaCard(heroe.name);
     }
   };
 
@@ -19,8 +20,16 @@ function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, heroesChosen }
       </section>
       <img className='imageCardBoard' src={heroe.img} alt={heroe.name} />
       <section className='containerBottomBoard'>
-        <div className='atkBoard'><p className={heroe.name}>{heroe.atk}</p></div>
-        <div className='hpBoard'><p className={heroe.name}>{heroe.hp}</p></div>
+        <div className='atkBoard'>
+          <p className={heroe.name}>
+            {heroe.atk}
+          </p>
+        </div>
+        <div className='hpBoard'>
+          <p className={heroe.name}>
+            {heroe.hp}
+          </p>
+        </div>
       </section>
     </div>
   );

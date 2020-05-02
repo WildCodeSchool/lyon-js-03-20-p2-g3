@@ -25,7 +25,8 @@ class App extends Component {
           hp: parseInt(heroe.powerstats.durability, 10),
           power: parseInt(heroe.powerstats.power, 10),
           position: 'deck',
-          selected: false
+          selected: false,
+          iaDeck: false
         };
       }),
       deck: [],

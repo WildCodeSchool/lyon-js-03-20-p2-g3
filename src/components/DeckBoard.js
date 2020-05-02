@@ -7,7 +7,7 @@ import heroes from './heroes';
 import Button from './Button';
 
 class DeckBoard extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       heroesChosen: props.heroesChosen,
@@ -18,13 +18,15 @@ class DeckBoard extends React.Component {
           atk: parseInt(heroe.powerstats.combat, 10),
           hp: parseInt(heroe.powerstats.durability, 10),
           power: parseInt(heroe.powerstats.power, 10),
-          position: 'deck'
+          position: 'board',
+          selected: false,
+          iaDeck: true
         };
       })
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.randomizeHeroesChosen(this.state.heroesChosen);
     this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
   }
@@ -73,9 +75,10 @@ class DeckBoard extends React.Component {
   }
 
   handleSelectedCard = (nameSelected) => {
+
     const newHeroesChosen = this.state.heroesChosen.map(
       heroe => {
-        if (heroe.name === nameSelected) {
+        if (heroe.name === nameSelected && !heroe.iaDeck) {
           return { ...heroe, selected: true };
         } else {
           return { ...heroe, selected: false };
@@ -84,7 +87,26 @@ class DeckBoard extends React.Component {
     this.setState({ heroesChosen: newHeroesChosen });
   }
 
-  render () {
+  handleAttackIaCard = (name) => {
+    console.log('coucou')
+    const heroesChosen = this.state.heroesChosen
+    const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA
+    const playerCardSelected = heroesChosen.filter(heroe => heroe.selected === true)
+    if (playerCardSelected.length !== 0) {
+      cardsAvalaibleForIA.map(heroeIa => {
+        if (heroeIa.name === name) {
+          // on veut récupérer l'attaque de la carte sélectionnée et la vie de l'attaque adverse. Et en déduire le nombre de point de vie à retirer sur la carte adverse. Et vice versa.
+          heroeIa.hp -= playerCardSelected[0].atk 
+          playerCardSelected[0].hp -= heroeIa.atk
+        }
+      });
+      console.log(cardsAvalaibleForIA)
+      console.log(heroesChosen)
+      this.setState({ cardsAvalaibleForIA, heroesChosen })
+    }
+  }
+
+  render() {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
@@ -92,14 +114,14 @@ class DeckBoard extends React.Component {
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
           <div className='iahand'> {/* hand of computer */}
-            <HandCards heroesChosen={this.state.cardsAvalaibleForIA} randomizeHeroesChosen={this.randomizeHeroesChosen} />
+            <HandCards heroesChosen={this.state.cardsAvalaibleForIA} randomizeHeroesChosen={this.randomizeHeroesChosen} onHandToBoard={this.handleHandToBoard} />
           </div>
           <div className='boardContainer'>
             <div className='boardia'> {/* board of computer */}
-              <Board heroesChosen={this.state.cardsAvalaibleForIA} cardPlayer1={false} cardSelected={false} />
+              <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard}/>
             </div>
             <div className='boardPlayer1'> {/* board of Player1 */}
-              <Board heroesChosen={this.state.heroesChosen} cardPlayer1 cardSelected={false} onSelectedCard={this.handleSelectedCard} />
+              <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} />
             </div>
           </div>
           <div className='player1hand'> {/* hand of Player1 */}
@@ -118,7 +140,6 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.heroesChosen} />
           </div>
         </div>
-
       </div>
     );
   }
