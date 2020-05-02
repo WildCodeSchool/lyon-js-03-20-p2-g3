@@ -17,7 +17,8 @@ class App extends Component {
     super(props);
     this.state = {
       cards: [],
-      deck: []
+      deck: [],
+      maxPower: 800
     };
   }
 
@@ -30,7 +31,6 @@ class App extends Component {
     axios.get(url)
       .then(res => res.data)
       .then(data => {
-        console.log(data);
         const tabHeroes = data.map(heroe => {
           return {
             name: heroe.name,
@@ -48,7 +48,7 @@ class App extends Component {
 
   addToDeck = (cardName) => {
     let copieDeck = this.state.deck;
-    const maxPower = 800;
+    const maxPower = this.state.maxPower;
     const totalPower = this.state.deck.map(card => card.power).reduce((acc, cur) => acc + cur, 0);
     if (copieDeck.filter(heroe => cardName === heroe.name).length === 0) {
       if (totalPower + this.state.cards.filter(heroe => cardName === heroe.name)[0].power <= maxPower) {
@@ -76,10 +76,10 @@ class App extends Component {
             <Route path='/options' component={Options} />
             <Route path='/rules' component={Rules} />
             <Route path='/deckchoice'>
-              <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} />
+              <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
             </Route>
             <Route path='/deckboard'>
-              <DeckBoard heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} />
+              <DeckBoard heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
             </Route>
           </Switch>
         </Router>

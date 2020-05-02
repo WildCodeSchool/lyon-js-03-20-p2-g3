@@ -3,31 +3,21 @@ import HandCards from './HandCards';
 import './DeckBoard.css';
 import Board from './Board';
 import HiddenCards from './HiddenCards';
-import heroes from './heroes';
+import _ from 'lodash';
 
 class DeckBoard extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       playerTurn: true, // initialise playerTurn à true pour débuter la partie avec le tour du joueur. Deus Sex Machina est généreux.
-      nbCardBoardStartTurnIa: 0, // initialise le nombre de carte sur le board à 0 pour l'IA.
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
-      cardsAvalaibleForIA: heroes.map(heroe => { //
-        return {
-          name: heroe.name,
-          img: heroe.image.url,
-          atk: parseInt(heroe.powerstats.combat, 10),
-          hp: parseInt(heroe.powerstats.durability, 10),
-          power: parseInt(heroe.powerstats.power, 10),
-          position: 'deck',
-          deadOnBoard: false
-        };
-      })
+      cardsAvalaibleForIA: []
     };
   }
 
   componentDidMount () {
     this.randomizeHeroesChosen(this.state.heroesChosen);
+    this.randomizeIaDeck();
     this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
   }
 
@@ -77,6 +67,26 @@ class DeckBoard extends React.Component {
     }
 
     this.setState({ deck: heroesChosenRandomized });
+  }
+
+  randomizeIaDeck = () => {
+    const heroes = _.shuffle(this.props.heroes);
+    let IaDeckPower = 0;
+    const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA;
+    for (let i = 0; i < this.props.heroes.length; i++) {
+      if (IaDeckPower <= this.props.maxPower) {
+        if (heroes[i].power > this.props.maxPower-IaDeckPower) {
+        } else {
+          cardsAvalaibleForIA.push(heroes[i])
+          IaDeckPower+=heroes[i].power;
+        }
+      } else {
+        break;
+      }
+    }
+    this.setState({cardsAvalaibleForIA})
+    console.log(cardsAvalaibleForIA);
+    console.log(IaDeckPower);
   }
 
   handleDraw = (deck) => {
