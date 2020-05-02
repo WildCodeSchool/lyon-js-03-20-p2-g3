@@ -75,16 +75,16 @@ class DeckBoard extends React.Component {
     const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA;
     for (let i = 0; i < this.props.heroes.length; i++) {
       if (IaDeckPower <= this.props.maxPower) {
-        if (heroes[i].power > this.props.maxPower-IaDeckPower) {
+        if (heroes[i].power > this.props.maxPower - IaDeckPower) {
         } else {
-          cardsAvalaibleForIA.push(heroes[i])
-          IaDeckPower+=heroes[i].power;
+          cardsAvalaibleForIA.push(heroes[i]);
+          IaDeckPower += heroes[i].power;
         }
       } else {
         break;
       }
     }
-    this.setState({cardsAvalaibleForIA})
+    this.setState({ cardsAvalaibleForIA });
     console.log(cardsAvalaibleForIA);
     console.log(IaDeckPower);
   }
