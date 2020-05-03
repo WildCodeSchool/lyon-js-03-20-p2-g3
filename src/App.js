@@ -27,7 +27,8 @@ class App extends Component {
           position: 'deck',
           selected: false,
           iaDeck: false,
-          isAbleToAttack: true // true : la carte est autorisé à attaquer 
+          isAbleToAttack: true // true : la carte est autorisée à attaquer
+          
         };
       }),
       deck: [],

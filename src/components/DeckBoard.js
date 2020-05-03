@@ -7,10 +7,11 @@ import heroes from './heroes';
 import Button from './Button';
 
 class DeckBoard extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       heroesChosen: props.heroesChosen,
+      onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard : true,   // with love
       cardsAvalaibleForIA: heroes.map(heroe => {
         return {
           name: heroe.name,
@@ -27,20 +28,25 @@ class DeckBoard extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.randomizeHeroesChosen(this.state.heroesChosen);
     this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
   }
+// On veut limiter le nombre de carte joué sur le board par tour
+
+
 
   handleHandToBoard = (heroeName) => {
+    let isAllowedToPutCardOnBoard = this.state.onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard;
     const newDeck = this.state.heroesChosen.map(heroe => {
-      if (heroe.name === heroeName) {
-        return { ...heroe, position: 'board' };
+      if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
+        isAllowedToPutCardOnBoard = false;
+        return { ...heroe, position: 'board' };        
       } else {
         return heroe;
       }
     });
-    this.setState({ heroesChosen: newDeck });
+    this.setState({ heroesChosen: newDeck, onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard: isAllowedToPutCardOnBoard });
   }
 
   randomizeHeroesChosen = (deck) => {
@@ -78,7 +84,7 @@ class DeckBoard extends React.Component {
   handleSelectedCard = (nameSelected) => {
     const newHeroesChosen = this.state.heroesChosen.map(
       heroe => {
-        if (heroe.isAbleToAttack === true) {
+        if (heroe.isAbleToAttack) {
           if (heroe.name === nameSelected && !heroe.iaDeck) {
             return { ...heroe, selected: true };
           } else {
@@ -121,7 +127,7 @@ class DeckBoard extends React.Component {
   // Lorsque la carte du joueur a attaqué la carte adverse, isAbleToAttack passe à false et ne peut donc plus attaquer.
   // setState isAbleToAttack à true dès la fin du tour de l'IA.
 
-  render() {
+  render () {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
