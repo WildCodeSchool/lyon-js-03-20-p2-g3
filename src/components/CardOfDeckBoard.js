@@ -6,7 +6,6 @@ function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard
     // Ajoute la carte P1 sur le board
     if (heroe.position === 'hand') {
       return onHandToBoard(heroe.name);
-
     } else if (heroe.position === 'board' && !heroe.iaDeck) {
       return onSelectedCard(heroe.name);
     } else if (heroe.iaDeck) {
@@ -15,7 +14,7 @@ function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard
   };
 
   return (
-    <div className={heroe.selected === true ? 'cardBoard toggleCardSelect' : 'cardBoard'} onClick={handleClickOnCardOfDeckBoard}>
+    <div className={heroe.selected === true ? 'cardBoard toggleCardSelect' : heroe.position === 'hand' && !heroe.iaDeck ? 'handCard cardBoard' : 'cardBoard'} onClick={handleClickOnCardOfDeckBoard}>
       <section className='pwBoard'>
         {heroe.power} PW
       </section>
