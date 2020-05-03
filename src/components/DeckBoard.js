@@ -20,7 +20,8 @@ class DeckBoard extends React.Component {
           power: parseInt(heroe.powerstats.power, 10),
           position: 'board',
           selected: false,
-          iaDeck: true
+          iaDeck: true,
+          
         };
       })
     };
@@ -88,7 +89,6 @@ class DeckBoard extends React.Component {
   }
 
   handleAttackIaCard = (name) => {
-    console.log('coucou')
     const heroesChosen = this.state.heroesChosen
     const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA
     const playerCardSelected = heroesChosen.filter(heroe => heroe.selected === true)
@@ -96,12 +96,16 @@ class DeckBoard extends React.Component {
       cardsAvalaibleForIA.map(heroeIa => {
         if (heroeIa.name === name) {
           // on veut récupérer l'attaque de la carte sélectionnée et la vie de l'attaque adverse. Et en déduire le nombre de point de vie à retirer sur la carte adverse. Et vice versa.
-          heroeIa.hp -= playerCardSelected[0].atk 
+          heroeIa.hp -= playerCardSelected[0].atk
           playerCardSelected[0].hp -= heroeIa.atk
+          if (heroeIa.hp <= 0) { // on veut changer la valeur de la clé position à 'dead' pour les cartes dont les hp sont <= 0.
+            heroeIa.position = 'dead'
+          }
+          if (playerCardSelected[0].hp <= 0) {
+            playerCardSelected[0].position = 'dead'
+          }
         }
       });
-      console.log(cardsAvalaibleForIA)
-      console.log(heroesChosen)
       this.setState({ cardsAvalaibleForIA, heroesChosen })
     }
   }

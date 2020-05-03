@@ -27,6 +27,7 @@ class App extends Component {
           position: 'deck',
           selected: false,
           iaDeck: false
+          
         };
       }),
       deck: [],
