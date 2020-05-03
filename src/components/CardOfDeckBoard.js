@@ -1,4 +1,4 @@
-  import React from 'react';
+import React from 'react';
 import './CardOfDeckBoard.css';
 
 function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard }) {

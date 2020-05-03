@@ -26,8 +26,8 @@ class App extends Component {
           power: parseInt(heroe.powerstats.power, 10),
           position: 'deck',
           selected: false,
-          iaDeck: false
-          
+          iaDeck: false,
+          isAbleToAttack: true // true : la carte est autorisé à attaquer 
         };
       }),
       deck: [],

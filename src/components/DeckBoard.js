@@ -21,7 +21,7 @@ class DeckBoard extends React.Component {
           position: 'board',
           selected: false,
           iaDeck: true,
-          
+          isAbleToAttack: true
         };
       })
     };
@@ -76,39 +76,50 @@ class DeckBoard extends React.Component {
   }
 
   handleSelectedCard = (nameSelected) => {
-
     const newHeroesChosen = this.state.heroesChosen.map(
       heroe => {
-        if (heroe.name === nameSelected && !heroe.iaDeck) {
-          return { ...heroe, selected: true };
+        if (heroe.isAbleToAttack === true) {
+          if (heroe.name === nameSelected && !heroe.iaDeck) {
+            return { ...heroe, selected: true };
+          } else {
+            return { ...heroe, selected: false };
+          }
         } else {
           return { ...heroe, selected: false };
         }
-      });
+      }
+    );
     this.setState({ heroesChosen: newHeroesChosen });
-  }
+  }// on veut qu'une carte en attaque une autre une seule fois. Elle ne peut plus être sélectionnée après avoir attaqué pendant la phase d'attaque.
 
   handleAttackIaCard = (name) => {
-    const heroesChosen = this.state.heroesChosen
-    const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA
-    const playerCardSelected = heroesChosen.filter(heroe => heroe.selected === true)
-    if (playerCardSelected.length !== 0) {
+    const heroesChosen = this.state.heroesChosen;
+    const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA;
+    const playerCardSelected = heroesChosen.filter(heroe => heroe.selected === true)[0];
+    if (heroesChosen.filter(heroe => heroe.selected === true).length !== 0) {
       cardsAvalaibleForIA.map(heroeIa => {
         if (heroeIa.name === name) {
           // on veut récupérer l'attaque de la carte sélectionnée et la vie de l'attaque adverse. Et en déduire le nombre de point de vie à retirer sur la carte adverse. Et vice versa.
-          heroeIa.hp -= playerCardSelected[0].atk
-          playerCardSelected[0].hp -= heroeIa.atk
+          heroeIa.hp -= playerCardSelected.atk;
+          playerCardSelected.hp -= heroeIa.atk;
+          playerCardSelected.isAbleToAttack = false;
+          playerCardSelected.selected = false;
           if (heroeIa.hp <= 0) { // on veut changer la valeur de la clé position à 'dead' pour les cartes dont les hp sont <= 0.
-            heroeIa.position = 'dead'
+            heroeIa.position = 'dead';
           }
-          if (playerCardSelected[0].hp <= 0) {
-            playerCardSelected[0].position = 'dead'
+          if (playerCardSelected.hp <= 0) {
+            playerCardSelected.position = 'dead';
           }
         }
       });
-      this.setState({ cardsAvalaibleForIA, heroesChosen })
+
+      this.setState({ cardsAvalaibleForIA, heroesChosen });
     }
   }
+
+  // on ne peut sélectionner une carte pour attaquer que si isAbleToAttack est à true.
+  // Lorsque la carte du joueur a attaqué la carte adverse, isAbleToAttack passe à false et ne peut donc plus attaquer.
+  // setState isAbleToAttack à true dès la fin du tour de l'IA.
 
   render() {
     return (
@@ -122,7 +133,7 @@ class DeckBoard extends React.Component {
           </div>
           <div className='boardContainer'>
             <div className='boardia'> {/* board of computer */}
-              <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard}/>
+              <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard} />
             </div>
             <div className='boardPlayer1'> {/* board of Player1 */}
               <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} />
