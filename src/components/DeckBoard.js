@@ -16,9 +16,9 @@ class DeckBoard extends React.Component {
   }
 
   componentDidMount () {
-    this.randomizeHeroesChosen(this.state.heroesChosen);
+    this.randomizeHeroesChosenPlayer();
     this.randomizeIaDeck();
-    this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
+    window.setTimeout(() => this.randomizeHeroesChosenIa(),4000)
   }
 
   componentWillUnmount () {
@@ -26,7 +26,7 @@ class DeckBoard extends React.Component {
   }
 
   handleHandToBoard = (heroeName) => {
-    const newDeck = this.state.heroesChosen.map(heroe => {
+    const newDeck = this.state.heroesChosen.slice().map(heroe => {
       if (heroe.name === heroeName) {
         return { ...heroe, position: 'board' };
       } else {
@@ -37,47 +37,46 @@ class DeckBoard extends React.Component {
   }
 
   handleHandToBoardIa = () => {
-    const newIaDeck = this.state.cardsAvalaibleForIA;
+    const newIaDeck = this.state.cardsAvalaibleForIA.slice();
     const randomNumber = Math.floor(Math.random() * newIaDeck.filter(heroe => heroe.position === 'hand').length);
     newIaDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
     this.setState({ cardsAvalaibleForIA: newIaDeck });
   }
 
-  randomizeHeroesChosen = (deck) => {
-    const newHeroesChosen = deck;
-    const heroesChosenRandomized = [];
-    const arrayOfRandomNumbers = [];
-    while (arrayOfRandomNumbers.length < newHeroesChosen.length) {
-      const randomNumber = Math.floor(Math.random() * newHeroesChosen.length);
-      if (arrayOfRandomNumbers.indexOf(randomNumber) === -1) {
-        arrayOfRandomNumbers.push(randomNumber);
-      }
-    }
+randomizeHeroesChosenPlayer = () => {
+  let newHeroesChosen = this.state.heroesChosen.slice();
+  newHeroesChosen = _.shuffle(newHeroesChosen);
 
-    for (let i = 0; i < newHeroesChosen.length; i++) {
-      heroesChosenRandomized.push(newHeroesChosen[arrayOfRandomNumbers[i]]);
+  for (let i = 0 ; i < 4 ; i++){
+    if(newHeroesChosen[i] !== undefined){
+      newHeroesChosen[i].position = 'hand';
     }
-
-    for (let i = 0; i < heroesChosenRandomized.length; i++) {
-      for (let j = 0; j < 3; j++) {
-        if (heroesChosenRandomized.indexOf(heroesChosenRandomized[i]) === arrayOfRandomNumbers[j]) {
-          heroesChosenRandomized[i].position = 'hand';
-        }
-      }
-    }
-
-    this.setState({ deck: heroesChosenRandomized });
   }
+  this.setState({ heroesChosen: newHeroesChosen });
+}
+randomizeHeroesChosenIa = () => {
+  let newcardsAvalaibleForIA = this.state.cardsAvalaibleForIA.slice();
+  newcardsAvalaibleForIA = _.shuffle(newcardsAvalaibleForIA);
+
+  for (let i = 0 ; i < 3 ; i++){
+    if(newcardsAvalaibleForIA[i] !== undefined){
+      newcardsAvalaibleForIA[i].position = 'hand';
+    }
+  }
+  this.setState({ cardsAvalaibleForIA: newcardsAvalaibleForIA });
+}
+
+
 
   randomizeIaDeck = () => {
     const heroes = _.shuffle(this.props.heroes);
     let IaDeckPower = 0;
-    const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA;
+    const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA.slice();
     for (let i = 0; i < this.props.heroes.length; i++) {
       if (IaDeckPower <= this.props.maxPower) {
         if (heroes[i].power > this.props.maxPower - IaDeckPower) {
         } else {
-          cardsAvalaibleForIA.push(heroes[i]);
+          cardsAvalaibleForIA.push({...heroes[i], position : 'deck', iaDeck : true});
           IaDeckPower += heroes[i].power;
         }
       } else {
@@ -85,22 +84,30 @@ class DeckBoard extends React.Component {
       }
     }
     this.setState({ cardsAvalaibleForIA });
-    console.log(cardsAvalaibleForIA);
-    console.log(IaDeckPower);
   }
 
-  handleDraw = (deck) => {
-    const newHeroesChosen = deck;
+  handleDrawPlayer = () => {
+    let newHeroesChosen = this.state.heroesChosen.slice();
     if (newHeroesChosen.filter(heroe => heroe.position === 'deck').length !== 0) { // (Flo) condition si clé position dans l'objet héro est 'deck' et que le la longueur du tableau n'est pas égal à 0
       const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length); // (Flo) set const randomNumber : pioche aléatoire dans liste d'héro choisie ssi la clé position est à 'deck
       newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand'; // (Flo) si condition est true : filter des héros ayant la valeur de la clé position à 'deck' à la position correspondant au randomNumber
-      this.setState({ deck: newHeroesChosen });
+      this.setState({ heroesChosen: newHeroesChosen });
     }
   }
+  handleDrawIa = () => {
+    let newcardsAvalaibleForIA = this.state.cardsAvalaibleForIA.slice();
+    if (newcardsAvalaibleForIA.filter(heroe => heroe.position === 'deck').length !== 0) { // (Flo) condition si clé position dans l'objet héro est 'deck' et que le la longueur du tableau n'est pas égal à 0
+      const randomNumber = Math.floor(Math.random() * newcardsAvalaibleForIA.filter(heroe => heroe.position === 'deck').length); // (Flo) set const randomNumber : pioche aléatoire dans liste d'héro choisie ssi la clé position est à 'deck
+      newcardsAvalaibleForIA.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand'; // (Flo) si condition est true : filter des héros ayant la valeur de la clé position à 'deck' à la position correspondant au randomNumber
+      this.setState({ cardsAvalaibleForIA: newcardsAvalaibleForIA });
+    }
+  }
+  
+
 
   attackCardIa = () => {
-    const newDeckIa = this.state.cardsAvalaibleForIA;
-    const newHeroesChosen = this.state.heroesChosen;
+    let newDeckIa = this.state.cardsAvalaibleForIA.slice();
+    let newHeroesChosen = this.state.heroesChosen.slice();
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
       window.setTimeout(() => {
         const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
@@ -122,8 +129,8 @@ class DeckBoard extends React.Component {
   }
 
   killCards = () => {
-    const newDeckIa = this.state.cardsAvalaibleForIA;
-    const newHeroesChosen = this.state.heroesChosen;
+    const newDeckIa = this.state.cardsAvalaibleForIA.slice();
+    const newHeroesChosen = this.state.heroesChosen.slice();
     newDeckIa.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes de l'IA.
       if (heroe.deadOnBoard) {
         heroe.position = 'dead';
@@ -140,14 +147,16 @@ class DeckBoard extends React.Component {
   }
 
   handleIaTurn = () => {
+    const iaBoardLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length+1;
+    const playerBoardLength = this.state.heroesChosen.filter(heroe => heroe.position === 'board').length;
     this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
-    const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length; // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
-    window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
+    const attackTime = 1000 * (iaBoardLength > playerBoardLength ? playerBoardLength : iaBoardLength);  // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
+    window.setTimeout(() => this.handleDrawIa(), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
     window.setTimeout(() => this.handleHandToBoardIa(), 4000); // L'IA place sa carte sur le board et attend. Appel à la fonction vers la ligne 49.
     window.setTimeout(() => this.attackCardIa(), 5000); // Lance la procédure d'attaque des cartes de l'IA vers les cartes du joueur et attend. Appel à la fonction vers la ligne 91.
     window.setTimeout(() => this.killCards(), 6000 + attackTime); // Lance la procédure des cartes qui sont éliminées pour les mettre en position 'dead' et attend.
     window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime); // set de playerTurn à true et attend.
-    window.setTimeout(() => this.handleDraw(this.state.heroesChosen), 6000 + attackTime); // fait piocher la carte au joueur et attend.
+    window.setTimeout(() => this.handleDrawPlayer(), 6000 + attackTime); // fait piocher la carte au joueur et attend.
   }
 
   render () {
@@ -181,7 +190,7 @@ class DeckBoard extends React.Component {
           </div>
           <div className='timerAndEndTurn'>
             <p>59 s</p>
-            <button onClick={this.state.playerTurn ? this.handleIaTurn : ''}>End Turn</button>
+            <button onClick={this.state.playerTurn ? this.handleIaTurn : ()=>{  }}>End Turn</button>
           </div>
           <div className='deckplayer1'>
             <HiddenCards deck={this.state.heroesChosen} />

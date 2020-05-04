@@ -9,7 +9,7 @@ function Board (props) {
     <>
       {props.heroesChosen.filter(heroe => heroe.position === 'board').map(heroe => {
         return (
-          !heroe.deadOnBoard && <CardOfDeckBoard heroe={heroe} key={heroe.name} />
+          !heroe.deadOnBoard && <CardOfDeckBoard heroe={heroe} key={heroe.iaDeck ? `${heroe.name}Ia` : heroe.name} />
         );
       })}
     </>

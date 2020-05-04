@@ -39,7 +39,8 @@ class App extends Component {
             hp: parseInt(heroe.powerstats.durability, 10),
             power: Math.round((parseInt(heroe.powerstats.strength, 10) + parseInt(heroe.powerstats.durability, 10)) / 2),
             position: 'deck',
-            deadOnBoard: false
+            deadOnBoard: false,
+            iaDeck: false,
           };
         });
         this.setState({ cards: tabHeroes });
@@ -47,7 +48,7 @@ class App extends Component {
   }
 
   addToDeck = (cardName) => {
-    let copieDeck = this.state.deck;
+    let copieDeck = this.state.deck.slice();
     const maxPower = this.state.maxPower;
     const totalPower = this.state.deck.map(card => card.power).reduce((acc, cur) => acc + cur, 0);
     if (copieDeck.filter(heroe => cardName === heroe.name).length === 0) {
@@ -62,8 +63,7 @@ class App extends Component {
     this.setState({ deck: copieDeck });
   }
 
-  removeDeck = () => {
-    console.log('hello');
+  removeDeck = () => {    
     this.setState({ deck: [] });
   }
 
