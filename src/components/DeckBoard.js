@@ -39,7 +39,7 @@ class DeckBoard extends React.Component {
   handleHandToBoardIa = () => {
     const newIaDeck = this.state.cardsAvalaibleForIA.slice();
     const randomNumber = Math.floor(Math.random() * newIaDeck.filter(heroe => heroe.position === 'hand').length);
-    if(newIaDeck.filter(heroe => heroe.position === 'hand').length !== 0){
+    if (newIaDeck.filter(heroe => heroe.position === 'hand').length !== 0) {
       newIaDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
     }
     this.setState({ cardsAvalaibleForIA: newIaDeck });
