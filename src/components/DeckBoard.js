@@ -45,7 +45,7 @@ class DeckBoard extends React.Component {
     this.setState({ cardsAvalaibleForIA: newIaDeck });
   }
 
-randomizeHeroesChosen = (deck , deckName) => {
+randomizeHeroesChosen = (deck, deckName) => {
   let newHeroesChosen = deck.slice();
   newHeroesChosen = _.shuffle(newHeroesChosen);
 
@@ -57,8 +57,7 @@ randomizeHeroesChosen = (deck , deckName) => {
   this.setState({ [deckName]: newHeroesChosen });
 }
 
-
-  randomizeIaDeck = () => {
+randomizeIaDeck = () => {
     const heroes = _.shuffle(this.props.heroes);
     let IaDeckPower = 0;
     const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA.slice();
@@ -113,17 +112,17 @@ randomizeHeroesChosen = (deck , deckName) => {
     const newHeroesChosen = this.state.heroesChosen.slice();
     newDeckIa.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes de l'IA.
       if (heroe.deadOnBoard) {
-        return {...heroe, position : 'dead', deadOnBoard : false}
+        return { ...heroe, position: 'dead', deadOnBoard: false };
       } else {
-        return heroe
-        }
+        return heroe;
+      }
     });
     newHeroesChosen.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes du joueur
       if (heroe.deadOnBoard) {
-        return {...heroe, position : 'dead', deadOnBoard : false}
+        return { ...heroe, position: 'dead', deadOnBoard: false };
       } else {
-        return heroe
-        }
+        return heroe;
+      }
     });
     this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
   }
