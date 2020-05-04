@@ -18,7 +18,7 @@ class DeckBoard extends React.Component {
   componentDidMount () {
     this.randomizeHeroesChosenPlayer();
     this.randomizeIaDeck();
-    window.setTimeout(() => this.randomizeHeroesChosenIa(), 4000);
+    window.setTimeout(() => this.randomizeHeroesChosenIa(), 200);
   }
 
   componentWillUnmount () {
@@ -39,7 +39,9 @@ class DeckBoard extends React.Component {
   handleHandToBoardIa = () => {
     const newIaDeck = this.state.cardsAvalaibleForIA.slice();
     const randomNumber = Math.floor(Math.random() * newIaDeck.filter(heroe => heroe.position === 'hand').length);
-    newIaDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
+    if(newIaDeck.filter(heroe => heroe.position === 'hand').length !== 0){
+      newIaDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
+    }
     this.setState({ cardsAvalaibleForIA: newIaDeck });
   }
 
