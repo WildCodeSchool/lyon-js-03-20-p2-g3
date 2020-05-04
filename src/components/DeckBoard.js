@@ -58,22 +58,22 @@ randomizeHeroesChosen = (deck, deckName) => {
 }
 
 randomizeIaDeck = () => {
-    const heroes = _.shuffle(this.props.heroes);
-    let IaDeckPower = 0;
-    const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA.slice();
-    for (let i = 0; i < this.props.heroes.length; i++) {
-      if (IaDeckPower <= this.props.maxPower) {
-        if (heroes[i].power > this.props.maxPower - IaDeckPower) {
-        } else {
-          cardsAvalaibleForIA.push({ ...heroes[i], position: 'deck', iaDeck: true });
-          IaDeckPower += heroes[i].power;
-        }
+  const heroes = _.shuffle(this.props.heroes);
+  let IaDeckPower = 0;
+  const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA.slice();
+  for (let i = 0; i < this.props.heroes.length; i++) {
+    if (IaDeckPower <= this.props.maxPower) {
+      if (heroes[i].power > this.props.maxPower - IaDeckPower) {
       } else {
-        break;
+        cardsAvalaibleForIA.push({ ...heroes[i], position: 'deck', iaDeck: true });
+        IaDeckPower += heroes[i].power;
       }
+    } else {
+      break;
     }
-    this.setState({ cardsAvalaibleForIA });
   }
+  this.setState({ cardsAvalaibleForIA });
+}
 
   handleDraw = (deck, deckName) => {
     const newHeroesChosen = deck.slice();
