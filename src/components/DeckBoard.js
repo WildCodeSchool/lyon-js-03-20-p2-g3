@@ -18,7 +18,7 @@ class DeckBoard extends React.Component {
   componentDidMount () {
     this.randomizeHeroesChosenPlayer();
     this.randomizeIaDeck();
-    window.setTimeout(() => this.randomizeHeroesChosenIa(),4000)
+    window.setTimeout(() => this.randomizeHeroesChosenIa(), 4000);
   }
 
   componentWillUnmount () {
@@ -47,26 +47,25 @@ randomizeHeroesChosenPlayer = () => {
   let newHeroesChosen = this.state.heroesChosen.slice();
   newHeroesChosen = _.shuffle(newHeroesChosen);
 
-  for (let i = 0 ; i < 4 ; i++){
-    if(newHeroesChosen[i] !== undefined){
+  for (let i = 0; i < 4; i++) {
+    if (newHeroesChosen[i] !== undefined) {
       newHeroesChosen[i].position = 'hand';
     }
   }
   this.setState({ heroesChosen: newHeroesChosen });
 }
+
 randomizeHeroesChosenIa = () => {
   let newcardsAvalaibleForIA = this.state.cardsAvalaibleForIA.slice();
   newcardsAvalaibleForIA = _.shuffle(newcardsAvalaibleForIA);
 
-  for (let i = 0 ; i < 3 ; i++){
-    if(newcardsAvalaibleForIA[i] !== undefined){
+  for (let i = 0; i < 3; i++) {
+    if (newcardsAvalaibleForIA[i] !== undefined) {
       newcardsAvalaibleForIA[i].position = 'hand';
     }
   }
   this.setState({ cardsAvalaibleForIA: newcardsAvalaibleForIA });
 }
-
-
 
   randomizeIaDeck = () => {
     const heroes = _.shuffle(this.props.heroes);
@@ -76,7 +75,7 @@ randomizeHeroesChosenIa = () => {
       if (IaDeckPower <= this.props.maxPower) {
         if (heroes[i].power > this.props.maxPower - IaDeckPower) {
         } else {
-          cardsAvalaibleForIA.push({...heroes[i], position : 'deck', iaDeck : true});
+          cardsAvalaibleForIA.push({ ...heroes[i], position: 'deck', iaDeck: true });
           IaDeckPower += heroes[i].power;
         }
       } else {
@@ -87,27 +86,26 @@ randomizeHeroesChosenIa = () => {
   }
 
   handleDrawPlayer = () => {
-    let newHeroesChosen = this.state.heroesChosen.slice();
+    const newHeroesChosen = this.state.heroesChosen.slice();
     if (newHeroesChosen.filter(heroe => heroe.position === 'deck').length !== 0) { // (Flo) condition si clé position dans l'objet héro est 'deck' et que le la longueur du tableau n'est pas égal à 0
       const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length); // (Flo) set const randomNumber : pioche aléatoire dans liste d'héro choisie ssi la clé position est à 'deck
       newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand'; // (Flo) si condition est true : filter des héros ayant la valeur de la clé position à 'deck' à la position correspondant au randomNumber
       this.setState({ heroesChosen: newHeroesChosen });
     }
   }
+
   handleDrawIa = () => {
-    let newcardsAvalaibleForIA = this.state.cardsAvalaibleForIA.slice();
+    const newcardsAvalaibleForIA = this.state.cardsAvalaibleForIA.slice();
     if (newcardsAvalaibleForIA.filter(heroe => heroe.position === 'deck').length !== 0) { // (Flo) condition si clé position dans l'objet héro est 'deck' et que le la longueur du tableau n'est pas égal à 0
       const randomNumber = Math.floor(Math.random() * newcardsAvalaibleForIA.filter(heroe => heroe.position === 'deck').length); // (Flo) set const randomNumber : pioche aléatoire dans liste d'héro choisie ssi la clé position est à 'deck
       newcardsAvalaibleForIA.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand'; // (Flo) si condition est true : filter des héros ayant la valeur de la clé position à 'deck' à la position correspondant au randomNumber
       this.setState({ cardsAvalaibleForIA: newcardsAvalaibleForIA });
     }
   }
-  
-
 
   attackCardIa = () => {
-    let newDeckIa = this.state.cardsAvalaibleForIA.slice();
-    let newHeroesChosen = this.state.heroesChosen.slice();
+    const newDeckIa = this.state.cardsAvalaibleForIA.slice();
+    const newHeroesChosen = this.state.heroesChosen.slice();
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
       window.setTimeout(() => {
         const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
@@ -147,10 +145,10 @@ randomizeHeroesChosenIa = () => {
   }
 
   handleIaTurn = () => {
-    const iaBoardLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length+1;
+    const iaBoardLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length + 1;
     const playerBoardLength = this.state.heroesChosen.filter(heroe => heroe.position === 'board').length;
     this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
-    const attackTime = 1000 * (iaBoardLength > playerBoardLength ? playerBoardLength : iaBoardLength);  // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
+    const attackTime = 1000 * (iaBoardLength > playerBoardLength ? playerBoardLength : iaBoardLength); // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
     window.setTimeout(() => this.handleDrawIa(), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
     window.setTimeout(() => this.handleHandToBoardIa(), 4000); // L'IA place sa carte sur le board et attend. Appel à la fonction vers la ligne 49.
     window.setTimeout(() => this.attackCardIa(), 5000); // Lance la procédure d'attaque des cartes de l'IA vers les cartes du joueur et attend. Appel à la fonction vers la ligne 91.
@@ -190,7 +188,7 @@ randomizeHeroesChosenIa = () => {
           </div>
           <div className='timerAndEndTurn'>
             <p>59 s</p>
-            <button onClick={this.state.playerTurn ? this.handleIaTurn : ()=>{  }}>End Turn</button>
+            <button onClick={this.state.playerTurn ? this.handleIaTurn : () => { }}>End Turn</button>
           </div>
           <div className='deckplayer1'>
             <HiddenCards deck={this.state.heroesChosen} />

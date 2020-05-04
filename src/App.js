@@ -40,7 +40,7 @@ class App extends Component {
             power: Math.round((parseInt(heroe.powerstats.strength, 10) + parseInt(heroe.powerstats.durability, 10)) / 2),
             position: 'deck',
             deadOnBoard: false,
-            iaDeck: false,
+            iaDeck: false
           };
         });
         this.setState({ cards: tabHeroes });
@@ -63,7 +63,7 @@ class App extends Component {
     this.setState({ deck: copieDeck });
   }
 
-  removeDeck = () => {    
+  removeDeck = () => {
     this.setState({ deck: [] });
   }
 
