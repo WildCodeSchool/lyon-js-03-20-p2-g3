@@ -77,7 +77,7 @@ class DeckBoard extends React.Component {
       if (IaDeckPower <= this.props.maxPower) {
         if (heroes[i].power > this.props.maxPower - IaDeckPower) {
         } else {
-          cardsAvalaibleForIA.push(heroes[i]);
+          cardsAvalaibleForIA.push({ ...heroes[i], position: 'deck', iaDeck: true });
           IaDeckPower += heroes[i].power;
         }
       } else {
