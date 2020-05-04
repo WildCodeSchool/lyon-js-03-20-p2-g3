@@ -50,8 +50,7 @@
 
 .boardContainer {
   /* background: #FFAA29; */
-  background: no-repeat center/100% url('https://wallpaperaccess.com/full/85814.jpg');
-  opacity: 0.5;
+  background: no-repeat center/100% url('images/boardBackGround.jpg');
   height: 50vh;
   border-top-left-radius: 50px 200px;
   border-top-right-radius: 50px 200px;
