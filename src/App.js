@@ -15,7 +15,7 @@ import DeckBoard from './components/DeckBoard';
 class App extends Component {
   constructor (props) {
     super(props);
-    this.state = { 
+    this.state = {
       cards: [],
       deck: [],
       maxPower: 800

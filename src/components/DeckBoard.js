@@ -154,7 +154,7 @@ handleIaTurn = () => {
   window.setTimeout(() => this.killCards(), 6000 + attackTime); // Lance la procédure des cartes qui sont éliminées pour les mettre en position 'dead' et attend.
   window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime); // set de playerTurn à true et attend.
   window.setTimeout(() => this.handleDraw(this.state.heroesChosen, 'heroesChosen'), 6000 + attackTime); // fait piocher la carte au joueur et attend.
-  window.setTimeout(() => this.setState({onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard:true}), 6000 + attackTime);
+  window.setTimeout(() => this.setState({ onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard: true }), 6000 + attackTime);
 }
 
 handleSelectedCard = (nameSelected) => {
@@ -221,7 +221,7 @@ render () {
           </div>
         </div>
         <div className='player1hand'> {/* hand of Player1 */}
-          <HandCards  heroesChosen={this.state.heroesChosen} onHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn} />
+          <HandCards heroesChosen={this.state.heroesChosen} onHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn} />
         </div>
       </div>
       <div className='rightBoardContainer'> {/* right board container : decks, timer, "End Turn" button, pseudos */}
