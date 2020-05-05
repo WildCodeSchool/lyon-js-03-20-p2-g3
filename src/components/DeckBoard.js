@@ -168,9 +168,9 @@ handleIaTurn = () => {
   }
   this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
   const heroesSelected = this.state.heroesChosen.map(heroe => {
-    return { ...heroe, selected : false }
-  })
-  this.setState({ heroesChosen : heroesSelected})
+    return { ...heroe, selected: false };
+  });
+  this.setState({ heroesChosen: heroesSelected });
   const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length; // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
   window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA'), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
   window.setTimeout(() => this.handleHandToBoardIa(), 4000); // L'IA place sa carte sur le board et attend. Appel à la fonction vers la ligne 49.
@@ -238,10 +238,10 @@ render () {
         </div>
         <div className='boardContainer'>
           <div className='boardia'> {/* board of computer */}
-            <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard}  />
+            <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard} />
           </div>
           <div className='boardPlayer1'> {/* board of Player1 */}
-            <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} playerTurn={this.state.playerTurn}/>
+            <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} playerTurn={this.state.playerTurn} />
           </div>
         </div>
         <div className='player1hand'> {/* hand of Player1 */}

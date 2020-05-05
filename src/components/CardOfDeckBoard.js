@@ -7,7 +7,7 @@ function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard
     if (heroe.position === 'hand' && playerTurn) {
       return onHandToBoard(heroe.name);
     } else if (heroe.position === 'board' && !heroe.iaDeck && playerTurn) {
-          return onSelectedCard(heroe.name);
+      return onSelectedCard(heroe.name);
     } else if (heroe.iaDeck && heroe.position === 'board') {
       return onAttackIaCard(heroe.name);
     }
