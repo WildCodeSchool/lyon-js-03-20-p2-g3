@@ -44,9 +44,20 @@ class DeckBoard extends React.Component {
 
   handleHandToBoardIa = () => {
     const newIaDeck = this.state.cardsAvalaibleForIA;
-    const randomNumber = Math.floor(Math.random() * newIaDeck.filter(heroe => heroe.position === 'hand').length);
-    newIaDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
-    this.setState({ cardsAvalaibleForIA: newIaDeck });
+    if (newIaDeck.filter(heroe => heroe.position === 'hand').length !== 0) {        
+      const randomNumber = Math.floor(Math.random() * newIaDeck.filter(heroe => heroe.position === 'hand').length);
+      newIaDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
+      this.setState({ cardsAvalaibleForIA: newIaDeck });
+    }
+  }
+
+  handleHandToBoardPlayer = () => {
+    const newPlayerDeck = this.state.heroesChosen;
+    if (newPlayerDeck.filter(heroe => heroe.position === 'hand').length !== 0) {        
+      const randomNumber = Math.floor(Math.random() * newPlayerDeck.filter(heroe => heroe.position === 'hand').length);
+      newPlayerDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
+      this.setState({ heroesChosen: newPlayerDeck });
+    }
   }
 
   randomizeDeck = (deck, deckName) => {
@@ -145,6 +156,9 @@ killCards = () => {
 }
 
 handleIaTurn = () => {
+  if (this.state.onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard) {
+    this.handleHandToBoardPlayer()
+  }
   console.log('coucou handleIAturn');
   this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
   const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length; // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
