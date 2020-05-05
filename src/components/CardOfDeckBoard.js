@@ -8,13 +8,17 @@ function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard
       return onHandToBoard(heroe.name);
     } else if (heroe.position === 'board' && !heroe.iaDeck) {
       return onSelectedCard(heroe.name);
-    } else if (heroe.iaDeck) {
+    } else if (heroe.iaDeck && heroe.position === 'board') {
       return onAttackIaCard(heroe.name);
     }
   };
 
   return (
-    <div className={heroe.selected === true ? 'cardBoard toggleCardSelect' : heroe.position === 'hand' && !heroe.iaDeck ? 'handCard cardBoard' : 'cardBoard'} onClick={handleClickOnCardOfDeckBoard}>
+    <div className={heroe.selected === true ? 'cardBoard toggleCardSelect' //
+      : heroe.position === 'hand' && !heroe.iaDeck ? 'handCard cardBoard' 
+      : heroe.isFighting ? 'cardBoard fighting' 
+      : 'cardBoard'} 
+      onClick={handleClickOnCardOfDeckBoard}>
       <section className='pwBoard'>
         {heroe.power} PW
       </section>

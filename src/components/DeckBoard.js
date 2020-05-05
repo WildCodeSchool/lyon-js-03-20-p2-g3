@@ -44,7 +44,7 @@ class DeckBoard extends React.Component {
 
   handleHandToBoardIa = () => {
     const newIaDeck = this.state.cardsAvalaibleForIA;
-    if (newIaDeck.filter(heroe => heroe.position === 'hand').length !== 0) {        
+    if (newIaDeck.filter(heroe => heroe.position === 'hand').length !== 0) {
       const randomNumber = Math.floor(Math.random() * newIaDeck.filter(heroe => heroe.position === 'hand').length);
       newIaDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
       this.setState({ cardsAvalaibleForIA: newIaDeck });
@@ -53,7 +53,7 @@ class DeckBoard extends React.Component {
 
   handleHandToBoardPlayer = () => {
     const newPlayerDeck = this.state.heroesChosen;
-    if (newPlayerDeck.filter(heroe => heroe.position === 'hand').length !== 0) {        
+    if (newPlayerDeck.filter(heroe => heroe.position === 'hand').length !== 0) {
       const randomNumber = Math.floor(Math.random() * newPlayerDeck.filter(heroe => heroe.position === 'hand').length);
       newPlayerDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
       this.setState({ heroesChosen: newPlayerDeck });
@@ -123,6 +123,10 @@ class DeckBoard extends React.Component {
       const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board' && !heroe.deadOnBoard);
       const randomNumber = Math.floor(Math.random() * cardBoardPlayer.length);
       if (cardBoardPlayer.length !== 0) {
+        cardBoardIa[i].isFighting = true;
+        cardBoardPlayer[randomNumber].isFighting = true;
+        this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
+        await delay(1000);
         cardBoardIa[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
         cardBoardPlayer[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
         if (cardBoardIa[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur ou égal à 0, enleve la carte du board
@@ -132,8 +136,12 @@ class DeckBoard extends React.Component {
           cardBoardPlayer[randomNumber].deadOnBoard = true;
         }
       }
+      if (cardBoardPlayer.length !== 0){
+        cardBoardIa[i].isFighting = false;
+        cardBoardPlayer[randomNumber].isFighting = false;
+      }
       this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
-      await delay(1000);
+      
     }
   }
 
@@ -157,7 +165,7 @@ killCards = () => {
 
 handleIaTurn = () => {
   if (this.state.onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard) {
-    this.handleHandToBoardPlayer()
+    this.handleHandToBoardPlayer();
   }
   console.log('coucou handleIAturn');
   this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.

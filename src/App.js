@@ -42,6 +42,7 @@ class App extends Component {
             deadOnBoard: false,
             selected: false,
             iaDeck: false,
+            isFighting: false,
             isAbleToAttack: true // true : la carte est autorisée à attaquer
           };
         });
