@@ -5,7 +5,7 @@ class Timer extends Component {
     super(props);
     this.state = {
       minutes: 0,
-      seconds: 3
+      seconds: 15
     };
   }
 
@@ -41,4 +41,4 @@ class Timer extends Component {
   }
 }
 
-export default Timer;
+export default Timer ;

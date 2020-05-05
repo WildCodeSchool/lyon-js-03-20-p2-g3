@@ -8,7 +8,7 @@ import Timer from './Timer';
 
 const delay = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 class DeckBoard extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       playerTurn: true, // initialise playerTurn à true pour débuter la partie avec le tour du joueur. Deus Sex Machina est généreux.
@@ -17,13 +17,13 @@ class DeckBoard extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.randomizeDeck(this.state.heroesChosen, 'heroesChosen');
     this.createIaDeck();
     this.randomizeDeck(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA');
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.setState({ heroesChosen: [] });
   }
 
@@ -118,7 +118,7 @@ class DeckBoard extends React.Component {
         }
       }
       this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
-      await delay(1000)
+      await delay(1000);
     }
   }
 
@@ -152,7 +152,7 @@ handleIaTurn = () => {
   window.setTimeout(() => this.handleDraw(this.state.heroesChosen, 'heroesChosen'), 6000 + attackTime); // fait piocher la carte au joueur et attend.
 }
 
-render() {
+render () {
   return (
     <div className='deckBoard'>
       <div className='leftBoardContainer'>
