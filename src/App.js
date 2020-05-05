@@ -15,7 +15,7 @@ import DeckBoard from './components/DeckBoard';
 class App extends Component {
   constructor (props) {
     super(props);
-    this.state = {
+    this.state = { 
       cards: [],
       deck: [],
       maxPower: 800
@@ -39,7 +39,10 @@ class App extends Component {
             hp: parseInt(heroe.powerstats.durability, 10),
             power: Math.round((parseInt(heroe.powerstats.strength, 10) + parseInt(heroe.powerstats.durability, 10)) / 2),
             position: 'deck',
-            deadOnBoard: false
+            deadOnBoard: false,
+            selected: false,
+            iaDeck: false,
+            isAbleToAttack: true // true : la carte est autorisée à attaquer
           };
         });
         this.setState({ cards: tabHeroes });

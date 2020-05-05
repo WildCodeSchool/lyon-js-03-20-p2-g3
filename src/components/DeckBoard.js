@@ -12,6 +12,7 @@ class DeckBoard extends React.Component {
     super(props);
     this.state = {
       playerTurn: true, // initialise playerTurn à true pour débuter la partie avec le tour du joueur. Deus Sex Machina est généreux.
+      onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard: true, // with love <3
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
       cardsAvalaibleForIA: []
     };
@@ -26,16 +27,19 @@ class DeckBoard extends React.Component {
   componentWillUnmount () {
     this.setState({ heroesChosen: [] });
   }
+  // On veut limiter le nombre de carte joué sur le board par tour
 
   handleHandToBoard = (heroeName) => {
+    let isAllowedToPutCardOnBoard = this.state.onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard;
     const newDeck = this.state.heroesChosen.map(heroe => {
-      if (heroe.name === heroeName) {
+      if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
+        isAllowedToPutCardOnBoard = false;
         return { ...heroe, position: 'board' };
       } else {
         return heroe;
       }
     });
-    this.setState({ heroesChosen: newDeck });
+    this.setState({ heroesChosen: newDeck, onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard: isAllowedToPutCardOnBoard });
   }
 
   handleHandToBoardIa = () => {
@@ -150,6 +154,49 @@ handleIaTurn = () => {
   window.setTimeout(() => this.killCards(), 6000 + attackTime); // Lance la procédure des cartes qui sont éliminées pour les mettre en position 'dead' et attend.
   window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime); // set de playerTurn à true et attend.
   window.setTimeout(() => this.handleDraw(this.state.heroesChosen, 'heroesChosen'), 6000 + attackTime); // fait piocher la carte au joueur et attend.
+  window.setTimeout(() => this.setState({onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard:true}), 6000 + attackTime);
+}
+
+handleSelectedCard = (nameSelected) => {
+  const newHeroesChosen = this.state.heroesChosen.map(
+    heroe => {
+      if (heroe.isAbleToAttack) {
+        if (heroe.name === nameSelected && !heroe.iaDeck) {
+          return { ...heroe, selected: true };
+        } else {
+          return { ...heroe, selected: false };
+        }
+      } else {
+        return { ...heroe, selected: false };
+      }
+    }
+  );
+  this.setState({ heroesChosen: newHeroesChosen });
+}// on veut qu'une carte en attaque une autre une seule fois. Elle ne peut plus être sélectionnée après avoir attaqué pendant la phase d'attaque.
+
+handleAttackIaCard = (name) => {
+  const heroesChosen = this.state.heroesChosen;
+  const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA;
+  const playerCardSelected = heroesChosen.filter(heroe => heroe.selected === true)[0];
+  if (heroesChosen.filter(heroe => heroe.selected === true).length !== 0) {
+    cardsAvalaibleForIA.map(heroeIa => {
+      if (heroeIa.name === name) {
+        // on veut récupérer l'attaque de la carte sélectionnée et la vie de l'attaque adverse. Et en déduire le nombre de point de vie à retirer sur la carte adverse. Et vice versa.
+        heroeIa.hp -= playerCardSelected.atk;
+        playerCardSelected.hp -= heroeIa.atk;
+        playerCardSelected.isAbleToAttack = false;
+        playerCardSelected.selected = false;
+        if (heroeIa.hp <= 0) { // on veut changer la valeur de la clé position à 'dead' pour les cartes dont les hp sont <= 0.
+          heroeIa.position = 'dead';
+        }
+        if (playerCardSelected.hp <= 0) {
+          playerCardSelected.position = 'dead';
+        }
+      }
+    });
+
+    this.setState({ cardsAvalaibleForIA, heroesChosen });
+  }
 }
 
 render () {
@@ -167,14 +214,14 @@ render () {
         </div>
         <div className='boardContainer'>
           <div className='boardia'> {/* board of computer */}
-            <Board heroesChosen={this.state.cardsAvalaibleForIA} />
+            <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard} />
           </div>
           <div className='boardPlayer1'> {/* board of Player1 */}
-            <Board heroesChosen={this.state.heroesChosen} />
+            <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} />
           </div>
         </div>
         <div className='player1hand'> {/* hand of Player1 */}
-          <HandCards heroesChosen={this.state.heroesChosen} onHandleHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn} />
+          <HandCards  heroesChosen={this.state.heroesChosen} onHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn} />
         </div>
       </div>
       <div className='rightBoardContainer'> {/* right board container : decks, timer, "End Turn" button, pseudos */}

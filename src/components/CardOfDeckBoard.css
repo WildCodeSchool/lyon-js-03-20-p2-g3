@@ -10,10 +10,18 @@
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
+  position: relative;
+  transition: 0.4s ease-out;
 }
-.cardBoard *{
-  cursor: pointer;
+
+.toggleCardSelect {
+  background: linear-gradient(#f6d743, #fff  70%, #f6d743);
+  transition: all .2s ease-in-out;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+  top: -4px;
 }
+
 
 .imageCardBoard{
   height: 75%;
@@ -26,6 +34,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .atkBoard, .hpBoard{
   width: 20px;
   height: 20px;
@@ -35,15 +44,18 @@
   justify-content: center;
   align-self: center;
 }
+
 .atkBoard p, .hpBoard p{
   font-size: 7px;
   display: flex;
   justify-content: center;
   align-self: center;
 }
+
 .atkBoard{
   background-color: rgba(255,0,0,0.8);
 }
+
 .hpBoard{
   background-color:rgba(20, 255, 0, 0.8)
 }
@@ -51,33 +63,60 @@
 .isAttacking{
   border: 5px solid red;
 }
+
 @media screen and (min-width: 897px) {
+
   .atkBoard, .hpBoard{
     width: 30px;
     height: 30px;
     border-radius: 15px;
   }
+
   .atkBoard p, .hpBoard p{
     font-size: 10px;
   }
+
 }
+
 @media screen and (min-width: 1100px) {
+
+  .handCard:not(:first-child) {
+    margin-left: -50px;
+  }
+  
+  .handCard:hover {
+    transform: translateY(-20px);
+    transition: 0.4s ease-out;
+  }
+  
+  .handCard:hover ~ .handCard {
+    position: relative;
+    left: 50px;
+    transition: 0.4s ease-out;
+  }
+  
   .atkBoard, .hpBoard{
     width: 40px;
     height: 40px;
     border-radius: 20px;
   }
+
   .atkBoard p, .hpBoard p{
     font-size: 13px;
   }
+
 }
+
 @media screen and (max-width: 600px) {
+  
   .atkBoard, .hpBoard{
     width: 15px;
     height: 15px;
     border-radius: 8px;
   }
+
   .atkBoard p, .hpBoard p{
     font-size: 6px;
   }
+
 }
