@@ -9,7 +9,7 @@ class Timer extends Component {
     };
   }
 
-  componentDidMount () {    
+  componentDidMount () {
     this.myInterval = setInterval(() => {
       const { seconds, minutes } = this.state;
 
@@ -21,7 +21,7 @@ class Timer extends Component {
       if (seconds === 0) {
         if (minutes === 0) {
           clearInterval(this.myInterval);
-          this.props.onFinish()
+          this.props.onFinish();
         }
       }
     }, 1000);

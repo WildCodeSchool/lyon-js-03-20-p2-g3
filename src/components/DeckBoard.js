@@ -4,7 +4,7 @@ import './DeckBoard.css';
 import Board from './Board';
 import HiddenCards from './HiddenCards';
 import _ from 'lodash';
-import Timer from './Timer'
+import Timer from './Timer';
 
 class DeckBoard extends React.Component {
   constructor (props) {
@@ -45,7 +45,7 @@ class DeckBoard extends React.Component {
   }
 
   randomizeDeck = (deck, deckName) => {
-    const newHeroesChosen = deck;
+    const newHeroesChosen = deck.slice();
     const heroesChosenRandomized = [];
     const arrayOfRandomNumbers = [];
     while (arrayOfRandomNumbers.length < newHeroesChosen.length) {
@@ -91,7 +91,7 @@ class DeckBoard extends React.Component {
   }
 
   handleDraw = (deck, deckName) => {
-    const newHeroesChosen = deck;
+    const newHeroesChosen = deck.slice();
     if (newHeroesChosen.filter(heroe => heroe.position === 'deck').length !== 0) { // (Flo) condition si clé position dans l'objet héro est 'deck' et que le la longueur du tableau n'est pas égal à 0
       const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length); // (Flo) set const randomNumber : pioche aléatoire dans liste d'héro choisie ssi la clé position est à 'deck
       newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand'; // (Flo) si condition est true : filter des héros ayant la valeur de la clé position à 'deck' à la position correspondant au randomNumber
@@ -100,8 +100,8 @@ class DeckBoard extends React.Component {
   }
 
   attackCardIa = () => {
-    const newDeckIa = this.state.cardsAvalaibleForIA;
-    const newHeroesChosen = this.state.heroesChosen;
+    const newDeckIa = this.state.cardsAvalaibleForIA.slice();
+    const newHeroesChosen = this.state.heroesChosen.slice();
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
       window.setTimeout(() => {
         const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
