@@ -6,8 +6,9 @@ import HiddenCards from './HiddenCards';
 import _ from 'lodash';
 import Timer from './Timer';
 
+const delay = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 class DeckBoard extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       playerTurn: true, // initialise playerTurn à true pour débuter la partie avec le tour du joueur. Deus Sex Machina est généreux.
@@ -16,13 +17,13 @@ class DeckBoard extends React.Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.randomizeDeck(this.state.heroesChosen, 'heroesChosen');
     this.createIaDeck();
     this.randomizeDeck(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA');
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.setState({ heroesChosen: [] });
   }
 
@@ -99,100 +100,99 @@ class DeckBoard extends React.Component {
     }
   }
 
-  attackCardIa = () => {
+  attackCardIa = async () => {
     const newDeckIa = this.state.cardsAvalaibleForIA.slice();
     const newHeroesChosen = this.state.heroesChosen.slice();
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
-      window.setTimeout(() => {
-        const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
-        const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board' && !heroe.deadOnBoard);
-        const randomNumber = Math.floor(Math.random() * cardBoardPlayer.length);
-        if (cardBoardPlayer.length !== 0) {
-          cardBoardIa[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
-          cardBoardPlayer[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
-          if (cardBoardIa[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur ou égal à 0, enleve la carte du board
-            cardBoardIa[i].deadOnBoard = true;
-          }
-          if (cardBoardPlayer[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur ou égal à 0, enleve la carte du board
-            cardBoardPlayer[randomNumber].deadOnBoard = true;
-          }
+      const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
+      const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board' && !heroe.deadOnBoard);
+      const randomNumber = Math.floor(Math.random() * cardBoardPlayer.length);
+      if (cardBoardPlayer.length !== 0) {
+        cardBoardIa[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
+        cardBoardPlayer[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
+        if (cardBoardIa[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur ou égal à 0, enleve la carte du board
+          cardBoardIa[i].deadOnBoard = true;
         }
-        this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
-      }, 1000 * i);
+        if (cardBoardPlayer[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur ou égal à 0, enleve la carte du board
+          cardBoardPlayer[randomNumber].deadOnBoard = true;
+        }
+      }
+      this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
+      await delay(1000)
     }
   }
 
-  killCards = () => {
-    const newDeckIa = this.state.cardsAvalaibleForIA;
-    const newHeroesChosen = this.state.heroesChosen;
-    newDeckIa.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes de l'IA.
-      if (heroe.deadOnBoard) {
-        heroe.position = 'dead';
-        heroe.deadOnBoard = false;
-      }
-    });
-    newHeroesChosen.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes du joueur
-      if (heroe.deadOnBoard) {
-        heroe.position = 'dead';
-        heroe.deadOnBoard = false;
-      }
-    });
-    this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
-  }
+killCards = () => {
+  const newDeckIa = this.state.cardsAvalaibleForIA;
+  const newHeroesChosen = this.state.heroesChosen;
+  newDeckIa.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes de l'IA.
+    if (heroe.deadOnBoard) {
+      heroe.position = 'dead';
+      heroe.deadOnBoard = false;
+    }
+  });
+  newHeroesChosen.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes du joueur
+    if (heroe.deadOnBoard) {
+      heroe.position = 'dead';
+      heroe.deadOnBoard = false;
+    }
+  });
+  this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
+}
 
-  handleIaTurn = () => {
-    console.log('coucou handleIAturn');
-    this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
-    const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length; // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
-    window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA'), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
-    window.setTimeout(() => this.handleHandToBoardIa(), 4000); // L'IA place sa carte sur le board et attend. Appel à la fonction vers la ligne 49.
-    window.setTimeout(() => this.attackCardIa(), 5000); // Lance la procédure d'attaque des cartes de l'IA vers les cartes du joueur et attend. Appel à la fonction vers la ligne 91.
-    window.setTimeout(() => this.killCards(), 6000 + attackTime); // Lance la procédure des cartes qui sont éliminées pour les mettre en position 'dead' et attend.
-    window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime); // set de playerTurn à true et attend.
-    window.setTimeout(() => this.handleDraw(this.state.heroesChosen, 'heroesChosen'), 6000 + attackTime); // fait piocher la carte au joueur et attend.
-  }
+handleIaTurn = () => {
+  console.log('coucou handleIAturn');
+  this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
+  const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length; // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
+  window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA'), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
+  window.setTimeout(() => this.handleHandToBoardIa(), 4000); // L'IA place sa carte sur le board et attend. Appel à la fonction vers la ligne 49.
+  window.setTimeout(() => this.attackCardIa(), 5000); // Lance la procédure d'attaque des cartes de l'IA vers les cartes du joueur et attend. Appel à la fonction vers la ligne 91.
+  window.setTimeout(() => this.killCards(), 6000 + attackTime); // Lance la procédure des cartes qui sont éliminées pour les mettre en position 'dead' et attend.
+  window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime); // set de playerTurn à true et attend.
+  window.setTimeout(() => this.handleDraw(this.state.heroesChosen, 'heroesChosen'), 6000 + attackTime); // fait piocher la carte au joueur et attend.
+}
 
-  render () {
-    return (
-      <div className='deckBoard'>
-        <div className='leftBoardContainer'>
-          <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/* https://cards-battle-of-heroes-us11.netlify.app */}
-          <aside className='dead-card-container'> {/* Cimetiere */}
-            <p>je suis mort</p>
-          </aside>
-        </div>
-        <div className='centerBoardContainer'> {/* Board Total */}
-          <div className='iahand'> {/* hand of computer */}
-            <HandCards heroesChosen={this.state.cardsAvalaibleForIA} randomizeHeroesChosen={this.randomizeHeroesChosen} />
-          </div>
-          <div className='boardContainer'>
-            <div className='boardia'> {/* board of computer */}
-              <Board heroesChosen={this.state.cardsAvalaibleForIA} />
-            </div>
-            <div className='boardPlayer1'> {/* board of Player1 */}
-              <Board heroesChosen={this.state.heroesChosen} />
-            </div>
-          </div>
-          <div className='player1hand'> {/* hand of Player1 */}
-            <HandCards heroesChosen={this.state.heroesChosen} onHandleHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn} />
-          </div>
-        </div>
-        <div className='rightBoardContainer'> {/* right board container : decks, timer, "End Turn" button, pseudos */}
-          <div className='deckia'>
-            <HiddenCards deck={this.state.cardsAvalaibleForIA} />
-          </div>
-          <div className='timerAndEndTurn'>
-            {this.state.playerTurn && <Timer onFinish={this.handleIaTurn} />}
-            <button onClick={this.state.playerTurn ? this.handleIaTurn : () => {}}>End Turn</button>
-          </div>
-          <div className='deckplayer1'>
-            <HiddenCards deck={this.state.heroesChosen} />
-          </div>
-        </div>
-
+render() {
+  return (
+    <div className='deckBoard'>
+      <div className='leftBoardContainer'>
+        <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/* https://cards-battle-of-heroes-us11.netlify.app */}
+        <aside className='dead-card-container'> {/* Cimetiere */}
+          <p>je suis mort</p>
+        </aside>
       </div>
-    );
-  }
+      <div className='centerBoardContainer'> {/* Board Total */}
+        <div className='iahand'> {/* hand of computer */}
+          <HandCards heroesChosen={this.state.cardsAvalaibleForIA} randomizeHeroesChosen={this.randomizeHeroesChosen} />
+        </div>
+        <div className='boardContainer'>
+          <div className='boardia'> {/* board of computer */}
+            <Board heroesChosen={this.state.cardsAvalaibleForIA} />
+          </div>
+          <div className='boardPlayer1'> {/* board of Player1 */}
+            <Board heroesChosen={this.state.heroesChosen} />
+          </div>
+        </div>
+        <div className='player1hand'> {/* hand of Player1 */}
+          <HandCards heroesChosen={this.state.heroesChosen} onHandleHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn} />
+        </div>
+      </div>
+      <div className='rightBoardContainer'> {/* right board container : decks, timer, "End Turn" button, pseudos */}
+        <div className='deckia'>
+          <HiddenCards deck={this.state.cardsAvalaibleForIA} />
+        </div>
+        <div className='timerAndEndTurn'>
+          {this.state.playerTurn && <Timer onFinish={this.handleIaTurn} />}
+          <button onClick={this.state.playerTurn ? this.handleIaTurn : () => { }}>End Turn</button>
+        </div>
+        <div className='deckplayer1'>
+          <HiddenCards deck={this.state.heroesChosen} />
+        </div>
+      </div>
+
+    </div>
+  );
+}
 }
 
 export default DeckBoard;
