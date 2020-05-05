@@ -4,7 +4,8 @@ import './DeckBoard.css';
 import Board from './Board';
 import HiddenCards from './HiddenCards';
 import _ from 'lodash';
-import Timer from './Timer';
+import Timer from './Timer'
+
 class DeckBoard extends React.Component {
   constructor (props) {
     super(props);
@@ -140,7 +141,7 @@ class DeckBoard extends React.Component {
   }
 
   handleIaTurn = () => {
-  console.log('coucou handleIAturn')
+    console.log('coucou handleIAturn');
     this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
     const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length; // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
     window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA'), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
@@ -181,8 +182,8 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.cardsAvalaibleForIA} />
           </div>
           <div className='timerAndEndTurn'>
-            {/* {this.state.playerTurn && <Timer onIaTurn={this.handleIaTurn} />} */}
-            <button onClick={this.state.playerTurn ? this.handleIaTurn : ''}>End Turn</button>
+            {this.state.playerTurn && <Timer onFinish={this.handleIaTurn} />}
+            <button onClick={this.state.playerTurn ? this.handleIaTurn : () => {}}>End Turn</button>
           </div>
           <div className='deckplayer1'>
             <HiddenCards deck={this.state.heroesChosen} />
