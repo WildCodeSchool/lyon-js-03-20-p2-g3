@@ -16,9 +16,9 @@ class DeckBoard extends React.Component {
   }
 
   componentDidMount () {
-    this.randomizeHeroesChosen(this.state.heroesChosen);
-    this.randomizeIaDeck();
-    this.randomizeHeroesChosen(this.state.cardsAvalaibleForIA);
+    this.randomizeDeck(this.state.heroesChosen, 'heroesChosen');
+    this.createIaDeck();
+    this.randomizeDeck(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA');
   }
 
   componentWillUnmount () {
@@ -43,7 +43,7 @@ class DeckBoard extends React.Component {
     this.setState({ cardsAvalaibleForIA: newIaDeck });
   }
 
-  randomizeHeroesChosen = (deck) => {
+  randomizeDeck = (deck, deckName) => {
     const newHeroesChosen = deck;
     const heroesChosenRandomized = [];
     const arrayOfRandomNumbers = [];
@@ -66,10 +66,10 @@ class DeckBoard extends React.Component {
       }
     }
 
-    this.setState({ deck: heroesChosenRandomized });
+    this.setState({ [deckName]: heroesChosenRandomized });
   }
 
-  randomizeIaDeck = () => {
+  createIaDeck = () => {
     const heroes = _.shuffle(this.props.heroes);
     let IaDeckPower = 0;
     const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA;
@@ -89,12 +89,12 @@ class DeckBoard extends React.Component {
     console.log(IaDeckPower);
   }
 
-  handleDraw = (deck) => {
+  handleDraw = (deck, deckName) => {
     const newHeroesChosen = deck;
     if (newHeroesChosen.filter(heroe => heroe.position === 'deck').length !== 0) { // (Flo) condition si clé position dans l'objet héro est 'deck' et que le la longueur du tableau n'est pas égal à 0
       const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length); // (Flo) set const randomNumber : pioche aléatoire dans liste d'héro choisie ssi la clé position est à 'deck
       newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand'; // (Flo) si condition est true : filter des héros ayant la valeur de la clé position à 'deck' à la position correspondant au randomNumber
-      this.setState({ deck: newHeroesChosen });
+      this.setState({ [deckName]: newHeroesChosen });
     }
   }
 
@@ -140,14 +140,15 @@ class DeckBoard extends React.Component {
   }
 
   handleIaTurn = () => {
+  console.log('coucou handleIAturn')
     this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
     const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length; // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
-    window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
+    window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA'), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
     window.setTimeout(() => this.handleHandToBoardIa(), 4000); // L'IA place sa carte sur le board et attend. Appel à la fonction vers la ligne 49.
     window.setTimeout(() => this.attackCardIa(), 5000); // Lance la procédure d'attaque des cartes de l'IA vers les cartes du joueur et attend. Appel à la fonction vers la ligne 91.
     window.setTimeout(() => this.killCards(), 6000 + attackTime); // Lance la procédure des cartes qui sont éliminées pour les mettre en position 'dead' et attend.
     window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime); // set de playerTurn à true et attend.
-    window.setTimeout(() => this.handleDraw(this.state.heroesChosen), 6000 + attackTime); // fait piocher la carte au joueur et attend.
+    window.setTimeout(() => this.handleDraw(this.state.heroesChosen, 'heroesChosen'), 6000 + attackTime); // fait piocher la carte au joueur et attend.
   }
 
   render () {
@@ -180,7 +181,7 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.cardsAvalaibleForIA} />
           </div>
           <div className='timerAndEndTurn'>
-            {this.state.playerTurn && <Timer onIaTurn={this.handleIaTurn} />}
+            {/* {this.state.playerTurn && <Timer onIaTurn={this.handleIaTurn} />} */}
             <button onClick={this.state.playerTurn ? this.handleIaTurn : ''}>End Turn</button>
           </div>
           <div className='deckplayer1'>

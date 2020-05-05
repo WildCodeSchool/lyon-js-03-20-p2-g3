@@ -5,11 +5,12 @@ class Timer extends Component {
     super(props);
     this.state = {
       minutes: 0,
-      seconds: 30
+      seconds: 3
     };
   }
 
   componentDidMount () {
+    console.log('Monté')
     this.myInterval = setInterval(() => {
       const { seconds, minutes } = this.state;
 
@@ -21,27 +22,25 @@ class Timer extends Component {
       if (seconds === 0) {
         if (minutes === 0) {
           clearInterval(this.myInterval);
-        } else {
-          this.setState(({ minutes }) => ({
-            minutes: 0,
-            seconds: 30
-          }));
-        }
+        } 
       }
     }, 1000);
   }
 
   componentWillUnmount () {
+    console.log('démonté')
     clearInterval(this.myInterval);
+    
   }
 
   render () {
+    console.log('render timer')
     const { minutes, seconds } = this.state;
     return (
       <div>
         {minutes === 0 && seconds === 0
           ? this.props.onIaTurn()
-          : <h1>Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>}
+          : <h1>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>}
       </div>
     );
   }
