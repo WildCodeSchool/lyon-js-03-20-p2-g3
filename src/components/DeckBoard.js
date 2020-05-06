@@ -164,7 +164,7 @@ handleIaTurn = async () => {
 
   this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
   const heroesSelected = this.state.heroesChosen.map(heroe => {
-    return { ...heroe, selected: false, isAbleToAttack : true};
+    return { ...heroe, selected: false, isAbleToAttack: true };
   });
 
   this.setState({ heroesChosen: heroesSelected });
