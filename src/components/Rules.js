@@ -58,7 +58,7 @@ function Rules () {
                         image=''
                         alt='image showing the timer at zero'
                         nameOfRule='Board, Your turn - 5'
-                        textRule='If you’ve not finished your turn before the time ran out, you just had to be faster. Just assume it !'
+                        textRule='If you’ve not finished your turn before the time ran out, the game drag a card on your hand on the board randomly. You just had to be faster. Just assume it !'
                     />
                     <RulesCard
                         image=''
