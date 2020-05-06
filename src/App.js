@@ -36,7 +36,7 @@ class App extends Component {
             name: heroe.name,
             img: heroe.image.url,
             atk: parseInt(heroe.powerstats.strength, 10),
-            hp: parseInt(heroe.powerstats.durability, 10)*1.5,
+            hp: parseInt(heroe.powerstats.durability, 10),
             power: Math.round((parseInt(heroe.powerstats.strength, 10) + parseInt(heroe.powerstats.durability, 10)) / 2),
             position: 'deck',
             deadOnBoard: false,
