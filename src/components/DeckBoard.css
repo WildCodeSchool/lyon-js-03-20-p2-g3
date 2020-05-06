@@ -2,11 +2,31 @@
   display: flex;
   height: 100vh;
   width: 100vw;
+  background: black; 
 }
 .leftBoardContainer {
- /*  border: 4px solid blue; */
-  width: 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 20vw;
+  display: flex;
+  padding: 10px;
 }
+
+.dead-card-container {
+  height: 85vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url(https://d3isma7snj3lcx.cloudfront.net/optim/images/gallery/10/103443/undertale-pc-e155d36a__220_220__362-209-873-720.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  border-radius: 10px;
+  border: solid white 5px;
+}
+
 .centerBoardContainer {
   display: flex;
   flex-direction: column;
@@ -15,24 +35,41 @@
 }
 
 .iahand, .player1hand {
-  background: green;
+  background: #BAC3E1;
   height: 25vh;
   width: 100%;
+  padding: 5px;
   display: flex;
   justify-content: center;
+  border-top-left-radius: 80px 200px;
+  border-top-right-radius: 80px 200px;
+  border-bottom-right-radius: 80px 200px;
+  border-bottom-left-radius: 80px 200px;
+  border: 5px solid white; 
 }
 
 .boardContainer {
-  background: green;
-  height: 50vh
+  /* background: #FFAA29; */
+  background: no-repeat center/100% url('https://wallpaperaccess.com/full/85814.jpg');
+  height: 50vh;
+  border-top-left-radius: 50px 200px;
+  border-top-right-radius: 50px 200px;
+  border-bottom-right-radius: 50px 200px;
+  border-bottom-left-radius: 50px 200px;
+  box-shadow: 0px -1px 120px -6px rgba(39,45,168,1);
 }
 
 .boardPlayer1, .boardia {
-  background: pink;
   height: 25vh;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+}
+.boardPlayer1{
+  padding: 5px 0 10px 0;
+}
+.boardia{
+  padding:10px 0 5px 0;
 }
 
 .rightBoardContainer {
@@ -41,12 +78,24 @@
   justify-content: space-evenly;
   align-items: center;
  /*  border: 4px solid blue; */
-  width: 25vw;
+  width: 20vw;
 }
 
 .timerAndEndTurn {
-  width: 25vw;
+  width: inherit;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  color: white;
 }
 
+@media only screen and (max-width: 600px) {
+
+}
+
+@media only screen and (min-width: 897px) {
+  
+}
+
+@media only screen and (min-width: 1100px) {
+
+}

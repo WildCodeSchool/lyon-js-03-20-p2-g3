@@ -30,7 +30,6 @@ button[type="button"]:hover {
   z-index: 1;
   background: rgba(0, 0, 0, 0.6);
 }
-
 .modal .modal-main {
   display: flex;
   flex-direction: column;
@@ -80,6 +79,11 @@ button[type="button"]:hover {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+}
+#button-start{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (min-width: 897px) {
