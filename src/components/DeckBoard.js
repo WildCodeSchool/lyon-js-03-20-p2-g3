@@ -5,6 +5,7 @@ import Board from './Board';
 import HiddenCards from './HiddenCards';
 import _ from 'lodash';
 import Timer from './Timer';
+import PlayerTurn from './PlayerTurn'
 
 const delay = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 class DeckBoard extends React.Component {
@@ -12,6 +13,7 @@ class DeckBoard extends React.Component {
     super(props);
     this.state = {
       playerTurn: true, // initialise playerTurn à true pour débuter la partie avec le tour du joueur. Deus Sex Machina est généreux.
+      isYourTurnDisplay : true,
       onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard: true, // with love <3
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
       cardsAvalaibleForIA: []
@@ -22,6 +24,9 @@ class DeckBoard extends React.Component {
     this.randomizeDeck(this.state.heroesChosen, 'heroesChosen');
     this.createIaDeck();
     this.randomizeDeck(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA');
+    window.setTimeout( () => {
+    this.setState({isYourTurnDisplay:false})
+   },2000)
   }
 
   componentWillUnmount () {
@@ -178,9 +183,13 @@ handleIaTurn = async () => {
   this.attackCardIa();
 
   await delay(1000);
+  this.setState({ isYourTurnDisplay:true });
   this.setState({ playerTurn: true });
   this.handleDraw(this.state.heroesChosen);
   this.setState({ onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard: true });
+
+  await delay(2000)
+  this.setState({ isYourTurnDisplay:false });
 }
 
 handleSelectedCard = (nameSelected) => {
@@ -241,6 +250,9 @@ render () {
         <div className='boardContainer'>
           <div className='boardia'> {/* board of computer */}
             <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard} />
+          </div>
+          <div className="playerTurn">
+            {this.state.isYourTurnDisplay && <PlayerTurn playerTurn = {this.state.playerTurn}/>}
           </div>
           <div className='boardPlayer1'> {/* board of Player1 */}
             <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} playerTurn={this.state.playerTurn} />
