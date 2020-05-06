@@ -17,3 +17,12 @@ body{
   font-family: 'Press Start 2P', cursive;
 }
 
+.music {
+  position: absolute;
+  top: 75px;
+  right: 250px;
+}
+
+.music-icon i {
+  font-size: 3rem;
+}
