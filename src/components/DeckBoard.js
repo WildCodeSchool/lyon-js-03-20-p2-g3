@@ -8,7 +8,7 @@ import Timer from './Timer';
 
 const delay = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 class DeckBoard extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       playerTurn: true, // initialise playerTurn à true pour débuter la partie avec le tour du joueur. Deus Sex Machina est généreux.
@@ -18,13 +18,13 @@ class DeckBoard extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.randomizeDeck(this.state.heroesChosen, 'heroesChosen');
     this.createIaDeck();
     this.randomizeDeck(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA');
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.setState({ heroesChosen: [] });
   }
   // On veut limiter le nombre de carte joué sur le board par tour
@@ -219,7 +219,7 @@ class DeckBoard extends React.Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
@@ -256,7 +256,6 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.heroesChosen} />
           </div>
         </div>
-
       </div>
     );
   }
