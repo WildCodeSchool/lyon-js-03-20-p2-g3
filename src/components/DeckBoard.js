@@ -136,75 +136,37 @@ class DeckBoard extends React.Component {
           cardBoardPlayer[randomNumber].deadOnBoard = true;
         }
       }
-    if (cardBoardPlayer.length !== 0) {
+      if (cardBoardPlayer.length !== 0) {
         cardBoardIa[i].isFighting = false;
         cardBoardPlayer[randomNumber].isFighting = false;
       }
       this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
     }
-  newDeckIa.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes de l'IA.
-    if (heroe.deadOnBoard) {
-      heroe.position = 'dead';
-      heroe.deadOnBoard = false;
-    }
-  });
-  newHeroesChosen.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes du joueur
-    if (heroe.deadOnBoard) {
-      heroe.position = 'dead';
-      heroe.deadOnBoard = false;
-    }
-  });
-  this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
-
+    newDeckIa.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes de l'IA.
+      if (heroe.deadOnBoard) {
+        heroe.position = 'dead';
+        heroe.deadOnBoard = false;
+      }
+    });
+    newHeroesChosen.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes du joueur
+      if (heroe.deadOnBoard) {
+        heroe.position = 'dead';
+        heroe.deadOnBoard = false;
+      }
+    });
+    this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
   }
 
-// killCards = () => {
-//   const newDeckIa = this.state.cardsAvalaibleForIA;
-//   const newHeroesChosen = this.state.heroesChosen;
-//   newDeckIa.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes de l'IA.
-//     if (heroe.deadOnBoard) {
-//       heroe.position = 'dead';
-//       heroe.deadOnBoard = false;
-//     }
-//   });
-//   newHeroesChosen.map(heroe => { // si valeur deadOnBoard = true, changement de la clé position à 'dead' pour les cartes du joueur
-//     if (heroe.deadOnBoard) {
-//       heroe.position = 'dead';
-//       heroe.deadOnBoard = false;
-//     }
-//   });
-//   this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
-// }
-
-// handleIaTurn = () => {
-//   if (this.state.onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard) {
-//     this.handleHandToBoardPlayer();
-//   }
-//   this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
-//   const heroesSelected = this.state.heroesChosen.map(heroe => {
-//     return { ...heroe, selected: false };
-//   });
-//   this.setState({ heroesChosen: heroesSelected });
-//   const attackTime = 1000 * this.state.cardsAvalaibleForIA.filter(heroe => heroe.position === 'board').length; // set const attackTime pour déterminer le temps d'attaque à ajouter entre chaques cartes supplémentaire sur le board de l'IA.
-//   window.setTimeout(() => this.handleDraw(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA'), 1000); // L'IA pioche sa première carte et attend pour effectuer l'action suivante. Appel à la fonction vers la ligne 82.
-//   window.setTimeout(() => this.handleHandToBoardIa(), 4000); // L'IA place sa carte sur le board et attend. Appel à la fonction vers la ligne 49.
-//   window.setTimeout(() => this.attackCardIa(), 5000); // Lance la procédure d'attaque des cartes de l'IA vers les cartes du joueur et attend. Appel à la fonction vers la ligne 91.
-//   window.setTimeout(() => this.killCards(), 6000 + attackTime); // Lance la procédure des cartes qui sont éliminées pour les mettre en position 'dead' et attend.
-//   window.setTimeout(() => this.setState({ playerTurn: true }), 6000 + attackTime); // set de playerTurn à true et attend.
-//   window.setTimeout(() => this.handleDraw(this.state.heroesChosen, 'heroesChosen'), 6000 + attackTime); // fait piocher la carte au joueur et attend.
-//   window.setTimeout(() => this.setState({ onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard: true }), 6000 + attackTime);
-// }
-
-handleIaTurn = async() => {
+handleIaTurn = async () => {
   if (this.state.onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard) {
     this.handleHandToBoardPlayer();
   }
 
   this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
   const heroesSelected = this.state.heroesChosen.map(heroe => {
-    return { ...heroe, selected: false };
+    return { ...heroe, selected: false, isAbleToAttack : true};
   });
-  
+
   this.setState({ heroesChosen: heroesSelected });
   await delay(1000);
   this.handleDraw(this.state.cardsAvalaibleForIA);
@@ -215,14 +177,10 @@ handleIaTurn = async() => {
   await delay(1000);
   this.attackCardIa();
 
-  // await delay(1000);
-  // this.killCards();
-
   await delay(1000);
   this.setState({ playerTurn: true });
   this.handleDraw(this.state.heroesChosen);
   this.setState({ onHandleIsAllowedToPutCardFromHandPlayerOneOnHandleBoard: true });
-
 }
 
 handleSelectedCard = (nameSelected) => {
