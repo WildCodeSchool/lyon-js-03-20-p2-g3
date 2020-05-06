@@ -1,12 +1,11 @@
 import React from 'react';
 
 function PlayerTurn () {
-  
-  return(    
+  return (
     <>
-         A toi de jouer gros !!!
+       <p> A toi de jouer gros !!! </p> 
     </>
-  )
+  );
 }
 
-export default PlayerTurn ;
+export default PlayerTurn;
