@@ -55,31 +55,37 @@ class DeckBoard extends React.Component {
   // On veut limiter le nombre de carte joué sur le board par tour
 
   handleHandToBoard = (heroeName) => {
+    
     let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
     const newDeck = this.state.heroesChosen.map(heroe => {
       if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
         isAllowedToPutCardOnBoard = false;
-        return { ...heroe, position: 'board', lastCard: true };
+        return { ...heroe, position: 'board', lastCard : true};
       } else {
         return heroe;
       }
     });
-    this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: isAllowedToPutCardOnBoard });
+    this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: false, lastCard:false });
   }
 
   boardToHand = (heroeName) => {  
-    let lastCard = true
+    this.setState({ lastCard: false });
+    
+   
+    /* let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard; */
+    
     const newPlayerDeck = this.state.heroesChosen;
     // eslint-disable-next-line array-callback-return
     const newDeck = this.state.heroesChosen.map(heroe =>{
-      if (heroe.position === 'board' && lastCard ) {
+      if (heroe.position === 'board' && heroe.lastCard ) {
         console.log('yo')
         const randomNumber = Math.floor(Math.random() * newPlayerDeck.filter(heroe => heroe.position === 'board').length);
         newPlayerDeck.filter(heroe => heroe.lastCard )[randomNumber].position = 'hand';
+        /* isAllowedToPutCardOnBoard = true; */
         this.handleHandToBoard();
       }
     });
-    this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: true });
+    this.setState({ heroesChosen: newDeck,isAllowedToPutCardOnBoard:true, lastCard:false });
   }
 
   handleHandToBoardIa = () => {
@@ -236,10 +242,10 @@ class DeckBoard extends React.Component {
           if (heroe.name === nameSelected && !heroe.iaDeck) {
             return { ...heroe, selected: true,  };
           } else {
-            return { ...heroe, selected: false };
+            return { ...heroe, selected: false, lastCard:false };
           }
         } else {
-          return { ...heroe, selected: false };
+          return { ...heroe, selected: false, lastCard:false };
         }
         
       }
