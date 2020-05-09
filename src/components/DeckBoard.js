@@ -5,6 +5,7 @@ import Board from './Board';
 import HiddenCards from './HiddenCards';
 import _ from 'lodash';
 import Timer from './Timer';
+import PlayerTurn from './PlayerTurn';
 
 const delay = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 class DeckBoard extends React.Component {
@@ -14,7 +15,9 @@ class DeckBoard extends React.Component {
       playerTurn: true, // initialise playerTurn à true pour débuter la partie avec le tour du joueur. Deus Sex Machina est généreux.
       isAllowedToPutCardOnBoard: true, // with love <3
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
-      cardsAvalaibleForIA: []
+      cardsAvalaibleForIA: [],
+      isYourTurnDisplay: true,
+      endGame: undefined
     };
   }
 
@@ -22,6 +25,27 @@ class DeckBoard extends React.Component {
     this.randomizeDeck(this.state.heroesChosen, 'heroesChosen');
     this.createIaDeck();
     this.randomizeDeck(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA');
+    window.setTimeout(() => {
+      this.setState({ isYourTurnDisplay: false });
+    }, 2000);
+  }
+
+  endGameVerify = () => {
+    const deadCardsPlayerLength = this.state.heroesChosen.filter(heroe => heroe.position !== 'dead').length;
+    const deadCardsIaLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position !== 'dead').length;
+    console.log(deadCardsPlayerLength);
+    console.log(deadCardsIaLength);
+
+    if (deadCardsPlayerLength === 0 && deadCardsIaLength === 0) {
+      this.setState({ endGame: 'equality' }); // affichage d'égalité
+      console.log('equality');
+    } else if (deadCardsPlayerLength === 0) {
+      this.setState({ endGame: 'lose' }); // affichage To lose !== TOULOUSE
+      console.log('you suck');
+    } else if (deadCardsIaLength === 0) {
+      this.setState({ endGame: 'win' }); // affichage WIIIIIIN !
+      console.log('you wiiiiiin !');
+    }
   }
 
   componentWillUnmount () {
@@ -110,6 +134,7 @@ class DeckBoard extends React.Component {
   }
 
   attackCardIa = async () => {
+    this.setState({ iaAttack: true });
     const newDeckIa = this.state.cardsAvalaibleForIA.slice();
     const newHeroesChosen = this.state.heroesChosen.slice();
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
@@ -148,7 +173,8 @@ class DeckBoard extends React.Component {
         heroe.deadOnBoard = false;
       }
     });
-    this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
+    this.endGameVerify();
+    this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen, iaAttack: false });
   }
 
   handleIaTurn = async () => {
@@ -171,10 +197,14 @@ class DeckBoard extends React.Component {
     await delay(1000);
     this.attackCardIa();
 
-    await delay(1000);
+    await delay(4000);
     this.setState({ playerTurn: true });
     this.handleDraw(this.state.heroesChosen);
     this.setState({ isAllowedToPutCardOnBoard: true });
+    this.setState({ isYourTurnDisplay: true });
+
+    await delay(2000);
+    this.setState({ isYourTurnDisplay: false });
   }
 
   handleSelectedCard = (nameSelected) => {
@@ -194,7 +224,7 @@ class DeckBoard extends React.Component {
     this.setState({ heroesChosen: newHeroesChosen });
   }// on veut qu'une carte en attaque une autre une seule fois. Elle ne peut plus être sélectionnée après avoir attaqué pendant la phase d'attaque.
 
-  handleAttackIaCard = (name) => {
+  handleAttackIaCard = (name) => { // player attack
     const heroesChosen = this.state.heroesChosen;
     const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA;
     const playerCardSelected = heroesChosen.filter(heroe => heroe.selected === true)[0];
@@ -214,7 +244,7 @@ class DeckBoard extends React.Component {
           }
         }
       });
-
+      this.endGameVerify();
       this.setState({ cardsAvalaibleForIA, heroesChosen });
     }
   }
@@ -236,6 +266,7 @@ class DeckBoard extends React.Component {
             <div className='boardia'> {/* board of computer */}
               <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard} />
             </div>
+            {this.state.isYourTurnDisplay && <div className='playerTurn'><PlayerTurn playerTurn={this.state.playerTurn} /></div>}
             <div className='boardPlayer1'> {/* board of Player1 */}
               <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} playerTurn={this.state.playerTurn} />
             </div>
