@@ -12,7 +12,6 @@ class Timer extends Component {
   componentDidMount () {
     this.myInterval = setInterval(() => {
       const { seconds, minutes } = this.state;
-
       if (seconds > 0) {
         this.setState(({ seconds }) => ({
           seconds: seconds - 1
