@@ -2,9 +2,9 @@ import React from 'react';
 
 function PlayerTurn () {
   return (
-    <>
-       <p> A toi de jouer gros !!! </p> 
-    </>
+    
+      <p>It's your turn !</p>
+    
   );
 }
 

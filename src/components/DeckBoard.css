@@ -6,16 +6,27 @@
 }
 
 .playerTurn{
-  color: #ffffff;
+  color:white;
   position: absolute;  
-  z-index: 1;
-  display: block;
+  z-index: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  left: 0px;
-  text-align: center;
-  font-size: 15px;
+  left: 0px;  
+  right: 0px;
+  top: 0px;
+  bottom: 0;
+  /* height:100vh; */
   animation : a 1.5s infinite alternate;
   --neon-text-color: black;     
+  
+}
+
+.playerTurn p {
+  text-align: center;
+  box-shadow: black;
+  font-size: 25px;
 }
 
 @keyframes a {
