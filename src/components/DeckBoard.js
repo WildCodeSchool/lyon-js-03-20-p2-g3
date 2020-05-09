@@ -138,6 +138,9 @@ class DeckBoard extends React.Component {
     this.setState({ iaAttack: true });
     const newDeckIa = this.state.cardsAvalaibleForIA.slice();
     const newHeroesChosen = this.state.heroesChosen.slice();
+    newHeroesChosen.forEach(heroe => {   //passage du state lastCard à  false pour toutes les cartes
+      heroe.lastCard  = false
+    })
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
       const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
       const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board' && !heroe.deadOnBoard);
