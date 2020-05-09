@@ -55,37 +55,35 @@ class DeckBoard extends React.Component {
   // On veut limiter le nombre de carte joué sur le board par tour
 
   handleHandToBoard = (heroeName) => {
-    
     let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
     const newDeck = this.state.heroesChosen.map(heroe => {
       if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
         isAllowedToPutCardOnBoard = false;
-        return { ...heroe, position: 'board', lastCard : true};
+        return { ...heroe, position: 'board', lastCard: true };
       } else {
         return heroe;
       }
     });
-    this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: false, lastCard:false });
+    this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: false, lastCard: false });
   }
 
-  boardToHand = (heroeName) => {  
+  boardToHand = (heroeName) => {
     this.setState({ lastCard: false });
-    
-   
+
     /* let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard; */
-    
+
     const newPlayerDeck = this.state.heroesChosen;
     // eslint-disable-next-line array-callback-return
-    const newDeck = this.state.heroesChosen.map(heroe =>{
-      if (heroe.position === 'board' && heroe.lastCard ) {
-        console.log('yo')
+    const newDeck = this.state.heroesChosen.map(heroe => {
+      if (heroe.position === 'board' && heroe.lastCard) {
+        console.log('yo');
         const randomNumber = Math.floor(Math.random() * newPlayerDeck.filter(heroe => heroe.position === 'board').length);
-        newPlayerDeck.filter(heroe => heroe.lastCard )[randomNumber].position = 'hand';
+        newPlayerDeck.filter(heroe => heroe.lastCard)[randomNumber].position = 'hand';
         /* isAllowedToPutCardOnBoard = true; */
         this.handleHandToBoard();
       }
     });
-    this.setState({ heroesChosen: newDeck,isAllowedToPutCardOnBoard:true, lastCard:false });
+    this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: true, lastCard: false });
   }
 
   handleHandToBoardIa = () => {
@@ -159,9 +157,9 @@ class DeckBoard extends React.Component {
     this.setState({ iaAttack: true });
     const newDeckIa = this.state.cardsAvalaibleForIA.slice();
     const newHeroesChosen = this.state.heroesChosen.slice();
-    newHeroesChosen.forEach(heroe => {   //passage du state lastCard à  false pour toutes les cartes
-      heroe.lastCard  = false
-    })
+    newHeroesChosen.forEach(heroe => { // passage du state lastCard à  false pour toutes les cartes
+      heroe.lastCard = false;
+    });
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
       const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
       const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board' && !heroe.deadOnBoard);
@@ -202,8 +200,6 @@ class DeckBoard extends React.Component {
     this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen, iaAttack: false });
   }
 
-  
-
   handleIaTurn = async () => {
     if (this.state.isAllowedToPutCardOnBoard) {
       this.handleHandToBoardPlayer();
@@ -240,14 +236,13 @@ class DeckBoard extends React.Component {
         this.boardToHand();
         if (heroe.isAbleToAttack) {
           if (heroe.name === nameSelected && !heroe.iaDeck) {
-            return { ...heroe, selected: true,  };
+            return { ...heroe, selected: true };
           } else {
-            return { ...heroe, selected: false, lastCard:false };
+            return { ...heroe, selected: false, lastCard: false };
           }
         } else {
-          return { ...heroe, selected: false, lastCard:false };
+          return { ...heroe, selected: false, lastCard: false };
         }
-        
       }
     );
     this.setState({ heroesChosen: newHeroesChosen });
@@ -300,7 +295,7 @@ class DeckBoard extends React.Component {
               <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} playerTurn={this.state.playerTurn} />
             </div>
           </div>
-          
+
           <div className='player1hand'> {/* hand of Player1 */}
             <HandCards heroesChosen={this.state.heroesChosen} lastCard={this.state.lastCard} onboardToHand={this.boardToHand} onHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn} />
           </div>
