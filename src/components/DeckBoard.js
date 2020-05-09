@@ -17,7 +17,8 @@ class DeckBoard extends React.Component {
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
       cardsAvalaibleForIA: [],
       isYourTurnDisplay: true,
-      endGame: undefined
+      endGame: undefined,
+      showModal: false
     };
   }
 
@@ -52,6 +53,16 @@ class DeckBoard extends React.Component {
     this.setState({ heroesChosen: [] });
   }
   // On veut limiter le nombre de carte joué sur le board par tour
+
+  handleShowModal = () => {
+    if (this.state.endGame !== undefined) {
+      this.setState({ show: true });
+    }
+  }
+
+  handleHideModal = () => {
+    this.setState({ show: false });
+  }
 
   handleHandToBoard = (heroeName) => {
     let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
@@ -287,9 +298,38 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.heroesChosen} />
           </div>
         </div>
+        <Modals show={this.state.show} endGame={this.props.endGame} onClose={this.handleHideModal} />
       </div>
     );
   }
 }
+
+const Modals = ({ onClose, show, children }) => {
+  const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+  let endGameTitle = '';
+  if (this.props.endGame === 'equality') {
+    endGameTitle = 'Fatali ... equality !';
+  } else if (this.props.endGame === 'lose') {
+    endGameTitle = 'lose';
+  } else if (this.props.endGame === 'win') {
+    endGameTitle = 'You\'ve goat it !';
+  }
+  return (
+    <div className={showHideClassName}>
+      <section className='modal-main'>
+        <h2>{endGameTitle}</h2>
+        <div className='modal-heroesChosen-container'>
+          {children}
+        </div>
+        <div className='button-modal-container'>
+          <button type='button' className='button-config' onClick={onClose}>Close</button>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+const container = document.createElement('div');
+document.body.appendChild(container);
 
 export default DeckBoard;

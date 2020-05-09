@@ -90,7 +90,7 @@ class App extends Component {
             <source src={HomeMusic} type='audio/mp3' />
             <p>Votre navigateur ne peut pas lire d'audio</p>
           </audio>
-          <button onClick={this.handlePlay}>
+          <button className='show-music-button' onClick={this.handlePlay}>
             {/* <i className={this.state.audioOn ? 'fa fa-volume-mute' : 'fa fa-volume-up'} /> */}
             <span className='music-icon'>{this.state.audioOn ? <i className='fa fa-volume-mute' /> : <i className='fa fa-volume-up' />}</span>
           </button>
