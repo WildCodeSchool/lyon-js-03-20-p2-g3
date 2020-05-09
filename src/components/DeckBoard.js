@@ -17,7 +17,8 @@ class DeckBoard extends React.Component {
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
       cardsAvalaibleForIA: [],
       isYourTurnDisplay: true,
-      endGame: undefined
+      endGame: undefined,
+      lastCard: false
     };
   }
 
@@ -58,7 +59,7 @@ class DeckBoard extends React.Component {
     const newDeck = this.state.heroesChosen.map(heroe => {
       if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
         isAllowedToPutCardOnBoard = false;
-        return { ...heroe, position: 'board' };
+        return { ...heroe, position: 'board', lastCard: true };
       } else {
         return heroe;
       }
