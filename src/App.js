@@ -62,7 +62,7 @@ class App extends Component {
   }
 
   addToDeck = (cardName) => {
-    let copieDeck = this.state.deck;
+    let copieDeck = this.state.deck.slice();
     const maxPower = this.state.maxPower;
     const totalPower = this.state.deck.map(card => card.power).reduce((acc, cur) => acc + cur, 0);
     if (copieDeck.filter(heroe => cardName === heroe.name).length === 0) {

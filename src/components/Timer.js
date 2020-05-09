@@ -35,7 +35,8 @@ class Timer extends Component {
     const { minutes, seconds } = this.state;
     return (
       <div>
-        <h1>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>
+        <h1>It's your turn</h1>
+        <h2>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h2>
       </div>
     );
   }
