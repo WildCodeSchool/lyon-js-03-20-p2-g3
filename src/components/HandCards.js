@@ -8,7 +8,7 @@ function HandCards (props) {
     <>
       {props.heroesChosen.filter(heroe => heroe.position === 'hand').map(heroe => {
         return (
-          <CardOfDeckBoard heroe={heroe} key={(heroe.atk) * (heroe.hp)} onHandleHandToBoard={props.onHandleHandToBoard} />
+          <CardOfDeckBoard heroe={heroe} key={heroe.name} onHandToBoard={props.onHandToBoard} playerTurn={props.playerTurn} />
         );
       })}
     </>
