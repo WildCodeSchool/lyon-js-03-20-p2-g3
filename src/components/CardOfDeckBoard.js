@@ -1,9 +1,10 @@
 import React from 'react';
 import './CardOfDeckBoard.css';
 
-function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard, playerTurn }) {
+function CardOfDeckBoard ({ selected, heroe, lastCard, boardToHand, onHandToBoard, onSelectedCard, onAttackIaCard, playerTurn }) {
   const handleClickOnCardOfDeckBoard = () => {
     // Ajoute la carte P1 sur le board
+
     if (heroe.position === 'hand' && playerTurn) {
       // Spécifier la notion de dernière carte ajoutée
       return onHandToBoard(heroe.name);
@@ -13,6 +14,9 @@ function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard
     // }
     } else if (heroe.position === 'board' && !heroe.iaDeck && playerTurn) {
       return onSelectedCard(heroe.name);
+    } else if (lastCard && selected) {
+      boardToHand(heroe.name);
+      onHandToBoard(heroe.name);
     } else if (heroe.iaDeck && heroe.position === 'board') {
       return onAttackIaCard(heroe.name);
     }
