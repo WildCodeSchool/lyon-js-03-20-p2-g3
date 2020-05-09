@@ -56,7 +56,9 @@ class DeckBoard extends React.Component {
 
   handleHandToBoard = (heroeName) => {
     let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
+    // const heroeToSwap = this.state.heroesChosen.filter(heroe => heroe.lastCard === true)
     const newDeck = this.state.heroesChosen.map(heroe => {
+      heroe.lastCard = false;
       if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
         isAllowedToPutCardOnBoard = false;
         return { ...heroe, position: 'board', lastCard: true };
@@ -179,6 +181,7 @@ class DeckBoard extends React.Component {
   }
 
   handleIaTurn = async () => {
+    const heroesChosen = this.state.heroesChosen;
     if (this.state.isAllowedToPutCardOnBoard) {
       this.handleHandToBoardPlayer();
     }
@@ -206,6 +209,7 @@ class DeckBoard extends React.Component {
 
     await delay(2000);
     this.setState({ isYourTurnDisplay: false });
+    this.setState({ heroesChosen });
   }
 
   handleSelectedCard = (nameSelected) => {

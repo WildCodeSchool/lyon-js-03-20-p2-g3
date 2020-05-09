@@ -5,12 +5,7 @@ function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard
   const handleClickOnCardOfDeckBoard = () => {
     // Ajoute la carte P1 sur le board
     if (heroe.position === 'hand' && playerTurn) {
-      // Spécifier la notion de dernière carte ajoutée
       return onHandToBoard(heroe.name);
-
-      // if (heroe.position === 'hand' && playerTurn && lastCard) {
-
-    // }
     } else if (heroe.position === 'board' && !heroe.iaDeck && playerTurn) {
       return onSelectedCard(heroe.name);
     } else if (heroe.iaDeck && heroe.position === 'board') {
