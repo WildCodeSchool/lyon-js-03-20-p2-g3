@@ -58,7 +58,6 @@ class DeckBoard extends React.Component {
     let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
     // const heroeToSwap = this.state.heroesChosen.filter(heroe => heroe.lastCard === true)
     const newDeck = this.state.heroesChosen.map(heroe => {
-      heroe.lastCard = false;
       if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
         isAllowedToPutCardOnBoard = false;
         return { ...heroe, position: 'board', lastCard: true };
@@ -68,6 +67,7 @@ class DeckBoard extends React.Component {
     });
     this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: isAllowedToPutCardOnBoard });
   }
+
 
   handleHandToBoardIa = () => {
     const newIaDeck = this.state.cardsAvalaibleForIA;
@@ -181,14 +181,13 @@ class DeckBoard extends React.Component {
   }
 
   handleIaTurn = async () => {
-    const heroesChosen = this.state.heroesChosen;
     if (this.state.isAllowedToPutCardOnBoard) {
       this.handleHandToBoardPlayer();
     }
 
     this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
     const heroesSelected = this.state.heroesChosen.map(heroe => {
-      return { ...heroe, selected: false, isAbleToAttack: true };
+      return { ...heroe, selected: false, isAbleToAttack: true, lastCard:false };
     });
 
     this.setState({ heroesChosen: heroesSelected });
@@ -209,7 +208,6 @@ class DeckBoard extends React.Component {
 
     await delay(2000);
     this.setState({ isYourTurnDisplay: false });
-    this.setState({ heroesChosen });
   }
 
   handleSelectedCard = (nameSelected) => {
