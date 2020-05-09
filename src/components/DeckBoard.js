@@ -31,20 +31,20 @@ class DeckBoard extends React.Component {
   }
 
   endGameVerify = () => {
-    const deadCardsPlayerLength = this.state.heroesChosen.filter( heroe => heroe.position !== 'dead').length;
-    const deadCardsIaLength = this.state.cardsAvalaibleForIA.filter( heroe => heroe.position !== 'dead').length;
-    console.log(deadCardsPlayerLength)
-    console.log(deadCardsIaLength)
+    const deadCardsPlayerLength = this.state.heroesChosen.filter(heroe => heroe.position !== 'dead').length;
+    const deadCardsIaLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position !== 'dead').length;
+    console.log(deadCardsPlayerLength);
+    console.log(deadCardsIaLength);
 
     if (deadCardsPlayerLength === 0 && deadCardsIaLength === 0) {
-      this.setState({endGame: 'equality'}) // affichage d'égalité
-      console.log('equality')
+      this.setState({ endGame: 'equality' }); // affichage d'égalité
+      console.log('equality');
     } else if (deadCardsPlayerLength === 0) {
-      this.setState({endGame: 'lose'}) // affichage To lose !== TOULOUSE
-      console.log('you suck')
+      this.setState({ endGame: 'lose' }); // affichage To lose !== TOULOUSE
+      console.log('you suck');
     } else if (deadCardsIaLength === 0) {
-      this.setState({endGame: 'win'}) // affichage WIIIIIIN !
-      console.log('you wiiiiiin !')
+      this.setState({ endGame: 'win' }); // affichage WIIIIIIN !
+      console.log('you wiiiiiin !');
     }
   }
 
@@ -173,7 +173,7 @@ class DeckBoard extends React.Component {
         heroe.deadOnBoard = false;
       }
     });
-    this.endGameVerify()
+    this.endGameVerify();
     this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen, iaAttack: false });
   }
 
@@ -224,7 +224,7 @@ class DeckBoard extends React.Component {
     this.setState({ heroesChosen: newHeroesChosen });
   }// on veut qu'une carte en attaque une autre une seule fois. Elle ne peut plus être sélectionnée après avoir attaqué pendant la phase d'attaque.
 
-  handleAttackIaCard = (name) => {  //player attack
+  handleAttackIaCard = (name) => { // player attack
     const heroesChosen = this.state.heroesChosen;
     const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA;
     const playerCardSelected = heroesChosen.filter(heroe => heroe.selected === true)[0];
@@ -244,7 +244,7 @@ class DeckBoard extends React.Component {
           }
         }
       });
-      this.endGameVerify()
+      this.endGameVerify();
       this.setState({ cardsAvalaibleForIA, heroesChosen });
     }
   }
