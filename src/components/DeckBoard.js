@@ -37,7 +37,7 @@ class DeckBoard extends React.Component {
   // On veut limiter le nombre de carte joué sur le board par tour
 
   handleShowModal = () => {
-      this.setState({ showModal: true });
+    this.setState({ showModal: true });
   }
 
   endGameVerify = () => {
@@ -186,7 +186,7 @@ class DeckBoard extends React.Component {
   }
 
   handleIaTurn = async () => {
-    if(this.state.endGame === undefined){
+    if (this.state.endGame === undefined) {
       if (this.state.isAllowedToPutCardOnBoard) {
         this.handleHandToBoardPlayer();
       }
@@ -210,7 +210,7 @@ class DeckBoard extends React.Component {
       this.setState({ playerTurn: true });
       this.handleDraw(this.state.heroesChosen);
       this.setState({ isAllowedToPutCardOnBoard: true });
-      if(this.state.endGame === undefined) {
+      if (this.state.endGame === undefined) {
         this.setState({ isYourTurnDisplay: true });
       }
 
@@ -299,7 +299,7 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.heroesChosen} />
           </div>
         </div>
-        <Modals showModal={this.state.showModal} endGame={this.state.endGame}></Modals>
+        <Modals showModal={this.state.showModal} endGame={this.state.endGame} />
       </div>
     );
   }
@@ -308,20 +308,22 @@ class DeckBoard extends React.Component {
 const Modals = ({ showModal, endGame }) => {
   const showHideClassName = showModal ? 'modal display-block' : 'modal display-none';
   let endGameTitle = '';
+  let enGameImage = '';
   if (endGame === 'equality') {
     endGameTitle = 'Fatali ... equality !';
+    enGameImage = 'https://media.giphy.com/media/6w6TEAATeBik8/giphy.gif';
   } else if (endGame === 'lose') {
-    endGameTitle = 'Sucker !';
+    endGameTitle = 'Sucker, noob !';
+    enGameImage = 'https://media.giphy.com/media/mcH0upG1TeEak/giphy.gif';
   } else if (endGame === 'win') {
     endGameTitle = 'You\'ve goat it !';
+    enGameImage = 'https://media.giphy.com/media/3hvmlYNsOTFWE/giphy.gif';
   }
   return (
     <div className={showHideClassName}>
       <section className='modal-main'>
         <h2>{endGameTitle}</h2>
-        <div className='modal-heroesChosen-container'>
-          {endGame}
-        </div>
+        <img src={enGameImage}></img>
         <div className='button-modal-container'>
           <button type='button' className='button-config'><a href='http://localhost:3000'>return home</a></button>
         </div>
