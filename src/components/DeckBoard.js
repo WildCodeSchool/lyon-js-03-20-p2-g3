@@ -17,7 +17,7 @@ class DeckBoard extends React.Component {
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
       cardsAvalaibleForIA: [],
       isYourTurnDisplay: true,
-      endGame: undefined,
+      endGame: undefined
     };
   }
 
@@ -53,15 +53,15 @@ class DeckBoard extends React.Component {
   handleHandToBoard = (heroeName) => {
     const lastHeroePutOnTable = this.state.heroesChosen.filter(heroe => (heroe.lastCard === true));
     console.log(lastHeroePutOnTable);
-    
+
     if (lastHeroePutOnTable.length === 0) {
       let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
-      let newDeck = this.state.heroesChosen.map(heroe => {
+      const newDeck = this.state.heroesChosen.map(heroe => {
         if (heroe.name === heroeName && (isAllowedToPutCardOnBoard)) {
-            isAllowedToPutCardOnBoard = false;
-            console.log(heroe.name, heroe.position); 
-            heroe.lastCard = true;
-            return { ...heroe, position: 'board'};
+          isAllowedToPutCardOnBoard = false;
+          console.log(heroe.name, heroe.position);
+          heroe.lastCard = true;
+          return { ...heroe, position: 'board' };
         } else {
           return heroe;
         }
