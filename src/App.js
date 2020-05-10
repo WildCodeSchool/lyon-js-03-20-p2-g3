@@ -44,7 +44,6 @@ class App extends Component {
             iaDeck: false,
             isFighting: false,
             isAbleToAttack: true, // true : la carte est autorisée à attaquer
-            lastCard: false
           };
         });
         this.setState({ cards: tabHeroes });
