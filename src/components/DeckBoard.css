@@ -3,8 +3,6 @@
   height: 100vh;
   width: 100vw;
   background: black; 
-<<<<<<< HEAD
-=======
 }
 
 .playerTurn{
@@ -48,7 +46,6 @@
   20%, 24%, 55% {        
       text-shadow: none;
   }    
->>>>>>> 1b7e21fdfa4f2bbbf81415ff75572e67124ce47b
 }
 
 .leftBoardContainer {

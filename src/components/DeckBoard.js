@@ -323,7 +323,7 @@ const Modals = ({ showModal, endGame }) => {
     <div className={showHideClassName}>
       <section className='modal-main'>
         <h2>{endGameTitle}</h2>
-        <img src={enGameImage}></img>
+        <img src={enGameImage} />
         <div className='button-modal-container'>
           <button type='button' className='button-config'><a href='http://localhost:3000'>return home</a></button>
         </div>
