@@ -18,10 +18,11 @@ function CardOfDeckBoard ({ selected, heroe, switchCards, lastCard, onHandToBoar
 
   return (
     <div
-      className={heroe.selected === true ? 'cardBoard toggleCardSelect' //
-        : heroe.position === 'hand' && !heroe.iaDeck ? 'handCard cardBoard'
-          : heroe.isFighting ? 'cardBoard fighting'
-            : 'cardBoard'}
+      className={heroe.selected ? 'cardBoard toggleCardSelect' // classe pour la carte selectionnée sur le board
+        : heroe.position === 'hand' && !heroe.iaDeck ? 'handCard cardBoard' // classe animation au hover dans la main joueur
+          : heroe.isFighting ? 'cardBoard fighting' // classe animation d'attaque
+            : heroe.position === 'hand' && heroe.iaDeck ? 'cardBoard iaHandCards'
+              :'cardBoard'}
       onClick={handleClickOnCardOfDeckBoard}
     >
       {/* <section className='pwBoard'>
