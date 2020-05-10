@@ -43,8 +43,7 @@ class App extends Component {
             selected: false,
             iaDeck: false,
             isFighting: false,
-            isAbleToAttack: true, // true : la carte est autorisée à attaquer
-            lastCard: false
+            isAbleToAttack: true // true : la carte est autorisée à attaquer
           };
         });
         this.setState({ cards: tabHeroes });
@@ -68,7 +67,6 @@ class App extends Component {
   }
 
   removeDeck = () => {
-    console.log('hello');
     this.setState({ deck: [] });
   }
 
@@ -84,7 +82,7 @@ class App extends Component {
               <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
             </Route>
             <Route path='/deckboard'>
-              <DeckBoard heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
+              <DeckBoard lastCard={this.state.lastCard} heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
             </Route>
           </Switch>
         </Router>

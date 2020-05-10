@@ -1,11 +1,14 @@
 import React from 'react';
 import './CardOfDeckBoard.css';
 
-function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard, playerTurn }) {
+function CardOfDeckBoard ({ selected, heroe, switchCards, lastCard, onHandToBoard, onSelectedCard, onAttackIaCard, playerTurn }) {
   const handleClickOnCardOfDeckBoard = () => {
-    // Ajoute la carte P1 sur le board
     if (heroe.position === 'hand' && playerTurn) {
-      return onHandToBoard(heroe.name);
+      if (!lastCard) {
+        return onHandToBoard(heroe.name);
+      } else {
+        return switchCards(heroe.name);
+      }
     } else if (heroe.position === 'board' && !heroe.iaDeck && playerTurn) {
       return onSelectedCard(heroe.name);
     } else if (heroe.iaDeck && heroe.position === 'board') {

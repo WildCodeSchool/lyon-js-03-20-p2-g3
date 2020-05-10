@@ -17,7 +17,8 @@ class DeckBoard extends React.Component {
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
       cardsAvalaibleForIA: [],
       isYourTurnDisplay: true,
-      endGame: undefined
+      endGame: undefined,
+      lastCard: undefined
     };
   }
 
@@ -51,25 +52,31 @@ class DeckBoard extends React.Component {
   // On veut limiter le nombre de carte joué sur le board par tour
 
   handleHandToBoard = (heroeName) => {
-    const lastHeroePutOnTable = this.state.heroesChosen.filter(heroe => (heroe.lastCard === true));
-    console.log(lastHeroePutOnTable);
+    let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
+    const newDeck = this.state.heroesChosen.map(heroe => {
+      if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
+        isAllowedToPutCardOnBoard = false;
+        this.setState({ lastCard: heroeName });
+        return { ...heroe, position: 'board' };
+      } else {
+        return heroe;
+      }
+    });
+    this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: false });
+  }
 
-    if (lastHeroePutOnTable.length === 0) {
-      let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
-      const newDeck = this.state.heroesChosen.map(heroe => {
-        if (heroe.name === heroeName && (isAllowedToPutCardOnBoard)) {
-          isAllowedToPutCardOnBoard = false;
-          console.log(heroe.name, heroe.position);
-          heroe.lastCard = true;
-          return { ...heroe, position: 'board' };
-        } else {
-          return heroe;
-        }
-      });
-      this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: isAllowedToPutCardOnBoard });
-    } else {
-      // console.log(lastHeroePutOnTable)
-    }
+  switchCards = (heroeName) => {
+    const newPlayerDeck = this.state.heroesChosen.slice();
+    // eslint-disable-next-line array-callback-return
+    const lastCardHeroe = newPlayerDeck.filter(heroe => heroe.name === this.state.lastCard)[0];
+    lastCardHeroe.position = 'hand';
+    newPlayerDeck.map(heroe => {
+      heroe.selected = false;
+      if (heroe.name === heroeName) {
+        heroe.position = 'board';
+      }
+    });
+    this.setState({ heroesChosen: newPlayerDeck, lastCard: heroeName });
   }
 
   handleHandToBoardIa = () => {
@@ -143,6 +150,9 @@ class DeckBoard extends React.Component {
     this.setState({ iaAttack: true });
     const newDeckIa = this.state.cardsAvalaibleForIA.slice();
     const newHeroesChosen = this.state.heroesChosen.slice();
+    newHeroesChosen.forEach(heroe => { // passage du state lastCard à  false pour toutes les cartes
+      heroe.lastCard = false;
+    });
     for (let i = 0; i < newDeckIa.filter(heroe => heroe.position === 'board').length; i++) { // boucle pour chaque carte sur le board de l'IA
       const cardBoardIa = newDeckIa.filter(heroe => heroe.position === 'board');
       const cardBoardPlayer = newHeroesChosen.filter(heroe => heroe.position === 'board' && !heroe.deadOnBoard);
@@ -193,7 +203,7 @@ class DeckBoard extends React.Component {
       return { ...heroe, selected: false, isAbleToAttack: true, lastCard: false };
     });
 
-    this.setState({ heroesChosen: heroesSelected });
+    this.setState({ heroesChosen: heroesSelected, lastCard: undefined });
     await delay(1000);
     this.handleDraw(this.state.cardsAvalaibleForIA);
 
@@ -220,10 +230,10 @@ class DeckBoard extends React.Component {
           if (heroe.name === nameSelected && !heroe.iaDeck) {
             return { ...heroe, selected: true };
           } else {
-            return { ...heroe, selected: false };
+            return { ...heroe, selected: false, lastCard: false };
           }
         } else {
-          return { ...heroe, selected: false };
+          return { ...heroe, selected: false, lastCard: false };
         }
       }
     );
@@ -251,7 +261,7 @@ class DeckBoard extends React.Component {
         }
       });
       this.endGameVerify();
-      this.setState({ cardsAvalaibleForIA, heroesChosen });
+      this.setState({ cardsAvalaibleForIA, heroesChosen, lastCard: undefined });
     }
   }
 
@@ -277,8 +287,9 @@ class DeckBoard extends React.Component {
               <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} playerTurn={this.state.playerTurn} />
             </div>
           </div>
+
           <div className='player1hand'> {/* hand of Player1 */}
-            <HandCards heroesChosen={this.state.heroesChosen} onHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn} />
+            <HandCards heroesChosen={this.state.heroesChosen} lastCard={this.state.lastCard} switchCards={this.switchCards} onHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn} />
           </div>
         </div>
         <div className='rightBoardContainer'> {/* right board container : decks, timer, "End Turn" button, pseudos */}

@@ -5,7 +5,7 @@ class Timer extends Component {
     super(props);
     this.state = {
       minutes: 0,
-      seconds: 3000000
+      seconds: 30
     };
   }
 
