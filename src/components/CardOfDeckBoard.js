@@ -21,9 +21,9 @@ function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard
             : 'cardBoard'}
       onClick={handleClickOnCardOfDeckBoard}
     >
-      <section className='pwBoard'>
+      {/* <section className='pwBoard'>
         {heroe.power} PW
-      </section>
+      </section> */}
       <img className='imageCardBoard' src={heroe.img} alt={heroe.name} />
       <section className='containerBottomBoard'>
         <div className='atkBoard'>

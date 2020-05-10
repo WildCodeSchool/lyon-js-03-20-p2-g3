@@ -11,6 +11,7 @@ import Rules from './components/Rules';
 import DeckChoice from './components/DeckChoice';
 import axios from 'axios';
 import DeckBoard from './components/DeckBoard';
+import HomeMusic from './components/audio/musics/binarpilot-underground.mp3';
 
 class App extends Component {
   constructor (props) {
@@ -18,8 +19,18 @@ class App extends Component {
     this.state = {
       cards: [],
       deck: [],
-      maxPower: 800
+      maxPower: 800,
+      audioOn: false
     };
+  }
+
+  audioRef = React.createRef();
+
+  handlePlay = () => {
+    const audio = this.audioRef.current;
+    audio.volume = 0.4;
+    audio.paused ? this.setState({ audioOn: false }) : this.setState({ audioOn: true });
+    return audio.paused ? audio.play() : audio.pause();
   }
 
   componentDidMount () {
@@ -74,6 +85,16 @@ class App extends Component {
   render () {
     return (
       <div className='App'>
+        <div className='music'>
+          <audio ref={this.audioRef} preload='metadata'>
+            <source src={HomeMusic} type='audio/mp3' />
+            <p>Votre navigateur ne peut pas lire d'audio</p>
+          </audio>
+          <button className='show-music-button' onClick={this.handlePlay}>
+            {/* <i className={this.state.audioOn ? 'fa fa-volume-mute' : 'fa fa-volume-up'} /> */}
+            <span className='music-icon'>{this.state.audioOn ? <i className='fa fa-volume-mute' /> : <i className='fa fa-volume-up' />}</span>
+          </button>
+        </div>
         <Router>
           <Switch>
             <Route exact path='/' component={Home} />

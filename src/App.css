@@ -1,4 +1,4 @@
-@media screen  and (max-width: 896px) and (orientation: portrait) {
+@media screen and (max-width: 896px) and (orientation: portrait) {
     html {
       transform: rotate(-90deg);
       transform-origin: left top;
@@ -17,3 +17,18 @@ body{
   font-family: 'Press Start 2P', cursive;
 }
 
+.music {
+  position: absolute;
+  top: 28px ;
+  right: 250px;
+}
+
+.music-icon i {
+  font-size: 2.5rem;
+}
+
+@media screen and (min-with: 900px) {
+  .music {
+    display: none;
+  }
+}
