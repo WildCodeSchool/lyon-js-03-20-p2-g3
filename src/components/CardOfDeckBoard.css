@@ -16,7 +16,7 @@
 
 .iaHandCards{
   transform: rotate(90deg) scale(1.4);
-  background:no-repeat center/100% url('images/dosDeCarte.png');
+  background: no-repeat center/100% url('images/dosDeCarte.png');
 }
 .iaHandCards .imageCardBoard , .iaHandCards .atkBoard, .iaHandCards .hpBoard{
   display: none;

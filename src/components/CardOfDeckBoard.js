@@ -22,7 +22,7 @@ function CardOfDeckBoard ({ selected, heroe, switchCards, lastCard, onHandToBoar
         : heroe.position === 'hand' && !heroe.iaDeck ? 'handCard cardBoard' // classe animation au hover dans la main joueur
           : heroe.isFighting ? 'cardBoard fighting' // classe animation d'attaque
             : heroe.position === 'hand' && heroe.iaDeck ? 'cardBoard iaHandCards'
-              :'cardBoard'}
+              : 'cardBoard'}
       onClick={handleClickOnCardOfDeckBoard}
     >
       {/* <section className='pwBoard'>
