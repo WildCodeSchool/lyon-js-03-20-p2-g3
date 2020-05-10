@@ -18,7 +18,6 @@ class DeckBoard extends React.Component {
       cardsAvalaibleForIA: [],
       isYourTurnDisplay: true,
       endGame: undefined,
-      lastCard: false
     };
   }
 
@@ -34,9 +33,6 @@ class DeckBoard extends React.Component {
   endGameVerify = () => {
     const deadCardsPlayerLength = this.state.heroesChosen.filter(heroe => heroe.position !== 'dead').length;
     const deadCardsIaLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position !== 'dead').length;
-    console.log(deadCardsPlayerLength);
-    console.log(deadCardsIaLength);
-
     if (deadCardsPlayerLength === 0 && deadCardsIaLength === 0) {
       this.setState({ endGame: 'equality' }); // affichage d'égalité
       console.log('equality');
@@ -55,19 +51,26 @@ class DeckBoard extends React.Component {
   // On veut limiter le nombre de carte joué sur le board par tour
 
   handleHandToBoard = (heroeName) => {
-    let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
-    // const heroeToSwap = this.state.heroesChosen.filter(heroe => heroe.lastCard === true)
-    const newDeck = this.state.heroesChosen.map(heroe => {
-      if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
-        isAllowedToPutCardOnBoard = false;
-        return { ...heroe, position: 'board', lastCard: true };
-      } else {
-        return heroe;
-      }
-    });
-    this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: isAllowedToPutCardOnBoard });
+    const lastHeroePutOnTable = this.state.heroesChosen.filter(heroe => (heroe.lastCard === true));
+    console.log(lastHeroePutOnTable);
+    
+    if (lastHeroePutOnTable.length === 0) {
+      let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
+      let newDeck = this.state.heroesChosen.map(heroe => {
+        if (heroe.name === heroeName && (isAllowedToPutCardOnBoard)) {
+            isAllowedToPutCardOnBoard = false;
+            console.log(heroe.name, heroe.position); 
+            heroe.lastCard = true;
+            return { ...heroe, position: 'board'};
+        } else {
+          return heroe;
+        }
+      });
+      this.setState({ heroesChosen: newDeck, isAllowedToPutCardOnBoard: isAllowedToPutCardOnBoard });
+    } else {
+      // console.log(lastHeroePutOnTable)
+    }
   }
-
 
   handleHandToBoardIa = () => {
     const newIaDeck = this.state.cardsAvalaibleForIA;
@@ -187,7 +190,7 @@ class DeckBoard extends React.Component {
 
     this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
     const heroesSelected = this.state.heroesChosen.map(heroe => {
-      return { ...heroe, selected: false, isAbleToAttack: true, lastCard:false };
+      return { ...heroe, selected: false, isAbleToAttack: true, lastCard: false };
     });
 
     this.setState({ heroesChosen: heroesSelected });
