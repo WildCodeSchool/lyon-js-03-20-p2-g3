@@ -57,7 +57,7 @@ class DeckBoard extends React.Component {
     const newDeck = this.state.heroesChosen.map(heroe => {
       if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
         isAllowedToPutCardOnBoard = false;
-        this.setState({ lastCard : heroeName })
+        this.setState({ lastCard: heroeName });
         return { ...heroe, position: 'board' };
       } else {
         return heroe;
@@ -67,9 +67,6 @@ class DeckBoard extends React.Component {
   }
 
   switchCards = (heroeName) => {
-
-    /* let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard; */
-    console.log('yo');
     const newPlayerDeck = this.state.heroesChosen.slice();
     // eslint-disable-next-line array-callback-return
     const lastCardHeroe = newPlayerDeck.filter(heroe => heroe.name === this.state.lastCard)[0];
@@ -77,12 +74,10 @@ class DeckBoard extends React.Component {
     newPlayerDeck.map(heroe => {
       heroe.selected = false;
       if (heroe.name === heroeName) {
-        console.log('yo');
         heroe.position = 'board';
-        /* isAllowedToPutCardOnBoard = true; */
       }
     });
-    this.setState({ heroesChosen: newPlayerDeck, lastCard: heroeName});
+    this.setState({ heroesChosen: newPlayerDeck, lastCard: heroeName });
   }
 
   handleHandToBoardIa = () => {
@@ -209,7 +204,7 @@ class DeckBoard extends React.Component {
       return { ...heroe, selected: false, isAbleToAttack: true };
     });
 
-    this.setState({ heroesChosen: heroesSelected, lastCard : undefined });
+    this.setState({ heroesChosen: heroesSelected, lastCard: undefined });
     await delay(1000);
     this.handleDraw(this.state.cardsAvalaibleForIA);
 
@@ -232,12 +227,12 @@ class DeckBoard extends React.Component {
   handleSelectedCard = (nameSelected) => {
     const newHeroesChosen = this.state.heroesChosen.map(
       heroe => {
-          if (heroe.isAbleToAttack) {
-            if (heroe.name === nameSelected && !heroe.iaDeck) {
-              return { ...heroe, selected: true };
-            } else {
-              return { ...heroe, selected: false, lastCard: false };
-            }
+        if (heroe.isAbleToAttack) {
+          if (heroe.name === nameSelected && !heroe.iaDeck) {
+            return { ...heroe, selected: true };
+          } else {
+            return { ...heroe, selected: false, lastCard: false };
+          }
         } else {
           return { ...heroe, selected: false, lastCard: false };
         }
@@ -267,7 +262,7 @@ class DeckBoard extends React.Component {
         }
       });
       this.endGameVerify();
-      this.setState({ cardsAvalaibleForIA, heroesChosen, lastCard : undefined });
+      this.setState({ cardsAvalaibleForIA, heroesChosen, lastCard: undefined });
     }
   }
 

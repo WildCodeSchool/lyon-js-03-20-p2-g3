@@ -43,7 +43,7 @@ class App extends Component {
             selected: false,
             iaDeck: false,
             isFighting: false,
-            isAbleToAttack: true, // true : la carte est autorisée à attaquer
+            isAbleToAttack: true // true : la carte est autorisée à attaquer
           };
         });
         this.setState({ cards: tabHeroes });
@@ -67,7 +67,6 @@ class App extends Component {
   }
 
   removeDeck = () => {
-    console.log('hello');
     this.setState({ deck: [] });
   }
 
