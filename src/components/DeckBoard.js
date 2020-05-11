@@ -24,6 +24,7 @@ class DeckBoard extends React.Component {
 
   componentDidMount () {
     this.randomizeDeck(this.state.heroesChosen, 'heroesChosen');
+    this.handleDraw(this.state.heroesChosen, 'heroesChosen');
     this.createIaDeck();
     this.randomizeDeck(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA');
     window.setTimeout(() => {
@@ -278,7 +279,7 @@ class DeckBoard extends React.Component {
             <div className='boardia'> {/* board of computer */}
               <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard} />
             </div>
-            {this.state.isYourTurnDisplay && <div className='playerTurn'><PlayerTurn playerTurn={this.state.playerTurn} /></div>}
+            {this.state.isYourTurnDisplay && <p className='playerTurn'><PlayerTurn playerTurn={this.state.playerTurn} /></p>}
             <div className='boardPlayer1'> {/* board of Player1 */}
               <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} playerTurn={this.state.playerTurn} />
             </div>

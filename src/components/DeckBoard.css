@@ -14,19 +14,13 @@
   align-items: center;
   width: 100%;
   left: 0px;  
-  right: 0px;
-  top: 0px;
-  bottom: 0;
-  /* height:100vh; */
   animation : a 1.5s infinite alternate;
-  --neon-text-color: black;     
-  
-}
-
-.playerTurn p {
+  --neon-text-color: black;  
   text-align: center;
   box-shadow: black;
   font-size: 25px;
+  margin: 0;
+  margin-top: -12.5px;
 }
 
 @keyframes a {
