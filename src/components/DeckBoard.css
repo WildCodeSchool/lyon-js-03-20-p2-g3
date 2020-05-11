@@ -5,6 +5,10 @@
   background: black; 
 }
 
+#button-rageQuit{
+  background-color: red;
+}
+
 .playerTurn{
   color:white;
   position: absolute;  
@@ -126,14 +130,46 @@
   color: white;
 }
 
-@media only screen and (max-width: 600px) {
+#enGame-settings {
+  background-color: rgba(0, 0, 0, .6);
+  max-width: 60vw;
+}
 
+.endGameImg-Container {
+  margin: 2rem;
+}
+
+.endGameImg-Container img {
+  width: 20vw;
+}
+
+.return-home {
+  text-decoration: none;
+  color: white;
+}
+
+.timer-container{
+  display: flex;  align-items: center;
+  justify-content: center;
+  width: 10vw;
+}
+.timer-container h2{
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+}
+
+#button-endTurn{
+  cursor: pointer;
+  font-size: 10px;
 }
 
 @media only screen and (min-width: 897px) {
+  .timer-container h2{
+    font-size: 16px;
+  }
   
-}
-
-@media only screen and (min-width: 1100px) {
-
+  #button-endTurn{
+    font-size: 16px;
+  }
 }

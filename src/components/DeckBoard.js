@@ -293,8 +293,10 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.cardsAvalaibleForIA} />
           </div>
           <div className='timerAndEndTurn'>
-            {(this.state.playerTurn && this.state.endGame === undefined) && <Timer onFinish={this.handleIaTurn} />}
-            <button onClick={this.state.playerTurn ? this.handleIaTurn : () => { }}>End Turn</button>
+            <div className='timer-container'>
+              {(this.state.playerTurn && this.state.endGame === undefined) && <Timer onFinish={this.handleIaTurn} />}
+            </div>
+            <button className='button-config' id='button-endTurn' onClick={this.state.playerTurn ? this.handleIaTurn : () => { }}>End Turn</button>
           </div>
           <div className='deckplayer1'>
             <HiddenCards deck={this.state.heroesChosen} />
@@ -322,11 +324,13 @@ const Modals = ({ showModal, endGame }) => {
   }
   return (
     <div className={showHideClassName}>
-      <section className='modal-main'>
+      <section id='enGame-settings' className='modal-main'>
         <h2>{endGameTitle}</h2>
-        <img src={enGameImage} />
+        <div className='endGameImg-Container'>
+          <img src={enGameImage} />
+        </div>
         <div className='button-modal-container'>
-          <button type='button' className='button-config'><a href='http://localhost:3000'>return home</a></button>
+          <button type='button' className='button-config'><a className='return-home' href='http://localhost:3000'>Return Home</a></button>
         </div>
       </section>
     </div>
