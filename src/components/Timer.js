@@ -34,7 +34,7 @@ class Timer extends Component {
   render () {
     const { minutes, seconds } = this.state;
     return (
-      <div>        
+      <div>
         <p>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</p>
       </div>
     );

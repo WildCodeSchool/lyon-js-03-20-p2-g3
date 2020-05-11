@@ -69,6 +69,9 @@
   background-size: 80%;
   border-radius: 10px;
   border: solid white 5px;
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 10px;
 }
 
 .centerBoardContainer {

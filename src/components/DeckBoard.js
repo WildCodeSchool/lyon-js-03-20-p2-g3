@@ -20,7 +20,7 @@ class DeckBoard extends React.Component {
       isYourTurnDisplay: true,
       endGame: undefined,
       lastCard: undefined,
-      history: [],
+      history: []
     };
   }
 
@@ -36,7 +36,6 @@ class DeckBoard extends React.Component {
   // componentDidUpdate () {
   //   this.sendDeadCardToHistory();
   // }
-
 
   endGameVerify = () => {
     const deadCardsPlayerLength = this.state.heroesChosen.filter(heroe => heroe.position !== 'dead').length;
@@ -174,13 +173,13 @@ class DeckBoard extends React.Component {
         cardBoardPlayer[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
         if (cardBoardIa[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur ou égal à 0, enleve la carte du board
           cardBoardIa[i].deadOnBoard = true;
-          history.push(cardBoardIa[i]);
-          this.setState({history})
+          history.unshift(cardBoardIa[i]);
+          this.setState({ history });
         }
         if (cardBoardPlayer[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur ou égal à 0, enleve la carte du board
           cardBoardPlayer[randomNumber].deadOnBoard = true;
-          history.push(cardBoardPlayer[randomNumber]);
-          this.setState({history})
+          history.unshift(cardBoardPlayer[randomNumber]);
+          this.setState({ history });
         }
       }
       if (cardBoardPlayer.length !== 0) {
@@ -267,13 +266,13 @@ class DeckBoard extends React.Component {
           playerCardSelected.selected = false;
           if (heroeIa.hp <= 0) { // on veut changer la valeur de la clé position à 'dead' pour les cartes dont les hp sont <= 0.
             heroeIa.position = 'dead';
-            history.push(heroeIa);
-            this.setState({ history })
+            history.unshift(heroeIa);
+            this.setState({ history });
           }
           if (playerCardSelected.hp <= 0) {
             playerCardSelected.position = 'dead';
-            history.push(playerCardSelected);
-            this.setState({ history })
+            history.unshift(playerCardSelected);
+            this.setState({ history });
           }
         }
       });
@@ -288,7 +287,7 @@ class DeckBoard extends React.Component {
         <div className='leftBoardContainer'>
           <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/* https://cards-battle-of-heroes-us11.netlify.app */}
           <aside className='dead-card-container'> {/* Cimetiere */}
-            <History history={this.state.history}  />
+            <History history={this.state.history} />
           </aside>
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
