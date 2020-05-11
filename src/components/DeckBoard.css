@@ -1,3 +1,7 @@
+:root {
+  --neon-bg-color: rgba(39,45,168,1);
+}
+
 .deckBoard  {
   display: flex;
   height: 100vh;
@@ -56,6 +60,7 @@
   width: 20vw;
   display: flex;
   padding: 10px;
+  z-index: 0;
 }
 
 .dead-card-container {
@@ -69,9 +74,8 @@
   background-size: 80%;
   border-radius: 10px;
   border: solid white 5px;
-  overflow: auto;
-  overflow-x: hidden;
   padding: 10px;
+  background-color: black;
 }
 
 .centerBoardContainer {
@@ -93,6 +97,15 @@
   border-bottom-right-radius: 80px 200px;
   border-bottom-left-radius: 80px 200px;
   border: 5px solid white; 
+  z-index: 0;
+}
+
+.iahand {
+  border: 5px solid #F28F32; 
+}
+
+.player1hand {
+  border: 5px solid #70F840;
 }
 
 .boardContainer {
@@ -126,6 +139,7 @@
   align-items: center;
  /*  border: 4px solid blue; */
   width: 20vw;
+  z-index: 0;
 }
 
 .timerAndEndTurn {
@@ -134,6 +148,7 @@
   justify-content: space-evenly;
   color: white;
 }
+
 
 @media only screen and (max-width: 600px) {
 

@@ -3,7 +3,7 @@ import './CardHistory.css';
 
 function CardHistory ({ deadHeroe }) {
   return (
-    <div className='historyCard'>
+    <div className={deadHeroe.iaDeck ? 'historyCard iaHistoryCard' : 'historyCard playerHistoryCard '}>
       <img className='historyImg' src={deadHeroe.img} alt={deadHeroe.name} />
       <p className='historyName'>{deadHeroe.name}</p>
     </div>
