@@ -110,10 +110,12 @@
   display: flex;
   justify-content: space-evenly;
 }
-.boardPlayer1{
+
+.boardPlayer1 {
   padding: 5px 0 10px 0;
 }
-.boardia{
+
+.boardia {
   padding:10px 0 5px 0;
 }
 
@@ -151,23 +153,25 @@
   color: white;
 }
 
-.timer-container{
+.timer-container {
   display: flex;  align-items: center;
   justify-content: center;
   width: 10vw;
 }
-.timer-container h2{
+
+.timer-container h2 {
   width: 100%;
   text-align: center;
   font-size: 10px;
 }
 
-#button-endTurn{
+#button-endTur {
   cursor: pointer;
   font-size: 10px;
 }
 
 @media only screen and (min-width: 897px) {
+  
   .timer-container h2{
     font-size: 16px;
   }
@@ -175,4 +179,5 @@
   #button-endTurn{
     font-size: 16px;
   }
+
 }

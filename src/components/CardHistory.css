@@ -1,10 +1,28 @@
+.graveyardsTitle {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.historyContainer {
+  overflow: auto;
+  overflow-x: hidden;
+}
+
 .historyCard {
   display: flex;
   justify-content: center;
   padding: 5px;
-  background-color: #D9EEDE;
   margin-bottom: 10px;
   border-radius: 10px;
+}
+
+.iaHistoryCard {
+  background-color: #F28F32;
+}
+
+.playerHistoryCard {
+  background-color: #70F840;
 }
 
 .historyImg {

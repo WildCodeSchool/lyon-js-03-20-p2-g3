@@ -83,6 +83,7 @@ class App extends Component {
 
   render () {
     return (
+      <>
       <div className='App'>
         <div className='music'>
           <audio ref={this.audioRef} preload='metadata'>
@@ -108,6 +109,7 @@ class App extends Component {
           </Switch>
         </Router>
       </div>
+      </>
     );
   }
 }
