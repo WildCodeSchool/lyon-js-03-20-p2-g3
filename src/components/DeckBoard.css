@@ -178,6 +178,8 @@
 
 #button-endTurn {
   font-size: 10px;
+  margin-right: 10px;
+  width: auto;
 }
 
 @media only screen and (min-width: 897px) {

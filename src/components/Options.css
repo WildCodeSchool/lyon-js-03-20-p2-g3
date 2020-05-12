@@ -1,0 +1,98 @@
+.options-container {
+  background: black;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.options-navbar {
+  height: 10vh;
+  display: flex;
+  margin:0;
+  padding: 10px 150px 10px 10px;
+}
+
+.options-navbar h2 {
+  color: #FFAA29;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: auto;
+}
+
+.options-container main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 90vh;
+}
+
+.option-type-container {
+  display: flex;
+  height: 10vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.option-title {
+  color: white;
+  flex-basis: 200px;
+}
+
+.option-slider {
+  -webkit-appearance: none;
+  width: 40%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.option-slider:hover {
+  opacity: 1;
+}
+
+.option-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #FFAA29;
+  cursor: pointer;
+}
+
+.option-slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #FFAA29;
+  cursor: pointer;
+}
+
+.music-icon i {
+  font-size: 2.5rem;
+}
+
+@media only screen and (min-width: 897px) {
+
+  .options-navbar {
+    padding: 10px 210px 10px 10px;
+  }
+
+  .options-navbar h2 {
+    font-size: 25px;
+  }
+
+  .option-title {
+    font-size: 20px;
+    flex-basis: 300px;
+  }
+  
+}
