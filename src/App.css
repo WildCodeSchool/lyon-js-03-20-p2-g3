@@ -1,19 +1,47 @@
-@media screen  and (max-width: 896px) and (orientation: portrait) {
-    html {
-      transform: rotate(-90deg);
-      transform-origin: left top;
-      max-width: 100vw;
-      max-height: 100vh;
-      overflow-x: hidden;
-      position: absolute;
-      top: 100%;
-      left: 0;
-    }
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-body{
+.portrait {
+display: none;
+}
+
+body {
   font-family: 'Press Start 2P', cursive;
 }
 
+.music {
+  position: absolute;
+  top: 28px ;
+  right: 250px;
+}
+
+.music-icon i {
+  font-size: 2.5rem;
+}
+
+@media screen and (min-with: 900px) {
+  .music {
+    display: none;
+  }
+}
+@media screen and (max-width: 896px) and (orientation: portrait) {
+  /* html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  } */
+  .App {
+    display: none;
+  }
+
+  .portrait {
+    display: block;
+  }
+  
+
+  
+}

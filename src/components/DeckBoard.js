@@ -6,6 +6,7 @@ import HiddenCards from './HiddenCards';
 import _ from 'lodash';
 import Timer from './Timer';
 import PlayerTurn from './PlayerTurn';
+import History from './History';
 
 const delay = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 class DeckBoard extends React.Component {
@@ -18,12 +19,15 @@ class DeckBoard extends React.Component {
       cardsAvalaibleForIA: [],
       isYourTurnDisplay: true,
       endGame: undefined,
-      lastCard: undefined
+      showModal: false,
+      lastCard: undefined,
+      history: []
     };
   }
 
   componentDidMount () {
     this.randomizeDeck(this.state.heroesChosen, 'heroesChosen');
+    this.handleDraw(this.state.heroesChosen, 'heroesChosen');
     this.createIaDeck();
     this.randomizeDeck(this.state.cardsAvalaibleForIA, 'cardsAvalaibleForIA');
     window.setTimeout(() => {
@@ -31,10 +35,13 @@ class DeckBoard extends React.Component {
     }, 2000);
   }
 
+  // componentDidUpdate () {
+  //   this.sendDeadCardToHistory();
+  // }
+
   endGameVerify = () => {
     const deadCardsPlayerLength = this.state.heroesChosen.filter(heroe => heroe.position !== 'dead').length;
     const deadCardsIaLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position !== 'dead').length;
-
     if (deadCardsPlayerLength === 0 && deadCardsIaLength === 0) {
       this.setState({ endGame: 'equality' }); // affichage d'égalité
       console.log('equality');
@@ -51,6 +58,31 @@ class DeckBoard extends React.Component {
     this.setState({ heroesChosen: [] });
   }
   // On veut limiter le nombre de carte joué sur le board par tour
+
+  handleShowModal = () => {
+    this.setState({ showModal: true });
+  }
+
+  endGameVerify = () => {
+    const deadCardsPlayerLength = this.state.heroesChosen.filter(heroe => heroe.position !== 'dead').length;
+    const deadCardsIaLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position !== 'dead').length;
+    console.log(deadCardsPlayerLength);
+    console.log(deadCardsIaLength);
+
+    if (deadCardsPlayerLength === 0 && deadCardsIaLength === 0) {
+      this.setState({ endGame: 'equality' }); // affichage d'égalité
+      console.log('equality');
+      this.handleShowModal();
+    } else if (deadCardsPlayerLength === 0) {
+      this.setState({ endGame: 'lose' }); // affichage To lose !== TOULOUSE
+      console.log('you suck');
+      this.handleShowModal();
+    } else if (deadCardsIaLength === 0) {
+      this.setState({ endGame: 'win' }); // affichage WIIIIIIN !
+      console.log('you wiiiiiin !');
+      this.handleShowModal();
+    }
+  }
 
   handleHandToBoard = (heroeName) => {
     let isAllowedToPutCardOnBoard = this.state.isAllowedToPutCardOnBoard;
@@ -151,6 +183,7 @@ class DeckBoard extends React.Component {
     this.setState({ iaAttack: true });
     const newDeckIa = this.state.cardsAvalaibleForIA.slice();
     const newHeroesChosen = this.state.heroesChosen.slice();
+    const history = this.state.history.slice();
     newHeroesChosen.forEach(heroe => { // passage du state lastCard à  false pour toutes les cartes
       heroe.lastCard = false;
     });
@@ -167,9 +200,13 @@ class DeckBoard extends React.Component {
         cardBoardPlayer[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
         if (cardBoardIa[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur ou égal à 0, enleve la carte du board
           cardBoardIa[i].deadOnBoard = true;
+          history.unshift(cardBoardIa[i]);
+          this.setState({ history });
         }
         if (cardBoardPlayer[randomNumber].hp <= 0) { // si les hp de la carte de du joueur est inferieur ou égal à 0, enleve la carte du board
           cardBoardPlayer[randomNumber].deadOnBoard = true;
+          history.unshift(cardBoardPlayer[randomNumber]);
+          this.setState({ history });
         }
       }
       if (cardBoardPlayer.length !== 0) {
@@ -192,36 +229,41 @@ class DeckBoard extends React.Component {
     });
     this.endGameVerify();
     this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen, iaAttack: false });
+    return Promise.resolve()
   }
 
   handleIaTurn = async () => {
-    if (this.state.isAllowedToPutCardOnBoard) {
-      this.handleHandToBoardPlayer();
+    if (this.state.endGame === undefined) {
+      if (this.state.isAllowedToPutCardOnBoard) {
+        this.handleHandToBoardPlayer();
+      }
+
+      this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
+      const heroesSelected = this.state.heroesChosen.map(heroe => {
+        return { ...heroe, selected: false, isAbleToAttack: true };
+      });
+
+      this.setState({ heroesChosen: heroesSelected, lastCard: undefined });
+      await delay(1000);
+      this.handleDraw(this.state.cardsAvalaibleForIA);
+
+      await delay(1000);
+      this.handleHandToBoardIa();
+
+      await delay(1000);
+      await this.attackCardIa();
+
+      await delay(1000);
+      this.setState({ playerTurn: true });
+      this.handleDraw(this.state.heroesChosen);
+      this.setState({ isAllowedToPutCardOnBoard: true });
+      if (this.state.endGame === undefined) {
+        this.setState({ isYourTurnDisplay: true });
+      }
+
+      await delay(2000);
+      this.setState({ isYourTurnDisplay: false });
     }
-
-    this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
-    const heroesSelected = this.state.heroesChosen.map(heroe => {
-      return { ...heroe, selected: false, isAbleToAttack: true };
-    });
-
-    this.setState({ heroesChosen: heroesSelected, lastCard: undefined });
-    await delay(1000);
-    this.handleDraw(this.state.cardsAvalaibleForIA);
-
-    await delay(1000);
-    this.handleHandToBoardIa();
-
-    await delay(1000);
-    this.attackCardIa();
-
-    await delay(4000);
-    this.setState({ playerTurn: true });
-    this.handleDraw(this.state.heroesChosen);
-    this.setState({ isAllowedToPutCardOnBoard: true });
-    this.setState({ isYourTurnDisplay: true });
-
-    await delay(2000);
-    this.setState({ isYourTurnDisplay: false });
   }
 
   handleSelectedCard = (nameSelected) => {
@@ -244,6 +286,7 @@ class DeckBoard extends React.Component {
   handleAttackIaCard = (name) => { // player attack
     const heroesChosen = this.state.heroesChosen;
     const cardsAvalaibleForIA = this.state.cardsAvalaibleForIA;
+    const history = this.state.history.slice();
     const playerCardSelected = heroesChosen.filter(heroe => heroe.selected === true)[0];
     if (heroesChosen.filter(heroe => heroe.selected === true).length !== 0) {
       cardsAvalaibleForIA.map(heroeIa => {
@@ -255,9 +298,13 @@ class DeckBoard extends React.Component {
           playerCardSelected.selected = false;
           if (heroeIa.hp <= 0) { // on veut changer la valeur de la clé position à 'dead' pour les cartes dont les hp sont <= 0.
             heroeIa.position = 'dead';
+            history.unshift(heroeIa);
+            this.setState({ history });
           }
           if (playerCardSelected.hp <= 0) {
             playerCardSelected.position = 'dead';
+            history.unshift(playerCardSelected);
+            this.setState({ history });
           }
         }
       });
@@ -272,7 +319,7 @@ class DeckBoard extends React.Component {
         <div className='leftBoardContainer'>
           <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/* https://cards-battle-of-heroes-us11.netlify.app */}
           <aside className='dead-card-container'> {/* Cimetiere */}
-            <p>je suis mort</p>
+            <History history={this.state.history} />
           </aside>
         </div>
         <div className='centerBoardContainer'> {/* Board Total */}
@@ -283,7 +330,7 @@ class DeckBoard extends React.Component {
             <div className='boardia'> {/* board of computer */}
               <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard} />
             </div>
-            {this.state.isYourTurnDisplay && <div className='playerTurn'><PlayerTurn playerTurn={this.state.playerTurn} /></div>}
+            {this.state.isYourTurnDisplay && <p className='playerTurn'><PlayerTurn playerTurn={this.state.playerTurn} /></p>}
             <div className='boardPlayer1'> {/* board of Player1 */}
               <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} playerTurn={this.state.playerTurn} />
             </div>
@@ -298,16 +345,51 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.cardsAvalaibleForIA} />
           </div>
           <div className='timerAndEndTurn'>
-            {this.state.playerTurn && <Timer onFinish={this.handleIaTurn} />}
-            <button onClick={this.state.playerTurn ? this.handleIaTurn : () => { }}>End Turn</button>
+            <div className='timer-container'>
+              {(this.state.playerTurn && this.state.endGame === undefined) && <Timer onFinish={this.handleIaTurn} />}
+            </div>
+            <button className='button-config' id='button-endTurn' onClick={this.state.playerTurn ? this.handleIaTurn : () => { }}>End Turn</button>
           </div>
           <div className='deckplayer1'>
             <HiddenCards deck={this.state.heroesChosen} />
           </div>
         </div>
+        <Modals showModal={this.state.showModal} endGame={this.state.endGame} />
       </div>
     );
   }
 }
+
+const Modals = ({ showModal, endGame }) => {
+  const showHideClassName = showModal ? 'modal display-block' : 'modal display-none';
+  let endGameTitle = '';
+  let enGameImage = '';
+  if (endGame === 'equality') {
+    endGameTitle = 'Fatali ... equality !';
+    enGameImage = 'https://media.giphy.com/media/6w6TEAATeBik8/giphy.gif';
+  } else if (endGame === 'lose') {
+    endGameTitle = 'Sucker, noob !';
+    enGameImage = 'https://media.giphy.com/media/mcH0upG1TeEak/giphy.gif';
+  } else if (endGame === 'win') {
+    endGameTitle = 'You\'ve goat it !';
+    enGameImage = 'https://media.giphy.com/media/3hvmlYNsOTFWE/giphy.gif';
+  }
+  return (
+    <div className={showHideClassName}>
+      <section id='enGame-settings' className='modal-main'>
+        <h2>{endGameTitle}</h2>
+        <div className='endGameImg-Container'>
+          <img src={enGameImage} alt={endGame} />
+        </div>
+        <div className='button-modal-container'>
+          <button type='button' className='button-config'><a className='return-home' href='http://localhost:3000'>Return Home</a></button>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+const container = document.createElement('div');
+document.body.appendChild(container);
 
 export default DeckBoard;

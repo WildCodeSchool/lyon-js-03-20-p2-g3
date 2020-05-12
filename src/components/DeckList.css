@@ -36,14 +36,14 @@
 }
 
 .deck_title_container{
-   display: flex;
+    display: flex;
 }
 
 .cross_title_container{
-  position: absolute;
-  left: 21%;
-  margin-top: 0.5%;
-  cursor: pointer;
+    position: absolute;
+    left: 21%;
+    margin-top: 0.5%;
+    cursor: pointer;
 }
 
 .cross_cardList_container {
@@ -81,5 +81,6 @@
     justify-content: center;
 }
 #total_power_indicator span{
-  padding: 5px;
+    padding: 5px;
 }
+

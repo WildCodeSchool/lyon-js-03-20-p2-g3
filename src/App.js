@@ -18,7 +18,7 @@ class App extends Component {
     this.state = {
       cards: [],
       deck: [],
-      maxPower: 800
+      maxPower: 800,
     };
   }
 
@@ -72,21 +72,26 @@ class App extends Component {
 
   render () {
     return (
-      <div className='App'>
-        <Router>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/options' component={Options} />
-            <Route path='/rules' component={Rules} />
-            <Route path='/deckchoice'>
-              <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
-            </Route>
-            <Route path='/deckboard'>
-              <DeckBoard lastCard={this.state.lastCard} heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
+      <>
+        <div className='portrait'>
+          <h2>Switch to landscape view to play</h2>
+        </div>
+        <div className='App'>
+          <Router>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/options' component={Options} />
+              <Route path='/rules' component={Rules} />
+              <Route path='/deckchoice'>
+                <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
+              </Route>
+              <Route path='/deckboard'>
+                <DeckBoard lastCard={this.state.lastCard} heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
+      </>
     );
   }
 }

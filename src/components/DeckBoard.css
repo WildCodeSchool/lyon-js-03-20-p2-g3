@@ -1,11 +1,19 @@
-.deckBoard  {
+.deckBoard {
   display: flex;
   height: 100vh;
   width: 100vw;
   background: black; 
 }
 
-.playerTurn{
+#button-rageQuit {
+  background-color: red;
+}
+
+#button-rageQuit:hover {
+  background-color: rgb(238, 5, 5);
+}
+
+.playerTurn {
   color:white;
   position: absolute;  
   z-index: 11;
@@ -14,19 +22,13 @@
   align-items: center;
   width: 100%;
   left: 0px;  
-  right: 0px;
-  top: 0px;
-  bottom: 0;
-  /* height:100vh; */
   animation : a 1.5s infinite alternate;
-  --neon-text-color: black;     
-  
-}
-
-.playerTurn p {
+  --neon-text-color: black;  
   text-align: center;
   box-shadow: black;
   font-size: 25px;
+  margin: 0;
+  margin-top: -12.5px;
 }
 
 @keyframes a {
@@ -69,6 +71,9 @@
   background-size: 80%;
   border-radius: 10px;
   border: solid white 5px;
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 10px;
 }
 
 .centerBoardContainer {
@@ -88,8 +93,15 @@
   border-top-left-radius: 80px 200px;
   border-top-right-radius: 80px 200px;
   border-bottom-right-radius: 80px 200px;
-  border-bottom-left-radius: 80px 200px;
-  border: 5px solid white; 
+  border-bottom-left-radius: 80px 200px; 
+}
+
+.iahand {
+  border: 5px solid #F28F32;
+}
+
+.player1hand {
+  border: 5px solid #70F840;
 }
 
 .boardContainer {
@@ -109,10 +121,12 @@
   display: flex;
   justify-content: space-evenly;
 }
-.boardPlayer1{
+
+.boardPlayer1 {
   padding: 5px 0 10px 0;
 }
-.boardia{
+
+.boardia {
   padding:10px 0 5px 0;
 }
 
@@ -132,14 +146,48 @@
   color: white;
 }
 
-@media only screen and (max-width: 600px) {
+#enGame-settings {
+  background-color: rgba(0, 0, 0, .6);
+  max-width: 60vw;
+}
 
+.endGameImg-Container {
+  margin: 2rem;
+}
+
+.endGameImg-Container img {
+  width: 20vw;
+}
+
+.return-home {
+  text-decoration: none;
+  color: white;
+}
+
+.timer-container {
+  display: flex;  align-items: center;
+  justify-content: center;
+  width: 10vw;
+}
+
+.timer-container h2 {
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+}
+
+#button-endTurn {
+  font-size: 10px;
 }
 
 @media only screen and (min-width: 897px) {
   
-}
-
-@media only screen and (min-width: 1100px) {
+  .timer-container h2{
+    font-size: 16px;
+  }
+  
+  #button-endTurn{
+    font-size: 16px;
+  }
 
 }
