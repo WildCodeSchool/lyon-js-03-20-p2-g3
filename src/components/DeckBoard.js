@@ -232,9 +232,9 @@ class DeckBoard extends React.Component {
         return { ...heroe, selected: false, isAbleToAttack: true };
       });
 
-    this.setState({ heroesChosen: heroesSelected, lastCard: undefined });
-    await delay(1000);
-    this.handleDraw(this.state.cardsAvalaibleForIA);
+      this.setState({ heroesChosen: heroesSelected, lastCard: undefined });
+      await delay(1000);
+      this.handleDraw(this.state.cardsAvalaibleForIA);
 
       await delay(1000);
       this.handleHandToBoardIa();
