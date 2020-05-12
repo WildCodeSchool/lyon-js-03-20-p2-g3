@@ -14,6 +14,7 @@
 }
 
 .button-config:hover {
+    cursor: pointer;
     background: rgb(95, 95, 95);
 }
 

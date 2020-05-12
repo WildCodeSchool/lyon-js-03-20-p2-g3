@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   color: white;
+  font-size: 16px;
 }
 
 .historyContainer {
@@ -26,8 +27,8 @@
 }
 
 .historyImg {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 
@@ -35,6 +36,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   color: black;
   width: 70%;
+  font-size: 8px;
+}
+
+@media only screen and (min-width: 897px) {
+  .historyImg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .historyName {
+    font-size: 12px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  
+
 }

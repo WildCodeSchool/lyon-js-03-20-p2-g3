@@ -9,10 +9,6 @@
     height: 10vh;
 }
 
-button[type="button"]:hover {
-  cursor: pointer;
-}
-
 #title {
     display: flex;
     justify-content: center;
@@ -84,6 +80,7 @@ button[type="button"]:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0px;
 }
 
 @media screen and (min-width: 897px) {

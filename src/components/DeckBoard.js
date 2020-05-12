@@ -229,6 +229,7 @@ class DeckBoard extends React.Component {
     });
     this.endGameVerify();
     this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen, iaAttack: false });
+    return Promise.resolve()
   }
 
   handleIaTurn = async () => {
@@ -250,9 +251,9 @@ class DeckBoard extends React.Component {
       this.handleHandToBoardIa();
 
       await delay(1000);
-      this.attackCardIa();
+      await this.attackCardIa();
 
-      await delay(4000);
+      await delay(1000);
       this.setState({ playerTurn: true });
       this.handleDraw(this.state.heroesChosen);
       this.setState({ isAllowedToPutCardOnBoard: true });
@@ -378,7 +379,7 @@ const Modals = ({ showModal, endGame }) => {
       <section id='enGame-settings' className='modal-main'>
         <h2>{endGameTitle}</h2>
         <div className='endGameImg-Container'>
-          <img src={enGameImage} />
+          <img src={enGameImage} alt={endGame} />
         </div>
         <div className='button-modal-container'>
           <button type='button' className='button-config'><a className='return-home' href='http://localhost:3000'>Return Home</a></button>
