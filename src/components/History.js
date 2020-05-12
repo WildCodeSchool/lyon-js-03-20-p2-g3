@@ -1,7 +1,7 @@
 import React from 'react';
 import CardHistory from './CardHistory';
 
-function History({ history }) {
+function History ({ history }) {
   return (
     <>
       <h2 className='graveyardsTitle'>Graveyards</h2>
