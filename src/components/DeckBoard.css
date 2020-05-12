@@ -1,15 +1,15 @@
-.deckBoard  {
+.deckBoard {
   display: flex;
   height: 100vh;
   width: 100vw;
   background: black; 
 }
 
-#button-rageQuit{
+#button-rageQuit {
   background-color: red;
 }
 
-.playerTurn{
+.playerTurn {
   color:white;
   position: absolute;  
   z-index: 11;
