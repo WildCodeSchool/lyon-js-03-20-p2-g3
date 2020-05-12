@@ -39,9 +39,12 @@ body {
   }
 
   .portrait {
-    display: block;
-  }
-  
-
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  } 
   
 }

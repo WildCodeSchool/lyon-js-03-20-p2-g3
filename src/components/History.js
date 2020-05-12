@@ -4,7 +4,7 @@ import CardHistory from './CardHistory';
 function History ({ history }) {
   return (
     <>
-      <h2 className='graveyardsTitle'>Graveyards</h2>
+      <h2 className='graveyardTitle'>Graveyard</h2>
       <div className='historyContainer'>
         {history.map(deadHeroe => {
           return (

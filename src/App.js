@@ -11,7 +11,9 @@ import Rules from './components/Rules';
 import DeckChoice from './components/DeckChoice';
 import axios from 'axios';
 import DeckBoard from './components/DeckBoard';
-
+import HomeMusic from './components/audio/musics/binarpilot-underground.mp3';
+import CardTransition from './components/audio/effects/Card_Transition_Out.ogg';
+// import DefeatJingle from './components/audio/effects/defeat_jingle.ogg';
 class App extends Component {
   constructor (props) {
     super(props);
@@ -19,8 +21,32 @@ class App extends Component {
       cards: [],
       deck: [],
       maxPower: 800,
+      audioOn: false,
+      musicOn: false,
+      effectsOn: true
     };
   }
+
+  audioMusic = React.createRef();
+  audioEffects = React.createRef();
+
+  handlePlayMusic = () => {
+    const audio = this.audioMusic.current;
+    audio.volume = 0.4;
+    audio.paused ? this.setState({ musicOn: false }) : this.setState({ musicOn: true });
+    return audio.paused ? audio.play() : audio.stop();
+  }
+
+  handlePlayEffects = () => {
+    const audio = this.audioEffects.current;
+    if (this.state.effectsOn) {
+      audio.play()
+    }
+  }
+
+  triggerEffects = () => {
+    this.setState({ effectsOn : !this.state.effectsOn })
+  } 
 
   componentDidMount () {
     this.getHeroesFromAPI();
@@ -73,14 +99,30 @@ class App extends Component {
   render () {
     return (
       <>
-        <div className='portrait'>
-          <h2>Switch to landscape view to play</h2>
+        <div className='portrait'>        
+        <h1 className='h1-home'>Cards Battle of Heroes</h1>  
+          <img 
+            class="phone"
+            src="https://karagezwebstudio.com/fr/img/rotate.gif"
+            alt="turn phone">
+        </img>
         </div>
         <div className='App'>
+          <div className='music'>
+            <audio ref={this.audioMusic} preload='metadata'>
+              <source src={HomeMusic} type='audio/mp3' />
+              <p>Votre navigateur ne peut pas lire d'audio</p>
+            </audio>
+            <audio ref={this.audioEffects} preload='metadata'>
+              <source src={CardTransition} type='audio/mp3' />
+            </audio>
+          </div>
           <Router>
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route path='/options' component={Options} />
+              <Route path='/options'>
+                <Options onPlayMusic={this.handlePlayMusic} onPlayEffects={this.handlePlayEffects} audioOn={this.state.audioOn} musicOn={this.state.musicOn} effectsOn={this.state.effectsOn} triggerEffects={this.triggerEffects}/>
+              </Route>
               <Route path='/rules' component={Rules} />
               <Route path='/deckchoice'>
                 <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
