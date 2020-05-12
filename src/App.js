@@ -13,7 +13,9 @@ import axios from 'axios';
 import DeckBoard from './components/DeckBoard';
 import HomeMusic from './components/audio/musics/binarpilot-underground.mp3';
 import CardTransition from './components/audio/effects/Card_Transition_Out.ogg';
-// import DefeatJingle from './components/audio/effects/defeat_jingle.ogg';
+import AttackCardEffect from './components/audio/effects/KingKrush_StompMed_1.ogg';
+//import DefeatJingle from './components/audio/effects/defeat_jingle.ogg';
+import Draw from './components/audio/effects/add_card_to_hand_2.ogg';
 class App extends Component {
   constructor (props) {
     super(props);
@@ -28,32 +30,36 @@ class App extends Component {
   }
 
   audioMusic = React.createRef();
-  audioEffects = React.createRef();
+  audioCardOnBoard = React.createRef();
+  audioAttackCard = React.createRef();
+  audioDraw = React.createRef();
 
   handlePlayMusic = () => {
     const audio = this.audioMusic.current;
     audio.volume = 0.4;
     audio.paused ? this.setState({ musicOn: false }) : this.setState({ musicOn: true });
-    return audio.paused ? audio.play() : audio.stop();
+    return audio.paused ? audio.play() : audio.pause();
   }
 
-  handlePlayEffects = () => {
-    const audio = this.audioEffects.current;
+  handlePlayEffects = (audioRef) => {
+    const audio = audioRef.current;
+    audio.volume = 0.4;
     if (this.state.effectsOn) {
-      audio.play()
+      audio.currentTime = 0;
+      audio.play();
     }
   }
 
   triggerEffects = () => {
-    this.setState({ effectsOn : !this.state.effectsOn })
-  } 
+    this.setState({ effectsOn: !this.state.effectsOn });
+  }
 
   componentDidMount () {
     this.getHeroesFromAPI();
   }
 
   getHeroesFromAPI = () => {
-    const url = 'https://heroes-api-wrapper.herokuapp.com/heroes?heroIds=354,310,555,711,527,313,638,307,566,381,514,214,561,165,692,341,298,251,107,383,127,30,352,201,196,522,634,627,530,418,551,708,630,599,538,370,398,228,149,480,106,729,309,207,542,333,208,536,431,225,649,60,226,69,678,487,457,145,345,299,361,350,405,602236,620,216717,213,176,581,687,386,414,322,600,303,280,690,467,416,485,423,572,38,697,732,396,275,389,498,476,703,680,185,157,658,325,574,289,308,195,686,645,631,502,232,332,287,659,655,517,35';
+    const url = 'https://heroes-api-wrapper.herokuapp.com/heroes?heroIds=354,310,555,711,527,313,638,307,566,381,514,214,561,165,692,341,298,251,107,383,127,30,352,201,196,522,634,627,530,418,551,708,630,599,538,370,398,228,149,480,106,729,309,207,542,333,208,536,431,225,649,60,226,69,678,487,457,145,345,299,361,350,405,602236,620,216717,213,176,581,687,386,414,322,600,303,280,690,467,416,485,423,572,38,697,732,396,275,389,498,476,703,680,185,157,658,325,574,289,308,195,686,645,631,502,232,332,287,659,655,517,35,';
     axios.get(url)
       .then(res => res.data)
       .then(data => {
@@ -99,13 +105,13 @@ class App extends Component {
   render () {
     return (
       <>
-        <div className='portrait'>        
-        <h1 className='h1-home'>Cards Battle of Heroes</h1>  
-          <img 
-            class="phone"
-            src="https://karagezwebstudio.com/fr/img/rotate.gif"
-            alt="turn phone">
-        </img>
+        <div className='portrait'>
+          <h1 className='h1-home'>Cards Battle of Heroes</h1>
+          <img
+            class='phone'
+            src='https://karagezwebstudio.com/fr/img/rotate.gif'
+            alt='turn phone'
+          />
         </div>
         <div className='App'>
           <div className='music'>
@@ -113,22 +119,28 @@ class App extends Component {
               <source src={HomeMusic} type='audio/mp3' />
               <p>Votre navigateur ne peut pas lire d'audio</p>
             </audio>
-            <audio ref={this.audioEffects} preload='metadata'>
+            <audio ref={this.audioCardOnBoard} preload='metadata'>
               <source src={CardTransition} type='audio/mp3' />
+            </audio>
+            <audio ref={this.audioAttackCard} preload='metadata'>
+              <source src={AttackCardEffect} type='audio/mp3' />
+            </audio>
+            <audio ref={this.audioDraw} preload='metadata'>
+              <source src={Draw} type='audio/mp3' />
             </audio>
           </div>
           <Router>
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/options'>
-                <Options onPlayMusic={this.handlePlayMusic} onPlayEffects={this.handlePlayEffects} audioOn={this.state.audioOn} musicOn={this.state.musicOn} effectsOn={this.state.effectsOn} triggerEffects={this.triggerEffects}/>
+                <Options onPlayMusic={this.handlePlayMusic} onPlayEffects={this.handlePlayEffects} audioOn={this.state.audioOn} musicOn={this.state.musicOn} effectsOn={this.state.effectsOn} triggerEffects={this.triggerEffects} />
               </Route>
               <Route path='/rules' component={Rules} />
               <Route path='/deckchoice'>
                 <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
               </Route>
               <Route path='/deckboard'>
-                <DeckBoard lastCard={this.state.lastCard} heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
+                <DeckBoard audioDraw={this.audioDraw} audioAttackCard={this.audioAttackCard} audioCardOnBoard={this.audioCardOnBoard} onPlayEffects={this.handlePlayEffects} lastCard={this.state.lastCard} heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
               </Route>
             </Switch>
           </Router>

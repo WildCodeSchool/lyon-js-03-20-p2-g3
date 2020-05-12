@@ -2,7 +2,7 @@ import React from 'react';
 import Button from './Button';
 import './Options.css';
 
-const Options = ({ onPlayMusic, onPlayEffects, effectsOn, musicOn, audioOn, triggerEffects }) => {
+const Options = ({ onPlayMusic, effectsOn, musicOn, audioOn, triggerEffects }) => {
   return (
     <>
       <Button link='/' linkName='&lt; Home' />
@@ -13,7 +13,7 @@ const Options = ({ onPlayMusic, onPlayEffects, effectsOn, musicOn, audioOn, trig
         {effectsOn ? 'ON' : 'OFF'}
       </button>
     </>
-  )
-}
+  );
+};
 
 export default Options;
