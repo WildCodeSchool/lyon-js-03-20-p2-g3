@@ -1,0 +1,74 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    height: 100vh;
+    background-color: black;
+}
+
+.singleCard {
+    border: 2px solid rgb(243, 243, 147);
+    border-radius: 7px;
+    background-color: rgb(233, 212, 96);
+    width: 30%;
+    max-height: 35vw;
+    margin-bottom: 10px;
+}
+
+.image img {
+    display: block;
+    border: 1px solid black; 
+    border-radius: 7px;
+    margin: 10px 10px 10px 10px;
+    max-height: 50%;
+    width: 80%;
+}
+
+.image {
+    width: 100%;
+    display: block;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.explanation {
+    font-size: 0.5rem;
+    margin: 5px 5% 5px 5%;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.RulesCard {
+    display: flex;
+	flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.explanation h3 {
+    text-decoration: underline;
+    text-align: center;
+    line-height: 1.6;
+}
+
+@media only screen and (max-width: 600px) {
+    .explanation {
+        font-size: 0.1rem;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .explanation {
+        font-size: 0.4rem;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .explanation {
+        font-size: 0.5rem;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    .explanation {
+        font-size: 1rem;
+    }
+}
