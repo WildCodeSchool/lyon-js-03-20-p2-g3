@@ -16,6 +16,8 @@ import BoardDSMTurn3 from './images/BoardDSMTurn3.png';
 import BoardAttack from './images/BoardAttack.png';
 import BoardGraveyard from './images/BoardGraveyard.png';
 import Howtowin from './images/Howtowin.png';
+import DoNotRageQuit from './images/DoNotRageQuit.png';
+import BoardSwitchCard from './images/BoardSwitchCard.png';
 
 function Rules () {
   return (
@@ -63,21 +65,21 @@ function Rules () {
             textRule='You must place a card from your hand on the board.'
           />
           <RulesCard
-            image=''
+            image={BoardSwitchCard}
             alt='image showing the player switch a card from his hand.'
-            nameOfRule='Board, Your turn - 3'
+            nameOfRule='Board, Your turn - 4'
             textRule='You can switch the last card you’ve put on the board during your turn'
           />
           <RulesCard
             image={BoardYourTurn4}
             alt='image showing the mouse clicking on the "End Turn" button'
-            nameOfRule='Board, Your turn - 4'
+            nameOfRule='Board, Your turn - 5'
             textRule='If you’ve finished your turn before the time is up (30s), you can press the “End Turn” button.'
           />
           <RulesCard
             image={BoardYourTurn5}
             alt='image showing the timer at zero'
-            nameOfRule='Board, Your turn - 5'
+            nameOfRule='Board, Your turn - 6'
             textRule='If you’ve not finished your turn before the time ran out, the game drag a card from your hand on the board randomly. You just had to be faster. Just assume it !'
           />
           <RulesCard
@@ -117,7 +119,7 @@ function Rules () {
             textRule='You win when Deus Sex Machina runs out of cards in his deck, his hand and on the board.'
           />
           <RulesCard
-            image=''
+            image={DoNotRageQuit}
             alt='image showing crying smileys when the player press the “Rage Quit” button'
             nameOfRule='Be compassionate'
             textRule='If you don’t assume your defeat, you can press the “Rage Quit” button. His Serenessima assumes its defeats, so have some consideration for this sensitive machine.'
