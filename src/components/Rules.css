@@ -7,7 +7,7 @@ body {
 .singleCard {
     border: 2px solid rgb(243, 243, 147);
     border-radius: 7px;
-    background-color: rgb(233, 212, 96);
+    background:no-repeat center/100% url('https://cdn.pixabay.com/photo/2014/10/04/15/29/paper-473630_960_720.jpg');
     width: 30%;
     max-height: 35vw;
     margin-bottom: 10px;
@@ -32,9 +32,10 @@ body {
 
 .explanation {
     font-size: 0.5rem;
-    margin: 5px 5% 5px 5%;
+    margin: 5px 5% 5% 5%;
     line-height: 1.6;
     text-align: justify;
+    font-weight: bold;
 }
 
 .RulesCard {
