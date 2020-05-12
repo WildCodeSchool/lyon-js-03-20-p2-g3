@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import RulesCard from './RulesCard';
 import './Rules.css';
+import Button from './Button';
 import Board1 from './images/Board1.png';
 import BoardYourturn1 from './images/BoardYourturn1.png';
 import BoardYourTurn2 from './images/BoardYourTurn2.png';
@@ -22,10 +22,8 @@ import BoardSwitchCard from './images/BoardSwitchCard.png';
 function Rules () {
   return (
     <div>
-      <li>
-        <nav>
-          <Link to='/'>Home</Link>
-          <h2>Rules</h2>
+        <nav className='NavRules'>
+          <Button id='button-home' link='/' linkName='&lt; Home' />
         </nav>
         <div className='RulesCard'>
           <RulesCard
@@ -125,7 +123,6 @@ function Rules () {
             textRule='If you don’t assume your defeat, you can press the “Rage Quit” button. His Serenessima assumes its defeats, so have some consideration for this sensitive machine.'
           />
         </div>
-      </li>
     </div>
   );
 }
