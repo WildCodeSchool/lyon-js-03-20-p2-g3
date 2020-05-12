@@ -12,17 +12,22 @@ import DeckChoice from './components/DeckChoice';
 import axios from 'axios';
 import DeckBoard from './components/DeckBoard';
 import HomeMusic from './components/audio/musics/binarpilot-underground.mp3';
+import DefeatJingle from './components/audio/musics/defeat_jingle.ogg';
+import WinJingle from './components/audio/musics/win-jingle.mp3';
+import EgalityJingle from './components/audio/musics/egality-jingle.mp3';
 import CardTransition from './components/audio/effects/Card_Transition_Out.ogg';
 import AttackCardEffect from './components/audio/effects/KingKrush_StompMed_1.ogg';
-//import DefeatJingle from './components/audio/effects/defeat_jingle.ogg';
 import Draw from './components/audio/effects/add_card_to_hand_2.ogg';
+import SelectSound from './components/audio/effects/select_AI_opponent.ogg';
+import IaTurnSound from './components/audio/effects/taunt_shield_up.ogg';
+import PlayerTurnSound from './components/audio/effects/hero_weapon_draw.ogg';
 class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
       cards: [],
       deck: [],
-      maxPower: 800,
+      maxPower: 200,
       audioOn: false,
       musicOn: false,
       effectsOn: true
@@ -33,6 +38,12 @@ class App extends Component {
   audioCardOnBoard = React.createRef();
   audioAttackCard = React.createRef();
   audioDraw = React.createRef();
+  audioDefeat = React.createRef();
+  audioWin = React.createRef();
+  audioEgality = React.createRef();
+  audioSelect = React.createRef();
+  audioIaTurn = React.createRef();
+  audioPlayerTurn = React.createRef();
 
   handlePlayMusic = () => {
     const audio = this.audioMusic.current;
@@ -128,6 +139,24 @@ class App extends Component {
             <audio ref={this.audioDraw} preload='metadata'>
               <source src={Draw} type='audio/mp3' />
             </audio>
+            <audio ref={this.audioDefeat} preload='metadata'>
+              <source src={DefeatJingle} type='audio/mp3' />
+            </audio>
+            <audio ref={this.audioWin} preload='metadata'>
+              <source src={WinJingle} type='audio/mp3' />
+            </audio>
+            <audio ref={this.audioEgality} preload='metadata'>
+              <source src={EgalityJingle} type='audio/mp3' />
+            </audio>
+            <audio ref={this.audioSelect} preload='metadata'>
+              <source src={SelectSound} type='audio/mp3' />
+            </audio>
+            <audio ref={this.audioIaTurn} preload='metadata'>
+              <source src={IaTurnSound} type='audio/mp3' />
+            </audio>
+            <audio ref={this.audioPlayerTurn} preload='metadata'>
+              <source src={PlayerTurnSound} type='audio/mp3' />
+            </audio>
           </div>
           <Router>
             <Switch>
@@ -140,7 +169,7 @@ class App extends Component {
                 <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
               </Route>
               <Route path='/deckboard'>
-                <DeckBoard audioDraw={this.audioDraw} audioAttackCard={this.audioAttackCard} audioCardOnBoard={this.audioCardOnBoard} onPlayEffects={this.handlePlayEffects} lastCard={this.state.lastCard} heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
+                <DeckBoard audioPlayerTurn={this.audioPlayerTurn} audioIaTurn={this.audioIaTurn} audioSelect={this.audioSelect} audioEgality={this.audioEgality} audioWin={this.audioWin} audioDefeat={this.audioDefeat} audioDraw={this.audioDraw} audioAttackCard={this.audioAttackCard} audioCardOnBoard={this.audioCardOnBoard} onPlayEffects={this.handlePlayEffects} lastCard={this.state.lastCard} heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
               </Route>
             </Switch>
           </Router>
