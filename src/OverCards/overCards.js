@@ -94,7 +94,7 @@ const overCards = [
       relatives: '-'
     },
     image: {
-      url: 'https://ca.slack-edge.com/T6SG2QGG2-UTP1VG7H7-c5d1186112fc-512'
+      url: 'https://i.imgur.com/SWIB2eZ.png'
     }
   },
   {
@@ -143,7 +143,7 @@ const overCards = [
       relatives: '-'
     },
     image: {
-      url: 'https://ca.slack-edge.com/T6SG2QGG2-UT6C4V3K8-3dc643653133-512'
+      url: 'https://i.imgur.com/QSaGYRI.png'
     }
   },
 
@@ -342,7 +342,7 @@ const overCards = [
       relatives: '-'
     },
     image: {
-      url: 'https://i.imgur.com/l2oSLE8.png'
+      url: 'https://i.imgur.com/RrXNXID.png'
     }
   },
 

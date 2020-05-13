@@ -7,6 +7,7 @@ import _ from 'lodash';
 import Timer from './Timer';
 import PlayerTurn from './PlayerTurn';
 import History from './History';
+import IaTurn from './IaTurn'
 
 const delay = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 class DeckBoard extends React.Component {
@@ -18,6 +19,7 @@ class DeckBoard extends React.Component {
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
       cardsAvalaibleForIA: [],
       isYourTurnDisplay: true,
+      isIaTurnDisplay: false,
       endGame: undefined,
       showModal: false,
       lastCard: undefined,
@@ -218,13 +220,20 @@ class DeckBoard extends React.Component {
   }
 
   handleIaTurn = async () => {
-    this.props.onPlayEffects(this.props.audioIaTurn);
+
     if (this.state.endGame === undefined) {
+      this.props.onPlayEffects(this.props.audioIaTurn);
       if (this.state.isAllowedToPutCardOnBoard) {
         this.handleHandToBoardPlayer();
-      }
 
-      this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
+        await delay(1000);
+
+      }
+      this.setState({ isIaTurnDisplay: true, playerTurn: false});
+  
+      await delay(2000);
+  
+      this.setState({ isIaTurnDisplay: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
       const heroesSelected = this.state.heroesChosen.map(heroe => {
         return { ...heroe, selected: false, isAbleToAttack: true };
       });
@@ -327,6 +336,7 @@ class DeckBoard extends React.Component {
               <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard} />
             </div>
             {this.state.isYourTurnDisplay && <p className='playerTurn'><PlayerTurn playerTurn={this.state.playerTurn} pseudo={this.props.pseudo} /></p>}
+            {this.state.isIaTurnDisplay && <p className='playerTurn'><IaTurn /></p>}
             <div className='boardPlayer1'> {/* board of Player1 */}
               <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} playerTurn={this.state.playerTurn} />
             </div>
@@ -366,13 +376,13 @@ const Modals = ({ showModal, endGame, pseudo }) => {
     endGameTitle = `Sucker ${pseudo}, looks like you're a PHP player, you're a noob!`;
     enGameImage = 'https://media.giphy.com/media/mcH0upG1TeEak/giphy.gif';
   } else if (endGame === 'win') {
-    endGameTitle = `You've goat it ${pseudo}!`;
+    endGameTitle = `You've goat it ${pseudo} !`;
     enGameImage = 'https://media.giphy.com/media/3hvmlYNsOTFWE/giphy.gif';
   }
   return (
     <div className={showHideClassName}>
       <section id='enGame-settings' className='modal-main'>
-        <h2>{endGameTitle}</h2>
+        <h2 className='endGameTitle'>{endGameTitle}</h2>
         <div className='endGameImg-Container'>
           <img src={enGameImage} alt={endGame} />
         </div>

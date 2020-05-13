@@ -2,7 +2,7 @@ import React from 'react';
 
 function PlayerTurn (props) {
   return (
-    <>It's your turn {props.pseudo}!</>
+    <>It's your turn {props.pseudo} !</>
   );
 }
 

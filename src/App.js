@@ -12,7 +12,6 @@ import DeckChoice from './components/DeckChoice';
 import axios from 'axios';
 import DeckBoard from './components/DeckBoard';
 import HomeMusic from './components/audio/musics/undertale-papyrus-theme-song-bonetrousle.mp3';
-import MegalovaniaSong from './components/audio/musics/undertale-ost-100-megalovania.mp3';
 import DefeatJingle from './components/audio/musics/defeat_jingle.ogg';
 import WinJingle from './components/audio/musics/win-jingle.mp3';
 import EgalityJingle from './components/audio/musics/egality-jingle.mp3';
@@ -24,7 +23,6 @@ import IaTurnSound from './components/audio/effects/taunt_shield_up.ogg';
 import PlayerTurnSound from './components/audio/effects/hero_weapon_draw.ogg';
 import overCards from './OverCards/overCards';
 import removeCardSound from './components/audio/effects/text_box_delete_text.ogg';
-import _ from 'lodash';
 
 class App extends Component {
   constructor (props) {
@@ -37,13 +35,11 @@ class App extends Component {
       effectsOn: true,
       musicVolume: 50,
       effectsVolume: 50,
-      pseudo: 'Player 1',
-      lastRandomizedMusic: undefined
+      pseudo: 'Player 1'
     };
   }
 
   audioMusic = React.createRef();
-  audioMegalovania = React.createRef();
   audioCardOnBoard = React.createRef();
   audioAttackCard = React.createRef();
   audioDraw = React.createRef();
@@ -69,14 +65,8 @@ class App extends Component {
   }
 
   handlePlayMusic = () => {
-    // const musicArray = [this.audioMusic.current, this.audioMegalovania.current];
-    // if (this.state.lastRandomizedMusic !== undefined){
-    //   const lastAudio = musicArray[this.state.lastRandomizedMusic]
-    //   lastAudio.pause();
-    // }
-    // const randomNumb = Math.floor(Math.random() * musicArray.length);
     const audio = this.audioMusic.current;
-    console.log(audio)
+    console.log(audio);
     audio.volume = this.state.musicVolume * 0.01;
     this.setState({ musicOn: !this.state.musicOn });
     audio.paused ? audio.play() : audio.pause();
@@ -104,7 +94,8 @@ class App extends Component {
   }
 
   getHeroesFromAPI = () => {
-    const url = 'https://heroes-api-wrapper.herokuapp.com/heroes?heroIds=354,310,555,711,527,313,638,307,566,381,514,214,561,165,692,341,298,251,107,383,127,30,352,201,196,522,634,627,530,418,551,708,630,599,538,370,398,228,149,480,106,729,309,207,542,333,208,536,431,225,649,60,226,69,678,487,457,145,345,299,361,350,405,602236,620,216717,213,176,581,687,386,414,322,600,303,280,690,467,416,485,423,572,38,697,732,396,275,389,498,476,703,680,185,157,658,325,574,289,308,195,686,645,631,502,232,332,287,659,655,517,35';
+    // const url = 'https://heroes-api-wrapper.herokuapp.com/heroes?heroIds=354,310,555,711,527,313,638,307,566,381,514,214,561,165,692,341,298,251,107,383,127,30,352,201,196,522,634,627,530,418,551,708,630,599,538,370,398,228,149,480,106,729,309,207,542,333,208,536,431,225,649,60,226,69,678,487,457,145,345,299,361,350,405,602236,620,216717,213,176,581,687,386,414,322,600,303,280,690,467,416,485,423,572,38,697,732,396,275,389,498,476,703,680,185,157,658,325,574,289,308,195,686,645,631,502,232,332,287,659,655,517,35';
+    const url = 'https://heroes-api-wrapper.herokuapp.com/heroes?heroIds=354,310,555,711,527,313,638,307,566,381,514,214,561,165,692,341,298,251,107,383,127,30,352,201,196,522,634,627,530,418,551,708,630,599,538,370,398,228,149,480,106,729,309,207,542,333,208,536,431,225,649,60,226,69,678,487,457,145,345,299,361,350,405,602236,620,216717,213,176,581,687,386,414,322,600,303,280,690,467,416,485,423,572,38,697,732,396,275,389,498';
     axios.get(url)
       .then(res => res.data)
       .then(data => {
@@ -134,12 +125,12 @@ class App extends Component {
     if (copieDeck.filter(heroe => cardName === heroe.name).length === 0) {
       if (totalPower + this.state.cards.filter(heroe => cardName === heroe.name)[0].power <= maxPower) {
         copieDeck.push(this.state.cards.filter(heroe => cardName === heroe.name)[0]);
-        this.handlePlayEffects(this.audioDraw)
+        this.handlePlayEffects(this.audioDraw);
       } else {
         window.alert('Please, select a less powerful card or start the game');
       }
     } else {
-      this.handlePlayEffects(this.audioRemoveCardSound)
+      this.handlePlayEffects(this.audioRemoveCardSound);
       copieDeck = copieDeck.filter(heroe => !cardName.includes(heroe.name));
     }
     this.setState({ deck: copieDeck });
@@ -162,11 +153,8 @@ class App extends Component {
         </div>
         <div className='App'>
           <div className='music'>
-            <audio ref={this.audioMusic} preload='metadata'>
+            <audio loop ref={this.audioMusic} preload='metadata'>
               <source src={HomeMusic} type='audio/mp3' />
-            </audio>
-            <audio ref={this.audioMegalovania} preload='metadata'>
-              <source src={MegalovaniaSong} type='audio/mp3' />
             </audio>
             <audio ref={this.audioCardOnBoard} preload='metadata'>
               <source src={CardTransition} type='audio/mp3' />

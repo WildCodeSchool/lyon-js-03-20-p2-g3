@@ -151,6 +151,10 @@
   max-width: 60vw;
 }
 
+.endGameTitle {
+  line-height: 1.5rem;
+}
+
 .endGameImg-Container {
   margin: 2rem;
 }
