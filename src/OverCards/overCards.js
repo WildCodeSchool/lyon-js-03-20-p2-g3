@@ -5,11 +5,11 @@ const overCards = [
     name: 'PHP',
     powerstats: {
       intelligence: '1',
-      strength: '1',
+      strength: '0',
       speed: '100',
       durability: '1',
       power: '1',
-      combat: '1'
+      combat: '0'
     },
     biography: {
       'full-name': 'PHP',
@@ -48,6 +48,104 @@ const overCards = [
       url: 'https://i.imgur.com/UjPbwP3.png'
     }
   },
+  {
+    response: 'success',
+    id: '101234',
+    name: 'Vianney',
+    powerstats: {
+      intelligence: '100',
+      strength: '80',
+      speed: '60',
+      durability: '90',
+      power: '78',
+      combat: '80'
+    },
+    biography: {
+      'full-name': 'Vianney',
+      'alter-egos': '-',
+      aliases: [
+        '-'
+      ],
+      'place-of-birth': '-',
+      'first-appearance': '-',
+      publisher: '',
+      alignment: ''
+    },
+    appearance: {
+      gender: 'Male',
+      race: 'Human',
+      height: [
+        '',
+        ''
+      ],
+      weight: [
+        '- lb',
+        '121 kg'
+      ],
+      'eye-color': '',
+      'hair-color': '-'
+    },
+    work: {
+      occupation: 'Cards',
+      base: '-'
+    },
+    connections: {
+      'group-affiliation': '-',
+      relatives: '-'
+    },
+    image: {
+      url: 'https://ca.slack-edge.com/T6SG2QGG2-UTP1VG7H7-c5d1186112fc-512'
+    }
+  },
+  {
+    response: 'success',
+    id: '10435',
+    name: 'Flo',
+    powerstats: {
+      intelligence: '80',
+      strength: '80',
+      speed: '70',
+      durability: '65',
+      power: '75',
+      combat: '0'
+    },
+    biography: {
+      'full-name': 'Florent',
+      'alter-egos': 'Rainbow Flo',
+      aliases: [
+        '-'
+      ],
+      'place-of-birth': '-',
+      'first-appearance': '-',
+      publisher: '',
+      alignment: ''
+    },
+    appearance: {
+      gender: 'Male',
+      race: 'Human',
+      height: [
+        '',
+        ''
+      ],
+      weight: [
+        '- lb',
+        '11 kg'
+      ],
+      'eye-color': '',
+      'hair-color': '-'
+    },
+    work: {
+      occupation: 'Disney',
+      base: '-'
+    },
+    connections: {
+      'group-affiliation': '-',
+      relatives: '-'
+    },
+    image: {
+      url: 'https://ca.slack-edge.com/T6SG2QGG2-UT6C4V3K8-3dc643653133-512'
+    }
+  },
 
   {
     response: 'success',
@@ -68,7 +166,7 @@ const overCards = [
         '-'
       ],
       'place-of-birth': 'Tatooine',
-      'first-appearance': '-',
+      'first-appearance': 'Episode IV',
       publisher: '',
       alignment: ''
     },
@@ -91,11 +189,11 @@ const overCards = [
       base: '-'
     },
     connections: {
-      'group-affiliation': '-',
+      'group-affiliation': 'Jedi',
       relatives: '-'
     },
     image: {
-      url: 'https://ca.slack-edge.com/T6SG2QGG2-UTCML8PG8-aed4d111621c-512'
+      url: 'https://i.imgur.com/hFMNHOw.png'
     }
   },
   {
@@ -137,7 +235,7 @@ const overCards = [
       'hair-color': '-'
     },
     work: {
-      occupation: '-',
+      occupation: 'Dictator',
       base: '-'
     },
     connections: {
@@ -145,7 +243,7 @@ const overCards = [
       relatives: '-'
     },
     image: {
-      url: 'https://ca.slack-edge.com/T6SG2QGG2-UN9U736BV-f497c1c9539d-512'
+      url: 'https://i.imgur.com/FAuL3Mq.png'
     }
   },
   {
@@ -180,10 +278,10 @@ const overCards = [
       ],
       weight: [
         '- lb',
-        '- kg'
+        '64 kg'
       ],
       'eye-color': '',
-      'hair-color': '-'
+      'hair-color': 'yellow'
     },
     work: {
       occupation: 'forms',
@@ -194,7 +292,7 @@ const overCards = [
       relatives: '-'
     },
     image: {
-      url: 'https://ca.slack-edge.com/T6SG2QGG2-UUQLLQ1PH-5550e8863dcf-512'
+      url: 'https://i.imgur.com/kOzueVY.png'
     }
   },
 
@@ -244,7 +342,7 @@ const overCards = [
       relatives: '-'
     },
     image: {
-      url: 'https://guillaume-richard.fr/wp-content/uploads/2019/06/JavaScript_logo.png'
+      url: 'https://i.imgur.com/l2oSLE8.png'
     }
   },
 
@@ -257,7 +355,7 @@ const overCards = [
       strength: '99',
       speed: '100',
       durability: '60',
-      power: '2000',
+      power: '20',
       combat: '100'
     },
     biography: {
@@ -295,6 +393,56 @@ const overCards = [
     },
     image: {
       url: 'https://i.imgur.com/cXQKgHk.png'
+    }
+  },
+
+  {
+    response: 'success',
+    id: '6666',
+    name: 'Riri',
+    powerstats: {
+      intelligence: '100',
+      strength: '20',
+      speed: '100',
+      durability: '42',
+      power: '100',
+      combat: '0'
+    },
+    biography: {
+      'full-name': 'Riri',
+      'alter-egos': 'Débuggeur de l\'extrême',
+      aliases: [
+        '-'
+      ],
+      'place-of-birth': '',
+      'first-appearance': '-',
+      publisher: '',
+      alignment: ''
+    },
+    appearance: {
+      gender: 'Human',
+      race: 'Human',
+      height: [
+        '',
+        ''
+      ],
+      weight: [
+        '- lb',
+        '101000 kg'
+      ],
+      'eye-color': '',
+      'hair-color': '-'
+    },
+    work: {
+      occupation: 'forms',
+      base: '-'
+    },
+    connections: {
+      'group-affiliation': '-',
+      relatives: '-'
+    },
+    image: {
+      url: 'https://i.imgur.com/Mx8JDrw.png'
     }
   }
 ];

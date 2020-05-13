@@ -349,13 +349,13 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.heroesChosen} />
           </div>
         </div>
-        <Modals showModal={this.state.showModal} endGame={this.state.endGame} />
+        <Modals showModal={this.state.showModal} endGame={this.state.endGame} pseudo={this.props.pseudo} />
       </div>
     );
   }
 }
 
-const Modals = ({ showModal, endGame }) => {
+const Modals = ({ showModal, endGame, pseudo }) => {
   const showHideClassName = showModal ? 'modal display-block' : 'modal display-none';
   let endGameTitle = '';
   let enGameImage = '';
@@ -363,10 +363,10 @@ const Modals = ({ showModal, endGame }) => {
     endGameTitle = 'Fatali ... equality !';
     enGameImage = 'https://media.giphy.com/media/6w6TEAATeBik8/giphy.gif';
   } else if (endGame === 'lose') {
-    endGameTitle = 'Sucker, noob !';
+    endGameTitle = `Sucker ${pseudo}, looks like you're a PHP player, you're a noob!`;
     enGameImage = 'https://media.giphy.com/media/mcH0upG1TeEak/giphy.gif';
   } else if (endGame === 'win') {
-    endGameTitle = 'You\'ve goat it !';
+    endGameTitle = `You've goat it ${pseudo}!`;
     enGameImage = 'https://media.giphy.com/media/3hvmlYNsOTFWE/giphy.gif';
   }
   return (

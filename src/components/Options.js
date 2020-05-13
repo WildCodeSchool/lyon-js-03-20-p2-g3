@@ -3,7 +3,6 @@ import Button from './Button';
 import './Options.css';
 
 const Options = ({ onPlayMusic, effectsOn, musicOn, triggerEffects, onMusicVolume, musicVolume, onEffectsVolume, effectsVolume, pseudo, onChangePseudo }) => {
-
   return (
     <div className='options-container'>
       <nav className='options-navbar'>
