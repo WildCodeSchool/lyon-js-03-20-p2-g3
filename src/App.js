@@ -29,12 +29,13 @@ class App extends Component {
     this.state = {
       cards: [],
       deck: [],
-      maxPower: 200,
+      maxPower: 800,
       audioOn: false,
       musicOn: false,
       effectsOn: true,
       musicVolume: 50,
-      effectsVolume: 50
+      effectsVolume: 50,
+      pseudo: 'Player 1'
     };
   }
 
@@ -65,7 +66,7 @@ class App extends Component {
   handlePlayMusic = () => {
     const audio = this.audioMusic.current;
     audio.volume = this.state.musicVolume * 0.01;
-    audio.paused ? this.setState({ musicOn: false }) : this.setState({ musicOn: true });
+    this.setState({ musicOn : !this.state.musicOn })
     return audio.paused ? audio.play() : audio.pause();
   }
 
@@ -80,6 +81,10 @@ class App extends Component {
 
   triggerEffects = () => {
     this.setState({ effectsOn: !this.state.effectsOn });
+  }
+
+  handleChangePseudo = (event) => {
+    this.setState({ pseudo : event.target.value })
   }
 
   componentDidMount () {
@@ -179,14 +184,14 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/options'>
-                <Options onPlayMusic={this.handlePlayMusic} onPlayEffects={this.handlePlayEffects} audioOn={this.state.audioOn} musicOn={this.state.musicOn} effectsOn={this.state.effectsOn} triggerEffects={this.triggerEffects} onMusicVolume={this.handleMusicVolume} musicVolume={this.state.musicVolume} onEffectsVolume={this.handleEffectsVolume} effectsVolume={this.state.effectsVolume} />
+                <Options onPlayMusic={this.handlePlayMusic} onPlayEffects={this.handlePlayEffects} audioOn={this.state.audioOn} musicOn={this.state.musicOn} effectsOn={this.state.effectsOn} triggerEffects={this.triggerEffects} onMusicVolume={this.handleMusicVolume} musicVolume={this.state.musicVolume} onEffectsVolume={this.handleEffectsVolume} effectsVolume={this.state.effectsVolume} pseudo={this.state.pseudo} onChangePseudo={this.handleChangePseudo} />
               </Route>
               <Route path='/rules' component={Rules} />
               <Route path='/deckchoice'>
-                <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
+                <DeckChoice heroes={this.state.cards} heroesChosen={this.state.deck} addToDeck={this.addToDeck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} pseudo={this.state.pseudo} />
               </Route>
               <Route path='/deckboard'>
-                <DeckBoard audioPlayerTurn={this.audioPlayerTurn} audioIaTurn={this.audioIaTurn} audioSelect={this.audioSelect} audioEgality={this.audioEgality} audioWin={this.audioWin} audioDefeat={this.audioDefeat} audioDraw={this.audioDraw} audioAttackCard={this.audioAttackCard} audioCardOnBoard={this.audioCardOnBoard} onPlayEffects={this.handlePlayEffects} lastCard={this.state.lastCard} heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} />
+                <DeckBoard audioPlayerTurn={this.audioPlayerTurn} audioIaTurn={this.audioIaTurn} audioSelect={this.audioSelect} audioEgality={this.audioEgality} audioWin={this.audioWin} audioDefeat={this.audioDefeat} audioDraw={this.audioDraw} audioAttackCard={this.audioAttackCard} audioCardOnBoard={this.audioCardOnBoard} onPlayEffects={this.handlePlayEffects} lastCard={this.state.lastCard} heroes={this.state.cards} heroesChosen={this.state.deck} removeDeck={this.removeDeck} maxPower={this.state.maxPower} pseudo={this.state.pseudo} />
               </Route>
             </Switch>
           </Router>

@@ -1,7 +1,8 @@
+
 .cardList {
     width:75%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     overflow: auto;
     height: 100%;

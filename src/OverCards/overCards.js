@@ -45,7 +45,7 @@ const overCards = [
       relatives: '-'
     },
     image: {
-      url: 'https://www.alsacreations.com/xmedia/doc/medium/php-logo.png'
+      url: 'https://i.imgur.com/UjPbwP3.png'
     }
   },
 
@@ -145,9 +145,60 @@ const overCards = [
       relatives: '-'
     },
     image: {
-      url: 'https://www.wildcodeschool.com/uploads/5df54019269bb7888a9bd031b622c78e.jpg-MatthieuMartinot.jpg'
+      url: 'https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s5dde8bff85c81b2f/image/i0ba067fd6655cba9/version/1560843572/cacatoes-%C3%A0-huppe-jaune-fiche-oiseaux-poids-taille-habitat-animal-facts-bird-sulphur-crested-cockatoo.jpg'
     }
   },
+  {
+    response: 'success',
+    id: '101001',
+    name: 'Baptiste',
+    powerstats: {
+      intelligence: 50,
+      strength: 60,
+      speed: 80,
+      durability: 80,
+      power: 60,
+      combat: 70,
+    },
+    biography: {
+      'full-name': 'JS',
+      'alter-egos': 'The Language',
+      aliases: [
+        '-'
+      ],
+      'place-of-birth': '-',
+      'first-appearance': '-',
+      publisher: '',
+      alignment: ''
+    },
+    appearance: {
+      gender: '',
+      race: '',
+      height: [
+        '',
+        ''
+      ],
+      weight: [
+        '- lb',
+        '- kg'
+      ],
+      'eye-color': '',
+      'hair-color': '-'
+    },
+    work: {
+      occupation: 'forms',
+      base: '-'
+    },
+    connections: {
+      'group-affiliation': '-',
+      relatives: '-'
+    },
+    image: {
+      url: 'https://ca.slack-edge.com/T6SG2QGG2-UUQLLQ1PH-5550e8863dcf-512'
+    }
+  },
+
+  
 
   {
     response: 'success',
@@ -197,7 +248,57 @@ const overCards = [
     image: {
       url: 'https://guillaume-richard.fr/wp-content/uploads/2019/06/JavaScript_logo.png'
     }
-  }
+  },  
+
+  {
+    response: 'success',
+    id: '666',
+    name: 'Pascal',
+    powerstats: {
+      intelligence: '100',
+      strength: '99',
+      speed: '100',
+      durability: '60',
+      power: '2000',
+      combat: '100'
+    },
+    biography: {
+      'full-name': 'Pascal',
+      'alter-egos': 'Déménageur de l\'extrême',
+      aliases: [
+        '-'
+      ],
+      'place-of-birth': '',
+      'first-appearance': '-',
+      publisher: '',
+      alignment: ''
+    },
+    appearance: {
+      gender: 'Human',
+      race: 'Human',
+      height: [
+        '',
+        ''
+      ],
+      weight: [
+        '- lb',
+        '101 kg'
+      ],
+      'eye-color': '',
+      'hair-color': '-'
+    },
+    work: {
+      occupation: 'forms',
+      base: '-'
+    },
+    connections: {
+      'group-affiliation': '-',
+      relatives: '-'
+    },
+    image: {
+      url: 'https://i.imgur.com/cXQKgHk.png'
+    }
+  },
 ];
 
 export default overCards;

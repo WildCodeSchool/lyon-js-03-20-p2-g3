@@ -10,7 +10,7 @@
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
-  margin: 20px;
+  margin-bottom: 10px;
 }
 .card *{
   cursor: pointer;
@@ -55,6 +55,7 @@
   .card{
     width: 240px;
     height: 300px;
+    margin-bottom: 30px;
   }
   .imageCard{
     width: 150px;
