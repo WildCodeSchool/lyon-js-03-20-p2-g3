@@ -30,13 +30,13 @@ function Rules () {
         <RulesCard
           image={Deckchoice1}
           alt='image showing the maximum total power.'
-          nameOfRule='Choice of deck - 1'
+          nameOfRule='Deck choice - 1'
           textRule='Your deck must not exceed the maximum total power authorized.'
         />
         <RulesCard
           image={DeckchoiceDesktop}
           alt='image showing the maximum total power.'
-          nameOfRule='Choice of deck - 2'
+          nameOfRule='Deck choice - 2'
           textRule='No restrictions in terms of cards’ number.'
         />
         <RulesCard

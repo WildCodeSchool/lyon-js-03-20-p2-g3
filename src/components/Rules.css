@@ -27,7 +27,7 @@ body {
     display: flex;
 	flex-wrap: wrap;
     justify-content: space-around;
-    height: 90vh;
+    height: auto;
     overflow: auto;
 }
 
@@ -35,11 +35,11 @@ body {
     border: 2px solid rgb(243, 243, 147);
     border-radius: 10px;
     background:no-repeat center/100% url('https://cdn.pixabay.com/photo/2014/10/04/15/29/paper-473630_960_720.jpg');
-    width: 30%;
+    width: 45%;
     height: 80vh;
     margin-bottom: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
 }
@@ -83,7 +83,8 @@ body {
     }
 
     .singleCard {
-        width: 45%;
+        width: 75%;
+        height: 160vh;
     }
     
     .NavRules {
@@ -91,10 +92,15 @@ body {
     }
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (max-width: 897px) {
 
     .explanation {
         font-size: 0.4rem;
+    }
+
+    .singleCard {
+        width: 60%;
+        height: 120vh;
     }
 
 }
@@ -110,7 +116,7 @@ body {
 @media only screen and (min-width: 1800px) {
 
     .explanation {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
 }
