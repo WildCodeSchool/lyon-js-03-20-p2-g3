@@ -30,7 +30,6 @@ class App extends Component {
       cards: [],
       deck: [],
       maxPower: 800,
-      audioOn: false,
       musicOn: false,
       effectsOn: true,
       musicVolume: 50,
@@ -184,7 +183,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/options'>
-                <Options onPlayMusic={this.handlePlayMusic} onPlayEffects={this.handlePlayEffects} audioOn={this.state.audioOn} musicOn={this.state.musicOn} effectsOn={this.state.effectsOn} triggerEffects={this.triggerEffects} onMusicVolume={this.handleMusicVolume} musicVolume={this.state.musicVolume} onEffectsVolume={this.handleEffectsVolume} effectsVolume={this.state.effectsVolume} pseudo={this.state.pseudo} onChangePseudo={this.handleChangePseudo} />
+                <Options onPlayMusic={this.handlePlayMusic} onPlayEffects={this.handlePlayEffects} musicOn={this.state.musicOn} effectsOn={this.state.effectsOn} triggerEffects={this.triggerEffects} onMusicVolume={this.handleMusicVolume} musicVolume={this.state.musicVolume} onEffectsVolume={this.handleEffectsVolume} effectsVolume={this.state.effectsVolume} pseudo={this.state.pseudo} onChangePseudo={this.handleChangePseudo} />
               </Route>
               <Route path='/rules' component={Rules} />
               <Route path='/deckchoice'>

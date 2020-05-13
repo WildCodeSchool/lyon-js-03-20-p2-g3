@@ -47,9 +47,6 @@ class DeckBoard extends React.Component {
   endGameVerify = () => {
     const deadCardsPlayerLength = this.state.heroesChosen.filter(heroe => heroe.position !== 'dead').length;
     const deadCardsIaLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position !== 'dead').length;
-    console.log(deadCardsPlayerLength);
-    console.log(deadCardsIaLength);
-
     if (deadCardsPlayerLength === 0 && deadCardsIaLength === 0) {
       this.setState({ endGame: 'equality' }); // affichage d'égalité
       console.log('equality');
