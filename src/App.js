@@ -21,6 +21,8 @@ import Draw from './components/audio/effects/add_card_to_hand_2.ogg';
 import SelectSound from './components/audio/effects/select_AI_opponent.ogg';
 import IaTurnSound from './components/audio/effects/taunt_shield_up.ogg';
 import PlayerTurnSound from './components/audio/effects/hero_weapon_draw.ogg';
+import overCards from './OverCards/overCards';
+
 class App extends Component {
   constructor (props) {
     super(props);
@@ -74,7 +76,7 @@ class App extends Component {
     axios.get(url)
       .then(res => res.data)
       .then(data => {
-        const tabHeroes = data.map(heroe => {
+        const tabHeroes = [...data,...overCards].map(heroe => {
           return {
             name: heroe.name,
             img: heroe.image.url,

@@ -8,6 +8,7 @@ import Timer from './Timer';
 import PlayerTurn from './PlayerTurn';
 import History from './History';
 
+
 const delay = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 class DeckBoard extends React.Component {
   constructor (props) {
