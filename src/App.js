@@ -52,13 +52,13 @@ class App extends Component {
   handleEffectsVolume = (event) => {
     let effectsVolume = this.state.effectsVolume;
     effectsVolume = event.target.value;
-    this.setState({ effectsVolume })
+    this.setState({ effectsVolume });
   }
 
   handleMusicVolume = (event) => {
     let musicVolume = this.state.musicVolume;
     musicVolume = event.target.value;
-    this.setState({ musicVolume })
+    this.setState({ musicVolume });
     this.audioMusic.current.volume = this.state.musicVolume * 0.01;
   }
 

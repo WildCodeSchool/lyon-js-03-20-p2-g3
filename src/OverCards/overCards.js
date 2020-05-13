@@ -4,12 +4,12 @@ const overCards = [
     id: '101',
     name: 'PHP',
     powerstats: {
-      intelligence: '1',
+      intelligence: '0',
       strength: '0',
-      speed: '1',
+      speed: '100',
       durability: '0',
       power: '1',
-      combat: '1'
+      combat: '0'
     },
     biography: {
       'full-name': 'PHP',
