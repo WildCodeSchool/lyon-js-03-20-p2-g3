@@ -64,7 +64,6 @@ body {
     line-height: 1.6;
     text-align: justify;
     font-weight: bold;
-    /* height: 50%; */
     width: 100%;
     display: flex;
     flex-direction: column;
