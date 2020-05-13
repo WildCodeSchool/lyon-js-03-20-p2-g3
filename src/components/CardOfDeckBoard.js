@@ -1,11 +1,14 @@
 import React from 'react';
 import './CardOfDeckBoard.css';
 
-function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard, playerTurn }) {
+function CardOfDeckBoard ({ selected, heroe, switchCards, lastCard, onHandToBoard, onSelectedCard, onAttackIaCard, playerTurn }) {
   const handleClickOnCardOfDeckBoard = () => {
-    // Ajoute la carte P1 sur le board
     if (heroe.position === 'hand' && playerTurn) {
-      return onHandToBoard(heroe.name);
+      if (!lastCard) {
+        return onHandToBoard(heroe.name);
+      } else {
+        return switchCards(heroe.name);
+      }
     } else if (heroe.position === 'board' && !heroe.iaDeck && playerTurn) {
       return onSelectedCard(heroe.name);
     } else if (heroe.iaDeck && heroe.position === 'board') {
@@ -15,15 +18,16 @@ function CardOfDeckBoard ({ heroe, onHandToBoard, onSelectedCard, onAttackIaCard
 
   return (
     <div
-      className={heroe.selected === true ? 'cardBoard toggleCardSelect' //
-        : heroe.position === 'hand' && !heroe.iaDeck ? 'handCard cardBoard'
-          : heroe.isFighting ? 'cardBoard fighting'
-            : 'cardBoard'}
+      className={heroe.selected ? 'cardBoard toggleCardSelect' // classe pour la carte selectionnée sur le board
+        : heroe.position === 'hand' && !heroe.iaDeck ? 'handCard cardBoard' // classe animation au hover dans la main joueur
+          : heroe.isFighting ? 'cardBoard fighting' // classe animation d'attaque
+            : heroe.position === 'hand' && heroe.iaDeck ? 'cardBoard iaHandCards'
+              : 'cardBoard'}
       onClick={handleClickOnCardOfDeckBoard}
     >
-      <section className='pwBoard'>
+      {/* <section className='pwBoard'>
         {heroe.power} PW
-      </section>
+      </section> */}
       <img className='imageCardBoard' src={heroe.img} alt={heroe.name} />
       <section className='containerBottomBoard'>
         <div className='atkBoard'>

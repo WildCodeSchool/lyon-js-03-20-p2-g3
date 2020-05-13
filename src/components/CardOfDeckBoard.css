@@ -14,6 +14,13 @@
   transition: 0.4s ease-out;
 }
 
+.iaHandCards{
+  transform: rotate(90deg) scale(1.4);
+  background: no-repeat center/100% url('images/dosDeCarte.png');
+}
+.iaHandCards .imageCardBoard , .iaHandCards .atkBoard, .iaHandCards .hpBoard{
+  display: none;
+}
 .fighting {  
   animation: shake 0.5s;
   animation-iteration-count: infinite;
