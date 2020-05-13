@@ -32,7 +32,9 @@ class App extends Component {
       maxPower: 200,
       audioOn: false,
       musicOn: false,
-      effectsOn: true
+      effectsOn: true,
+      musicVolume: 50,
+      effectsVolume: 50
     };
   }
 
@@ -47,16 +49,29 @@ class App extends Component {
   audioIaTurn = React.createRef();
   audioPlayerTurn = React.createRef();
 
+  handleEffectsVolume = (event) => {
+    let effectsVolume = this.state.effectsVolume;
+    effectsVolume = event.target.value;
+    this.setState({ effectsVolume })
+  }
+
+  handleMusicVolume = (event) => {
+    let musicVolume = this.state.musicVolume;
+    musicVolume = event.target.value;
+    this.setState({ musicVolume })
+    this.audioMusic.current.volume = this.state.musicVolume * 0.01;
+  }
+
   handlePlayMusic = () => {
     const audio = this.audioMusic.current;
-    audio.volume = 0.4;
+    audio.volume = this.state.musicVolume * 0.01;
     audio.paused ? this.setState({ musicOn: false }) : this.setState({ musicOn: true });
     return audio.paused ? audio.play() : audio.pause();
   }
 
   handlePlayEffects = (audioRef) => {
     const audio = audioRef.current;
-    audio.volume = 0.4;
+    audio.volume = this.state.effectsVolume * 0.01;
     if (this.state.effectsOn) {
       audio.currentTime = 0;
       audio.play();
@@ -76,7 +91,7 @@ class App extends Component {
     axios.get(url)
       .then(res => res.data)
       .then(data => {
-        const tabHeroes = [...data,...overCards].map(heroe => {
+        const tabHeroes = [...data, ...overCards].map(heroe => {
           return {
             name: heroe.name,
             img: heroe.image.url,
@@ -121,7 +136,7 @@ class App extends Component {
         <div className='portrait'>
           <h1 className='h1-home'>Cards Battle of Heroes</h1>
           <img
-            class='phone'
+            className='phone'
             src='https://karagezwebstudio.com/fr/img/rotate.gif'
             alt='turn phone'
           />
@@ -164,7 +179,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/options'>
-                <Options onPlayMusic={this.handlePlayMusic} onPlayEffects={this.handlePlayEffects} audioOn={this.state.audioOn} musicOn={this.state.musicOn} effectsOn={this.state.effectsOn} triggerEffects={this.triggerEffects} />
+                <Options onPlayMusic={this.handlePlayMusic} onPlayEffects={this.handlePlayEffects} audioOn={this.state.audioOn} musicOn={this.state.musicOn} effectsOn={this.state.effectsOn} triggerEffects={this.triggerEffects} onMusicVolume={this.handleMusicVolume} musicVolume={this.state.musicVolume} onEffectsVolume={this.handleEffectsVolume} effectsVolume={this.state.effectsVolume} />
               </Route>
               <Route path='/rules' component={Rules} />
               <Route path='/deckchoice'>
