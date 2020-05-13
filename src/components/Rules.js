@@ -55,11 +55,11 @@ function Rules () {
           image={BoardYourTurn2}
           alt='image showing a new card on the hand from the deck'
           nameOfRule='Board, Your turn - 2'
-          textRule='To begin your turn, the game draw you a card from your deck.'
+          textRule='To begin your turn, the game draws you a card from your deck.'
         />
         <RulesCard
           image={BoardYourTurn3}
-          alt='image showing the player adding a card from his hand on the board.'
+          alt='image showing the player adding a card from his hand onto the board.'
           nameOfRule='Board, Your turn - 3'
           textRule='You must place a card from your hand on the board.'
         />
@@ -67,7 +67,7 @@ function Rules () {
           image={BoardSwitchCard}
           alt='image showing the player switch a card from his hand.'
           nameOfRule='Board, Your turn - 4'
-          textRule='You can switch the last card you’ve put on the board during your turn'
+          textRule='You can switch the last card you’ve put on the board during your turn by clicking a card on your hand.'
         />
         <RulesCard
           image={BoardYourTurn4}
@@ -79,13 +79,13 @@ function Rules () {
           image={BoardYourTurn5}
           alt='image showing the timer at zero'
           nameOfRule='Board, Your turn - 6'
-          textRule='If you’ve not finished your turn before the time ran out, the game drag a card from your hand on the board randomly. You just had to be faster. Just assume it !'
+          textRule='If you’ve not finished your turn before the time ran out, the game drags a card from your hand on the board randomly. You just had to be faster. Just assume it !'
         />
         <RulesCard
           image={BoardDSMTurn1}
           alt='image showing Deus Sex Machina’s deck'
           nameOfRule='Board, Deus Sex Machina’s turn - 1'
-          textRule='His Serenissima knows the game. He knows that he has to draw a card from his deck at the start of his turn. He doesn’t complain, he owns it '
+          textRule='His Most Serene Highness knows the game. He knows that he has to draw a card from his deck at the start of his turn. He doesn’t complain, he owns it.'
         />
         <RulesCard
           image={BoardDSMTurn2}
@@ -97,7 +97,7 @@ function Rules () {
           image={BoardDSMTurn3}
           alt='image doesn’t showing Deus Sex Machina clicking on the “Rage Quit” button'
           nameOfRule="Board, Deus Sex Machina's turn - 4"
-          textRule='He’ll never click on the “Rage Quit” button, he assumes. (It’s the only game he’s allowed to play, so have some compassion for his Serenissima).'
+          textRule='He’ll never click on the “Rage Quit” button, he assumes. (It’s the only game he’s allowed to play, so have some compassion for hHis Most Serene Highness).'
         />
         <RulesCard
           image={BoardAttack}
@@ -121,7 +121,7 @@ function Rules () {
           image={DoNotRageQuit}
           alt='image showing crying smileys when the player press the “Rage Quit” button'
           nameOfRule='Be compassionate'
-          textRule='If you don’t assume your defeat, you can press the “Rage Quit” button. His Serenessima assumes its defeats, so have some consideration for this sensitive machine.'
+          textRule='If you don’t assume your defeat, you can press the “Rage Quit” button. His Most Serene Highness assumes its defeats, so have some consideration for this sensitive machine.'
         />
       </div>
     </div>

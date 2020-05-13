@@ -4,8 +4,8 @@ import './Options.css';
 import HomeMusic from './audio/effects/text_commit.ogg';
 
 class Options extends Component {
-  constructor(props) {
-    super(props)
+  constructor (props) {
+    super(props);
     this.state = {
       audioOn: false
     };
@@ -20,7 +20,7 @@ class Options extends Component {
     return audio.paused ? audio.play() : audio.pause();
   }
 
-  render() {
+  render () {
     return (
       <>
         <Button link='/' linkName='&lt; Home' />

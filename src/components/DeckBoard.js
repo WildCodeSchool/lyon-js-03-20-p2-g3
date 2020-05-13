@@ -229,7 +229,7 @@ class DeckBoard extends React.Component {
     });
     this.endGameVerify();
     this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen, iaAttack: false });
-    return Promise.resolve()
+    return Promise.resolve();
   }
 
   handleIaTurn = async () => {
