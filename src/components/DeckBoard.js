@@ -280,7 +280,7 @@ class DeckBoard extends React.Component {
     const history = this.state.history.slice();
     const playerCardSelected = heroesChosen.filter(heroe => heroe.selected === true)[0];
     if (heroesChosen.filter(heroe => heroe.selected === true).length !== 0) {
-      cardsAvalaibleForIA.map( async (heroeIa) => {
+      cardsAvalaibleForIA.map(async (heroeIa) => {
         if (heroeIa.name === name) {
           heroeIa.isFighting = true;
           playerCardSelected.isFighting = true;

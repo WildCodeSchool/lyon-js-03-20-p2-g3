@@ -4,12 +4,12 @@ const overCards = [
     id: '101',
     name: 'PHP',
     powerstats: {
-      intelligence: '0',
-      strength: '0',
+      intelligence: '1',
+      strength: '1',
       speed: '100',
-      durability: '0',
+      durability: '1',
       power: '1',
-      combat: '0'
+      combat: '1'
     },
     biography: {
       'full-name': 'PHP',
@@ -145,7 +145,7 @@ const overCards = [
       relatives: '-'
     },
     image: {
-      url: 'https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s5dde8bff85c81b2f/image/i0ba067fd6655cba9/version/1560843572/cacatoes-%C3%A0-huppe-jaune-fiche-oiseaux-poids-taille-habitat-animal-facts-bird-sulphur-crested-cockatoo.jpg'
+      url: 'https://ca.slack-edge.com/T6SG2QGG2-UN9U736BV-f497c1c9539d-512'
     }
   },
   {
@@ -158,7 +158,7 @@ const overCards = [
       speed: 80,
       durability: 80,
       power: 60,
-      combat: 70,
+      combat: 70
     },
     biography: {
       'full-name': 'JS',
@@ -197,8 +197,6 @@ const overCards = [
       url: 'https://ca.slack-edge.com/T6SG2QGG2-UUQLLQ1PH-5550e8863dcf-512'
     }
   },
-
-  
 
   {
     response: 'success',
@@ -248,7 +246,7 @@ const overCards = [
     image: {
       url: 'https://guillaume-richard.fr/wp-content/uploads/2019/06/JavaScript_logo.png'
     }
-  },  
+  },
 
   {
     response: 'success',
@@ -298,7 +296,7 @@ const overCards = [
     image: {
       url: 'https://i.imgur.com/cXQKgHk.png'
     }
-  },
+  }
 ];
 
 export default overCards;

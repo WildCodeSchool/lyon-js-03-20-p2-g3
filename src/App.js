@@ -66,7 +66,7 @@ class App extends Component {
   handlePlayMusic = () => {
     const audio = this.audioMusic.current;
     audio.volume = this.state.musicVolume * 0.01;
-    this.setState({ musicOn : !this.state.musicOn })
+    this.setState({ musicOn: !this.state.musicOn });
     return audio.paused ? audio.play() : audio.pause();
   }
 
@@ -84,7 +84,7 @@ class App extends Component {
   }
 
   handleChangePseudo = (event) => {
-    this.setState({ pseudo : event.target.value })
+    this.setState({ pseudo: event.target.value });
   }
 
   componentDidMount () {
