@@ -1,81 +1,12 @@
-.deckBoard {
+.deckBoard  {
   display: flex;
   height: 100vh;
   width: 100vw;
-  background: black; 
 }
-
-#button-rageQuit {
-  background-color: red;
-}
-
-#button-rageQuit:hover {
-  background-color: rgb(238, 5, 5);
-}
-
-.playerTurn {
-  color:white;
-  position: absolute;  
-  z-index: 11;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  left: 0px;  
-  animation : a 1.5s infinite alternate;
-  --neon-text-color: black;  
-  text-align: center;
-  box-shadow: black;
-  font-size: 25px;
-  margin: 0;
-  margin-top: -12.5px;
-}
-
-@keyframes a {
-
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    
-      text-shadow:
-          -0.2rem -0.2rem 1rem #fff,
-          0.2rem 0.2rem 1rem black,
-          0 0 2rem var(--neon-text-color),
-          0 0 4rem var(--neon-text-color),
-          0 0 6rem var(--neon-text-color),
-          0 0 8rem var(--neon-text-color),
-          0 0 10rem var(--neon-text-color);
-  }
-
-  20%, 24%, 55% {        
-      text-shadow: none;
-  }    
-}
-
 .leftBoardContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 20vw;
-  display: flex;
-  padding: 10px;
+ /*  border: 4px solid blue; */
+  width: 15vw;
 }
-
-.dead-card-container {
-  height: 85vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-image: url(https://d3isma7snj3lcx.cloudfront.net/optim/images/gallery/10/103443/undertale-pc-e155d36a__220_220__362-209-873-720.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 80%;
-  border-radius: 10px;
-  border: solid white 5px;
-  overflow: auto;
-  overflow-x: hidden;
-  padding: 10px;
-}
-
 .centerBoardContainer {
   display: flex;
   flex-direction: column;
@@ -84,50 +15,24 @@
 }
 
 .iahand, .player1hand {
-  background: #BAC3E1;
+  background: green;
   height: 25vh;
   width: 100%;
-  padding: 5px;
   display: flex;
   justify-content: center;
-  border-top-left-radius: 80px 200px;
-  border-top-right-radius: 80px 200px;
-  border-bottom-right-radius: 80px 200px;
-  border-bottom-left-radius: 80px 200px; 
-}
-
-.iahand {
-  border: 5px solid #F28F32;
-}
-
-.player1hand {
-  border: 5px solid #70F840;
 }
 
 .boardContainer {
-  /* background: #FFAA29; */
-  background: no-repeat center/100% url('https://wallpaperaccess.com/full/85814.jpg');
-  height: 50vh;
-  border-top-left-radius: 50px 200px;
-  border-top-right-radius: 50px 200px;
-  border-bottom-right-radius: 50px 200px;
-  border-bottom-left-radius: 50px 200px;
-  box-shadow: 0px -1px 120px -6px rgba(39,45,168,1);
+  background: green;
+  height: 50vh
 }
 
 .boardPlayer1, .boardia {
+  background: pink;
   height: 25vh;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-}
-
-.boardPlayer1 {
-  padding: 5px 0 10px 0;
-}
-
-.boardia {
-  padding:10px 0 5px 0;
 }
 
 .rightBoardContainer {
@@ -136,58 +41,12 @@
   justify-content: space-evenly;
   align-items: center;
  /*  border: 4px solid blue; */
-  width: 20vw;
+  width: 25vw;
 }
 
 .timerAndEndTurn {
-  width: inherit;
+  width: 25vw;
   display: flex;
-  justify-content: space-evenly;
-  color: white;
+  justify-content: space-around;
 }
 
-#enGame-settings {
-  background-color: rgba(0, 0, 0, .6);
-  max-width: 60vw;
-}
-
-.endGameImg-Container {
-  margin: 2rem;
-}
-
-.endGameImg-Container img {
-  width: 20vw;
-}
-
-.return-home {
-  text-decoration: none;
-  color: white;
-}
-
-.timer-container {
-  display: flex;  align-items: center;
-  justify-content: center;
-  width: 10vw;
-}
-
-.timer-container h2 {
-  width: 100%;
-  text-align: center;
-  font-size: 10px;
-}
-
-#button-endTurn {
-  font-size: 10px;
-}
-
-@media only screen and (min-width: 897px) {
-  
-  .timer-container h2{
-    font-size: 16px;
-  }
-  
-  #button-endTurn{
-    font-size: 16px;
-  }
-
-}
