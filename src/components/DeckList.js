@@ -20,9 +20,10 @@ function DeckList (props) {
       <div className='deck_aside'>
         <div className='deck_title_container'>
           <h3 id='title_deck_chosen_cards'>Deck</h3>
-          <span className='cross_title_container' onClick={handleRemoveDeck}>
-            <i className='fas fa-times' />
-          </span>
+          {props.heroesChosen.length !== 0 &&
+            <span className='cross_title_container' onClick={handleRemoveDeck}>
+              <i className='fas fa-times' />
+            </span>}
         </div>
 
         <div className='cardlistdeck'>
@@ -31,7 +32,7 @@ function DeckList (props) {
         </div>
       </div>
       <div type='text' id='total_power_indicator'>
-        <span>Total Power</span> <span>{SumPower()} / 300</span>
+        <span>Total Power</span> <span>{SumPower()} / {props.maxPower}</span>
       </div>
     </div>
   );
