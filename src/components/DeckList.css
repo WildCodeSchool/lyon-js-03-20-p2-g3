@@ -37,16 +37,13 @@
 
 .deck_title_container{
     display: flex;
-    justify-content:flex-end ;
-    
 }
 
 .cross_title_container{
-    display: flex;    
-    align-items:  center;
+    position: absolute;
+    left: 21%;
+    margin-top: 0.5%;
     cursor: pointer;
-    justify-content: center;
-    flex: 0 0 calc(100% / 3);
 }
 
 .cross_cardList_container {
@@ -54,6 +51,7 @@
 }
 
 #title_deck_chosen_cards{
+    width: 100%;
     font-size: 1.2em;
     font-weight: 530;
     margin : 0;
@@ -61,7 +59,6 @@
     padding: 10px;
     display: flex;
     justify-content: center;
-    flex: 0 0 calc(100% / 3);
 }
 
 .cardlistdeck {
@@ -84,5 +81,6 @@
     justify-content: center;
 }
 #total_power_indicator span{
-  padding: 5px;
+    padding: 5px;
 }
+

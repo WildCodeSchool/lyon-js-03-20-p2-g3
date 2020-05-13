@@ -33,7 +33,7 @@ class NavBarDeckChoice extends Component {
               </li>
               <li id='title'>Choose your Heroes</li>
               <li>
-                <button type='button' className={this.props.heroesChosen.length === 0 ? 'button-config button-config-disable' : 'button-config button-config-enable'} onClick={this.handleShowModal}>Start</button>
+                <button type='button' id='button-start' className={this.props.heroesChosen.length === 0 ? 'button-config button-config-disable' : 'button-config button-config-enable'} onClick={this.handleShowModal}>Start</button>
                 <Modal show={this.state.show} heroesChosen={this.props.heroesChosen} onClose={this.handleHideModal}>
                   {this.props.heroesChosen
                     .map(heroe => {
@@ -51,7 +51,7 @@ class NavBarDeckChoice extends Component {
     }
 }
 
-const Modal = ({ handleClose, show, children }) => {
+const Modal = ({ onClose, show, children }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
   return (
@@ -62,7 +62,7 @@ const Modal = ({ handleClose, show, children }) => {
           {children}
         </div>
         <div className='button-modal-container'>
-          <button type='button' className='button-config' onClick={handleClose}>Close</button>
+          <button type='button' className='button-config' onClick={onClose}>Close</button>
           <Button id='button-battle' link='/deckboard' linkName='Start' />
         </div>
       </section>
