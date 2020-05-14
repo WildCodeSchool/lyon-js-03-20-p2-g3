@@ -1,55 +1,55 @@
 .button-config {
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    background: #6F6F6F;
-    border: 1px solid #A3A3A3;
-    box-sizing: border-box;
-    border-radius: 30px;
-    width: 140px;
-    max-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background: #6F6F6F;
+  border: 1px solid #A3A3A3;
+  box-sizing: border-box;
+  border-radius: 30px;
+  width: 140px;
+  max-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button-config:hover {
-    cursor: pointer;
-    background: rgb(95, 95, 95);
+  cursor: pointer;
+  background: rgb(95, 95, 95);
 }
 
 .button-config-disable {
-    background-color: red;
+  background-color: red;
 }
 
 .button-config-disable:hover {
-    background-color: rgb(238, 5, 5);
+  background-color: rgb(238, 5, 5);
 }
 
 .button-config-enable {
-    background-color: #FFAA29;
+  background-color: #FFAA29;
 }
 
 .button-config-enable:hover {
-    background-color: rgb(247, 148, 0);
+  background-color: rgb(247, 148, 0);
 }
 
 #play-button {
-    background-color: #FFAA29;
-    z-index: 100;
+  background-color: #FFAA29;
+  z-index: 100;
 }
 
 #play-button:hover {
-    background-color: rgb(247, 148, 0);
+  background-color: rgb(247, 148, 0);
 }
 
 @media only screen and (min-width: 897px) {
-    
-    .button-config {
-        width: 200px;
-        font-size: 16px;
-        padding: 15px;
-    }
+  
+  .button-config {
+    width: 200px;
+    font-size: 16px;
+    padding: 15px;
+  }
 
 } 

@@ -25,9 +25,6 @@ function CardOfDeckBoard ({ selected, heroe, switchCards, lastCard, onHandToBoar
               : 'cardBoard'}
       onClick={handleClickOnCardOfDeckBoard}
     >
-      {/* <section className='pwBoard'>
-        {heroe.power} PW
-      </section> */}
       <img className='imageCardBoard' src={heroe.img} alt={heroe.name} />
       <section className='containerBottomBoard'>
         <div className='atkBoard'>

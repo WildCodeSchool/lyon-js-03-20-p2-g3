@@ -83,7 +83,7 @@ class DeckBoard extends React.Component {
     const newPlayerDeck = this.state.heroesChosen.slice();
     const lastCardHeroe = newPlayerDeck.filter(heroe => heroe.name === this.state.lastCard)[0];
     lastCardHeroe.position = 'hand';
-    newPlayerDeck.map(heroe => {
+    newPlayerDeck.forEach(heroe => {
       heroe.selected = false;
       if (heroe.name === heroeName) {
         heroe.position = 'board';
@@ -306,10 +306,10 @@ class DeckBoard extends React.Component {
           }
           heroeIa.isFighting = false;
           playerCardSelected.isFighting = false;
+          this.endGameVerify();
           this.setState({ cardsAvalaibleForIA, heroesChosen });
         }
       });
-      this.endGameVerify();
       this.setState({ cardsAvalaibleForIA, heroesChosen, lastCard: undefined });
     }
   }

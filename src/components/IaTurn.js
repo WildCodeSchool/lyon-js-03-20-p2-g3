@@ -2,7 +2,7 @@ import React from 'react';
 
 function IaTurn () {
   return (
-    <>It's DeusSexMachina's turn !</>
+    <>It's Deus Sex Machina's turn !</>
   );
 }
 
