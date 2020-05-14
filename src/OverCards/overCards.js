@@ -152,12 +152,12 @@ const overCards = [
     id: '101000',
     name: 'Pierre',
     powerstats: {
-      intelligence: '98',
-      strength: '98',
-      speed: '98',
-      durability: '100',
-      power: '98',
-      combat: '98'
+      intelligence: '96',
+      strength: '96',
+      speed: '96',
+      durability: '96',
+      power: '96',
+      combat: '96'
     },
     biography: {
       'full-name': 'Pierre Genthon',

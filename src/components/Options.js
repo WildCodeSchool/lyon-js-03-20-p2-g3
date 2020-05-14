@@ -15,7 +15,7 @@ const Options = ({ onPlayMusic, effectsOn, musicOn, triggerEffects, onMusicVolum
           <div className='pseudo-container'>
             <input className='pseudo' type='text' onChange={(event) => onChangePseudo(event)} value={pseudo} />
           </div>
-          <button className='button-config option-button' >Save</button>
+          <button className='button-config option-button'>Save</button>
         </div>
         <div className='option-type-container'>
           <h3 className='option-title'>Music volume</h3>

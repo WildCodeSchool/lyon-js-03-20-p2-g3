@@ -37,7 +37,7 @@ body {
   border-radius: 10px;
   background:no-repeat center/100% url('https://cdn.pixabay.com/photo/2014/10/04/15/29/paper-473630_960_720.jpg');
   width: 45%;
-  height: 80vh;
+  height: 70vh;
   margin-bottom: 10px;
   display: flex;
   justify-content: flex-start;
@@ -62,7 +62,7 @@ body {
 .explanation {
   padding: 10px;
   line-height: 1.6;
-  text-align: justify;
+  text-align: center;
   font-weight: bold;
   width: 100%;
   display: flex;
