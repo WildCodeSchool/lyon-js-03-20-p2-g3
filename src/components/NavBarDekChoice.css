@@ -1,20 +1,20 @@
 .container-nav {
-    display: flex;
-    justify-content:  space-between;
-    background-color: rgb(0, 0, 0);
-    list-style-type: none;
-    font-family: Press Start 2P;
-    margin:0;
-    padding: 10px;
-    height: 10vh;
+  display: flex;
+  justify-content:  space-between;
+  background-color: rgb(0, 0, 0);
+  list-style-type: none;
+  font-family: Press Start 2P;
+  margin:0;
+  padding: 10px;
+  height: 10vh;
 }
 
 #title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:#FFAA29;
-    font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#FFAA29;
+  font-size: 18px;
 }
 
 .modal {
@@ -26,6 +26,7 @@
   z-index: 1;
   background: rgba(0, 0, 0, 0.6);
 }
+
 .modal .modal-main {
   display: flex;
   flex-direction: column;
@@ -44,8 +45,8 @@
 
 .modal .modal-main h2 {
   color: #FFAA29;
-  font-size: 16px;
-  line-height: 25px;
+  font-size: 12px;
+  line-height: 2;
   margin: 0;
   text-align: center;
 }
@@ -76,12 +77,6 @@
   justify-content: space-evenly;
   width: 100%;
 }
-#button-start{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-}
 
 @media screen and (min-width: 897px) {
   #title {
@@ -89,7 +84,7 @@
   }
 
   .modal .modal-main h2 {
-    font-size: 25px;
+    font-size: 20px;
   }
   
 }

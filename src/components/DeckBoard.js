@@ -7,6 +7,7 @@ import _ from 'lodash';
 import Timer from './Timer';
 import PlayerTurn from './PlayerTurn';
 import History from './History';
+import IaTurn from './IaTurn';
 
 const delay = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 class DeckBoard extends React.Component {
@@ -18,6 +19,7 @@ class DeckBoard extends React.Component {
       heroesChosen: this.props.heroesChosen, // initialise les héros choisis par le joueur dans le Deck Choice
       cardsAvalaibleForIA: [],
       isYourTurnDisplay: true,
+      isIaTurnDisplay: false,
       endGame: undefined,
       showModal: false,
       lastCard: undefined,
@@ -35,25 +37,6 @@ class DeckBoard extends React.Component {
     }, 2000);
   }
 
-  // componentDidUpdate () {
-  //   this.sendDeadCardToHistory();
-  // }
-
-  endGameVerify = () => {
-    const deadCardsPlayerLength = this.state.heroesChosen.filter(heroe => heroe.position !== 'dead').length;
-    const deadCardsIaLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position !== 'dead').length;
-    if (deadCardsPlayerLength === 0 && deadCardsIaLength === 0) {
-      this.setState({ endGame: 'equality' }); // affichage d'égalité
-      console.log('equality');
-    } else if (deadCardsPlayerLength === 0) {
-      this.setState({ endGame: 'lose' }); // affichage To lose !== TOULOUSE
-      console.log('you suck');
-    } else if (deadCardsIaLength === 0) {
-      this.setState({ endGame: 'win' }); // affichage WIIIIIIN !
-      console.log('you wiiiiiin !');
-    }
-  }
-
   componentWillUnmount () {
     this.setState({ heroesChosen: [] });
   }
@@ -66,21 +49,18 @@ class DeckBoard extends React.Component {
   endGameVerify = () => {
     const deadCardsPlayerLength = this.state.heroesChosen.filter(heroe => heroe.position !== 'dead').length;
     const deadCardsIaLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position !== 'dead').length;
-    console.log(deadCardsPlayerLength);
-    console.log(deadCardsIaLength);
-
     if (deadCardsPlayerLength === 0 && deadCardsIaLength === 0) {
       this.setState({ endGame: 'equality' }); // affichage d'égalité
-      console.log('equality');
       this.handleShowModal();
+      this.props.onPlayEffects(this.props.audioEgality);
     } else if (deadCardsPlayerLength === 0) {
       this.setState({ endGame: 'lose' }); // affichage To lose !== TOULOUSE
-      console.log('you suck');
       this.handleShowModal();
+      this.props.onPlayEffects(this.props.audioDefeat);
     } else if (deadCardsIaLength === 0) {
       this.setState({ endGame: 'win' }); // affichage WIIIIIIN !
-      console.log('you wiiiiiin !');
       this.handleShowModal();
+      this.props.onPlayEffects(this.props.audioWin);
     }
   }
 
@@ -89,6 +69,7 @@ class DeckBoard extends React.Component {
     const newDeck = this.state.heroesChosen.map(heroe => {
       if (heroe.name === heroeName && isAllowedToPutCardOnBoard) {
         isAllowedToPutCardOnBoard = false;
+        this.props.onPlayEffects(this.props.audioCardOnBoard);
         this.setState({ lastCard: heroeName });
         return { ...heroe, position: 'board' };
       } else {
@@ -100,13 +81,13 @@ class DeckBoard extends React.Component {
 
   switchCards = (heroeName) => {
     const newPlayerDeck = this.state.heroesChosen.slice();
-    // eslint-disable-next-line array-callback-return
     const lastCardHeroe = newPlayerDeck.filter(heroe => heroe.name === this.state.lastCard)[0];
     lastCardHeroe.position = 'hand';
-    newPlayerDeck.map(heroe => {
+    newPlayerDeck.forEach(heroe => {
       heroe.selected = false;
       if (heroe.name === heroeName) {
         heroe.position = 'board';
+        this.props.onPlayEffects(this.props.audioCardOnBoard);
       }
     });
     this.setState({ heroesChosen: newPlayerDeck, lastCard: heroeName });
@@ -118,6 +99,7 @@ class DeckBoard extends React.Component {
       const randomNumber = Math.floor(Math.random() * newIaDeck.filter(heroe => heroe.position === 'hand').length);
       newIaDeck.filter(heroe => heroe.position === 'hand')[randomNumber].position = 'board';
       this.setState({ cardsAvalaibleForIA: newIaDeck });
+      this.props.onPlayEffects(this.props.audioCardOnBoard);
     }
   }
 
@@ -173,6 +155,7 @@ class DeckBoard extends React.Component {
   handleDraw = (deck, deckName) => {
     const newHeroesChosen = deck.slice();
     if (newHeroesChosen.filter(heroe => heroe.position === 'deck').length !== 0) { // (Flo) condition si clé position dans l'objet héro est 'deck' et que le la longueur du tableau n'est pas égal à 0
+      this.props.onPlayEffects(this.props.audioDraw);
       const randomNumber = Math.floor(Math.random() * newHeroesChosen.filter(heroe => heroe.position === 'deck').length); // (Flo) set const randomNumber : pioche aléatoire dans liste d'héro choisie ssi la clé position est à 'deck
       newHeroesChosen.filter(heroe => heroe.position === 'deck')[randomNumber].position = 'hand'; // (Flo) si condition est true : filter des héros ayant la valeur de la clé position à 'deck' à la position correspondant au randomNumber
       this.setState({ [deckName]: newHeroesChosen });
@@ -196,6 +179,7 @@ class DeckBoard extends React.Component {
         cardBoardPlayer[randomNumber].isFighting = true;
         this.setState({ cardsAvalaibleForIA: newDeckIa, heroesChosen: newHeroesChosen });
         await delay(1000);
+        this.props.onPlayEffects(this.props.audioAttackCard);
         cardBoardIa[i].hp -= cardBoardPlayer[randomNumber].atk; // enlève la vie de la carte de l'IA
         cardBoardPlayer[randomNumber].hp -= cardBoardIa[i].atk; // enlève la vie de la carte du joueur
         if (cardBoardIa[i].hp <= 0) { // si les hp de la carte de l'IA est inferieur ou égal à 0, enleve la carte du board
@@ -234,11 +218,18 @@ class DeckBoard extends React.Component {
 
   handleIaTurn = async () => {
     if (this.state.endGame === undefined) {
+      this.setState({ playerTurn: false });
+      this.props.onPlayEffects(this.props.audioIaTurn);
       if (this.state.isAllowedToPutCardOnBoard) {
         this.handleHandToBoardPlayer();
+        await delay(1000);
       }
 
-      this.setState({ playerTurn: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
+      this.setState({ isIaTurnDisplay: true });
+
+      await delay(2000);
+
+      this.setState({ isIaTurnDisplay: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
       const heroesSelected = this.state.heroesChosen.map(heroe => {
         return { ...heroe, selected: false, isAbleToAttack: true };
       });
@@ -259,6 +250,7 @@ class DeckBoard extends React.Component {
       this.setState({ isAllowedToPutCardOnBoard: true });
       if (this.state.endGame === undefined) {
         this.setState({ isYourTurnDisplay: true });
+        this.props.onPlayEffects(this.props.audioPlayerTurn);
       }
 
       await delay(2000);
@@ -271,6 +263,7 @@ class DeckBoard extends React.Component {
       heroe => {
         if (heroe.isAbleToAttack) {
           if (heroe.name === nameSelected && !heroe.iaDeck) {
+            this.props.onPlayEffects(this.props.audioSelect);
             return { ...heroe, selected: true };
           } else {
             return { ...heroe, selected: false, lastCard: false };
@@ -289,13 +282,18 @@ class DeckBoard extends React.Component {
     const history = this.state.history.slice();
     const playerCardSelected = heroesChosen.filter(heroe => heroe.selected === true)[0];
     if (heroesChosen.filter(heroe => heroe.selected === true).length !== 0) {
-      cardsAvalaibleForIA.map(heroeIa => {
+      cardsAvalaibleForIA.map(async (heroeIa) => {
         if (heroeIa.name === name) {
+          heroeIa.isFighting = true;
+          playerCardSelected.isFighting = true;
+          playerCardSelected.selected = false;
+          this.setState({ cardsAvalaibleForIA, heroesChosen });
+          await delay(1000);
           // on veut récupérer l'attaque de la carte sélectionnée et la vie de l'attaque adverse. Et en déduire le nombre de point de vie à retirer sur la carte adverse. Et vice versa.
           heroeIa.hp -= playerCardSelected.atk;
           playerCardSelected.hp -= heroeIa.atk;
           playerCardSelected.isAbleToAttack = false;
-          playerCardSelected.selected = false;
+          this.props.onPlayEffects(this.props.audioAttackCard);
           if (heroeIa.hp <= 0) { // on veut changer la valeur de la clé position à 'dead' pour les cartes dont les hp sont <= 0.
             heroeIa.position = 'dead';
             history.unshift(heroeIa);
@@ -306,9 +304,12 @@ class DeckBoard extends React.Component {
             history.unshift(playerCardSelected);
             this.setState({ history });
           }
+          heroeIa.isFighting = false;
+          playerCardSelected.isFighting = false;
+          this.endGameVerify();
+          this.setState({ cardsAvalaibleForIA, heroesChosen });
         }
       });
-      this.endGameVerify();
       this.setState({ cardsAvalaibleForIA, heroesChosen, lastCard: undefined });
     }
   }
@@ -317,7 +318,7 @@ class DeckBoard extends React.Component {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
-          <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/* https://cards-battle-of-heroes-us11.netlify.app */}
+          <a className='button-config' id='button-rageQuit' href='https://cards-battle-of-heroes.netlify.app/'>Rage Quit</a>
           <aside className='dead-card-container'> {/* Cimetiere */}
             <History history={this.state.history} />
           </aside>
@@ -330,12 +331,12 @@ class DeckBoard extends React.Component {
             <div className='boardia'> {/* board of computer */}
               <Board heroesChosen={this.state.cardsAvalaibleForIA} onSelectedCard={this.handleSelectedCard} onAttackIaCard={this.handleAttackIaCard} />
             </div>
-            {this.state.isYourTurnDisplay && <p className='playerTurn'><PlayerTurn playerTurn={this.state.playerTurn} /></p>}
+            {this.state.isYourTurnDisplay && <p className='playerTurn'><PlayerTurn playerTurn={this.state.playerTurn} pseudo={this.props.pseudo} /></p>}
+            {this.state.isIaTurnDisplay && <p className='playerTurn'><IaTurn /></p>}
             <div className='boardPlayer1'> {/* board of Player1 */}
               <Board heroesChosen={this.state.heroesChosen} onSelectedCard={this.handleSelectedCard} playerTurn={this.state.playerTurn} />
             </div>
           </div>
-
           <div className='player1hand'> {/* hand of Player1 */}
             <HandCards heroesChosen={this.state.heroesChosen} lastCard={this.state.lastCard} switchCards={this.switchCards} onHandToBoard={this.handleHandToBoard} playerTurn={this.state.playerTurn} />
           </div>
@@ -354,13 +355,13 @@ class DeckBoard extends React.Component {
             <HiddenCards deck={this.state.heroesChosen} />
           </div>
         </div>
-        <Modals showModal={this.state.showModal} endGame={this.state.endGame} />
+        <Modals showModal={this.state.showModal} endGame={this.state.endGame} pseudo={this.props.pseudo} />
       </div>
     );
   }
 }
 
-const Modals = ({ showModal, endGame }) => {
+const Modals = ({ showModal, endGame, pseudo }) => {
   const showHideClassName = showModal ? 'modal display-block' : 'modal display-none';
   let endGameTitle = '';
   let enGameImage = '';
@@ -368,10 +369,10 @@ const Modals = ({ showModal, endGame }) => {
     endGameTitle = 'Fatali ... equality !';
     enGameImage = 'https://media.giphy.com/media/6w6TEAATeBik8/giphy.gif';
   } else if (endGame === 'lose') {
-    endGameTitle = 'Sucker, noob !';
+    endGameTitle = `Sucker ${pseudo}, looks like you're a PHP player, you're a noob!`;
     enGameImage = 'https://media.giphy.com/media/mcH0upG1TeEak/giphy.gif';
   } else if (endGame === 'win') {
-    endGameTitle = 'You\'ve goat it !';
+    endGameTitle = `You've goat it ${pseudo} !`;
     enGameImage = 'https://media.giphy.com/media/3hvmlYNsOTFWE/giphy.gif';
   }
   return (
@@ -382,7 +383,7 @@ const Modals = ({ showModal, endGame }) => {
           <img src={enGameImage} alt={endGame} />
         </div>
         <div className='button-modal-container'>
-          <button type='button' className='button-config'><a className='return-home' href='http://localhost:3000'>Return Home</a></button>
+          <button type='button' className='button-config'><a className='return-home' href='https://cards-battle-of-heroes.netlify.app/'>Return Home</a></button>
         </div>
       </section>
     </div>
