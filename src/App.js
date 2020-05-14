@@ -30,10 +30,10 @@ class App extends Component {
     this.state = {
       cards: [],
       deck: [],
-      maxPower: 800,
+      maxPower: 600,
       musicOn: false,
       effectsOn: true,
-      musicVolume: 50,
+      musicVolume: 20,
       effectsVolume: 50,
       pseudo: 'Player 1'
     };

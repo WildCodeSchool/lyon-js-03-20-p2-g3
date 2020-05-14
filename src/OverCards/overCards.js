@@ -54,9 +54,9 @@ const overCards = [
     name: 'Vianney',
     powerstats: {
       intelligence: '100',
-      strength: '80',
-      speed: '60',
-      durability: '90',
+      strength: '71',
+      speed: '70',
+      durability: '79',
       power: '78',
       combat: '80'
     },
@@ -103,9 +103,9 @@ const overCards = [
     name: 'Flo',
     powerstats: {
       intelligence: '80',
-      strength: '80',
+      strength: '81',
       speed: '70',
-      durability: '65',
+      durability: '69',
       power: '75',
       combat: '0'
     },
@@ -152,16 +152,16 @@ const overCards = [
     id: '101000',
     name: 'Pierre',
     powerstats: {
-      intelligence: '101',
-      strength: '101',
-      speed: '101',
-      durability: '101',
-      power: '101',
-      combat: '101'
+      intelligence: '98',
+      strength: '98',
+      speed: '98',
+      durability: '100',
+      power: '98',
+      combat: '98'
     },
     biography: {
       'full-name': 'Pierre Genthon',
-      'alter-egos': 'The Ultimate Warrior',
+      'alter-egos': 'The Ultimate Warrior, trou != true',
       aliases: [
         '-'
       ],
@@ -181,8 +181,8 @@ const overCards = [
         '- lb',
         '- kg'
       ],
-      'eye-color': '',
-      'hair-color': '-'
+      'eye-color': 'brown',
+      'hair-color': 'brown'
     },
     work: {
       occupation: '-',
@@ -201,12 +201,12 @@ const overCards = [
     id: '101003',
     name: 'Matthieu',
     powerstats: {
-      intelligence: '10',
-      strength: '2',
-      speed: '2',
-      durability: '2',
-      power: '2',
-      combat: '2'
+      intelligence: '96',
+      strength: '96',
+      speed: '100',
+      durability: '96',
+      power: '60',
+      combat: '100'
     },
 
     biography: {
@@ -252,11 +252,11 @@ const overCards = [
     name: 'Baptiste',
     powerstats: {
       intelligence: 50,
-      strength: 70,
+      strength: 74,
       speed: 80,
       durability: 75,
-      power: 60,
-      combat: 70
+      power: 75,
+      combat: 75
     },
     biography: {
       'full-name': 'JS',
@@ -273,18 +273,18 @@ const overCards = [
       gender: 'Male',
       race: 'Human',
       height: [
-        '178',
-        ''
+        '-',
+        '178 cm'
       ],
       weight: [
         '- lb',
         '64 kg'
       ],
-      'eye-color': '',
+      'eye-color': 'green',
       'hair-color': 'yellow'
     },
     work: {
-      occupation: 'Double double burgers et Pectoraux',
+      occupation: 'Double double burger et Pectoraux',
       base: '-'
     },
     connections: {
@@ -302,11 +302,11 @@ const overCards = [
     name: 'JS',
     powerstats: {
       intelligence: '101',
-      strength: '101',
-      speed: '101',
+      strength: '97',
+      speed: '99',
       durability: '101',
-      power: '101',
-      combat: '101'
+      power: '99',
+      combat: '99'
     },
     biography: {
       'full-name': 'JS',
@@ -352,7 +352,7 @@ const overCards = [
     name: 'Pascal',
     powerstats: {
       intelligence: '100',
-      strength: '99',
+      strength: '90',
       speed: '100',
       durability: '60',
       power: '20',
@@ -378,10 +378,10 @@ const overCards = [
       ],
       weight: [
         '- lb',
-        '101 kg'
+        '69 kg'
       ],
-      'eye-color': '',
-      'hair-color': '-'
+      'eye-color': 'brown',
+      'hair-color': 'none'
     },
     work: {
       occupation: '',
@@ -402,7 +402,7 @@ const overCards = [
     name: 'Riri',
     powerstats: {
       intelligence: '100',
-      strength: '80',
+      strength: '70',
       speed: '100',
       durability: '80',
       power: '100',
@@ -421,20 +421,20 @@ const overCards = [
     },
     appearance: {
       gender: 'Human',
-      race: 'Human',
+      race: 'Saiyan',
       height: [
         '',
         ''
       ],
       weight: [
         '- lb',
-        '101000 kg'
+        '80 kg'
       ],
-      'eye-color': '',
-      'hair-color': '-'
+      'eye-color': 'brown',
+      'hair-color': 'black'
     },
     work: {
-      occupation: 'Trapu, large dos',
+      occupation: 'Corde à sauter',
       base: '-'
     },
     connections: {
@@ -449,17 +449,17 @@ const overCards = [
   {
     response: 'success',
     id: '6667',
-    name: 'Chef Laëticia',
+    name: 'Boss Laëticia',
     powerstats: {
       intelligence: '100',
-      strength: '50',
+      strength: '100',
       speed: '100',
-      durability: '80',
+      durability: '100',
       power: '100',
-      combat: '0'
+      combat: '100'
     },
     biography: {
-      'full-name': 'Chef Laëticia',
+      'full-name': 'Boss Laëticia',
       'alter-egos': 'THE Master',
       aliases: [
         '-'
@@ -478,13 +478,13 @@ const overCards = [
       ],
       weight: [
         '- lb',
-        '60 kg'
+        '58,3 kg'
       ],
       'eye-color': '',
       'hair-color': '-'
     },
     work: {
-      occupation: 'questionnaires',
+      occupation: 'Questionnaires',
       base: '-'
     },
     connections: {

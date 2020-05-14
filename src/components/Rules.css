@@ -33,6 +33,7 @@ body {
 
 .singleCard {
   border: 2px solid rgb(243, 243, 147);
+  font-size: 1rem;
   border-radius: 10px;
   background:no-repeat center/100% url('https://cdn.pixabay.com/photo/2014/10/04/15/29/paper-473630_960_720.jpg');
   width: 45%;
@@ -59,7 +60,6 @@ body {
 }
 
 .explanation {
-  font-size: 0.5rem;
   padding: 10px;
   line-height: 1.6;
   text-align: justify;
@@ -78,8 +78,12 @@ body {
 
 @media only screen and (max-width: 600px) {
 
-  .explanation {
-    font-size: 0.1rem;
+  .explanation h3 {
+    font-size: 0.7rem;
+  }
+
+  .explanation p {
+    font-size: 0.6rem;
   }
 
   .singleCard {
@@ -94,8 +98,12 @@ body {
 
 @media only screen and (max-width: 897px) {
 
-  .explanation {
-    font-size: 0.4rem;
+  .explanation h3 {
+    font-size: 0.9rem;
+  }
+
+  .explanation p {
+    font-size: 0.8rem;
   }
 
   .singleCard {
@@ -107,16 +115,24 @@ body {
 
 @media only screen and (min-width: 1200px) {
 
-  .explanation {
-    font-size: 0.5rem;
+  .explanation h3 {
+    font-size: 1rem;
+  }
+
+  .explanation p {
+    font-size: 0.9rem;
   }
 
 }
 
 @media only screen and (min-width: 1800px) {
 
-  .explanation {
-    font-size: 1.2rem;
+  .explanation h3 {
+    font-size: 1.1rem;
+  }
+
+  .explanation p {
+    font-size: 1rem;
   }
 
 }
