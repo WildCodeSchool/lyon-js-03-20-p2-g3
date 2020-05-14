@@ -4,7 +4,7 @@ import './Button.css';
 
 function Button (props) {
   return (
-    <Link className='button-config' id={props.buttonId} to={props.link}>{props.linkName}</Link>
+    <Link className='button-config' id={props.buttonId} to={props.link} onClick={props.handleClick}>{props.linkName}</Link>
   );
 }
 

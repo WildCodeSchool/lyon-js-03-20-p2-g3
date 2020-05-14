@@ -1,4 +1,4 @@
-.card{
+.card {
   width: 120px;
   height: 150px;
   font-size: 10px;
@@ -12,60 +12,73 @@
   cursor: pointer;
   margin-bottom: 10px;
 }
-.card *{
+
+.card * {
   cursor: pointer;
 }
-.selected{
-  opacity: 50%;
+
+.selected {
+  opacity: 0.5;
   z-index: 0;
 }
-.imageCard{
+
+.imageCard {
   width: 75px;
   height: 100px;
   border-radius: 5px;
 }
 
-.containerBottom{
+.containerBottom {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.atk, .hp{
+
+.atk, .hp {
   width: 30px;
   height: 30px;
-  border-radius: 20px;
+  border-radius: 15px;
   align-self: flex-end;
   display: flex;
   justify-content: center;
   align-self: center;
 }
-.atk p, .hp p{
+
+.atk p, .hp p {
   display: flex;
   justify-content: center;
   align-self: center;
 }
-.atk{
+
+.atk {
   background-color: rgba(255,0,0,0.8);
 }
-.hp{
+
+.hp {
   background-color:rgba(20, 255, 0, 0.8)
 } 
 
 @media screen and (min-width: 897px) {
-  .card{
+  
+  .card {
     width: 240px;
     height: 300px;
+    margin-bottom: 30px;
   }
-  .imageCard{
+
+  .imageCard {
     width: 150px;
     height: 200px;
   }
-  .atk, .hp{
+
+  .atk, .hp {
     width: 40px;
     height: 40px;
     border-radius: 40px;
   }
+
   .pw, .atk p, .hp p{
     font-size: 15px;
   }
+
 }

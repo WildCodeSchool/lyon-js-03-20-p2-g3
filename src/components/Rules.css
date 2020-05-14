@@ -1,0 +1,138 @@
+body {
+  font-family: 'Press Start 2P', cursive;
+  height: 100vh;
+  background-color: black;
+}
+
+.NavRules {
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  padding: 10px 210px 10px 10px;
+}
+
+.NavRules h2 {
+  color: #FFAA29;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: auto;
+}
+
+.RulesCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: auto;
+  overflow: auto;
+}
+
+.singleCard {
+  border: 2px solid rgb(243, 243, 147);
+  font-size: 1rem;
+  border-radius: 10px;
+  background:no-repeat center/100% url('https://cdn.pixabay.com/photo/2014/10/04/15/29/paper-473630_960_720.jpg');
+  width: 45%;
+  height: 70vh;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.image-container img {
+  display: block;
+  border: 1px solid black; 
+  border-radius: 10px;
+  width: 100%;
+}
+
+.explanation {
+  padding: 10px;
+  line-height: 1.6;
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.explanation h3 {
+  text-decoration: underline;
+  text-align: center;
+  line-height: 1.6;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .explanation h3 {
+    font-size: 0.7rem;
+  }
+
+  .explanation p {
+    font-size: 0.6rem;
+  }
+
+  .singleCard {
+    width: 75%;
+    height: 160vh;
+  }
+  
+  .NavRules {
+    padding: 10px 150px 10px 10px;
+  }
+}
+
+@media only screen and (max-width: 897px) {
+
+  .explanation h3 {
+    font-size: 0.9rem;
+  }
+
+  .explanation p {
+    font-size: 0.8rem;
+  }
+
+  .singleCard {
+    width: 60%;
+    height: 120vh;
+  }
+
+}
+
+@media only screen and (min-width: 1200px) {
+
+  .explanation h3 {
+    font-size: 1rem;
+  }
+
+  .explanation p {
+    font-size: 0.9rem;
+  }
+
+}
+
+@media only screen and (min-width: 1800px) {
+
+  .explanation h3 {
+    font-size: 1.1rem;
+  }
+
+  .explanation p {
+    font-size: 1rem;
+  }
+
+}

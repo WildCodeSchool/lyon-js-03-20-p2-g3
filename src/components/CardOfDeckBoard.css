@@ -1,23 +1,58 @@
-  .cardBoard{
-  width: 10vw;
+.cardBoard{
+  width: 8vw; 
   height: 100%;
-  font-size: 10px;
-  padding-top: 5px;
+  padding-top: 10px;
   background:no-repeat center/100% url('https://cdn.pixabay.com/photo/2014/10/04/15/29/paper-473630_960_720.jpg');
+  background-size: cover;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
-}
-.cardBoard *{
-  cursor: pointer;
+  position: relative;
+  transition: 0.4s ease-out;
 }
 
+.iaHandCards{
+  transform: rotate(90deg) scale(1.4);
+  background: no-repeat center/100% url('images/dosDeCarte.png');
+}
+.iaHandCards .imageCardBoard , .iaHandCards .atkBoard, .iaHandCards .hpBoard{
+  display: none;
+}
+.fighting {  
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg) scale(1.1); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg) scale(1.1); }
+  20% { transform: translate(-3px, 0px) rotate(1deg) scale(1.1); }
+  30% { transform: translate(3px, 2px) rotate(0deg) scale(1.1); }
+  40% { transform: translate(1px, -1px) rotate(1deg) scale(1.1); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg) scale(1.1); }
+  60% { transform: translate(-3px, 1px) rotate(0deg) scale(1.1); }
+  70% { transform: translate(3px, 1px) rotate(-1deg) scale(1.1); }
+  80% { transform: translate(-1px, -1px) rotate(1deg) scale(1.1); }
+  90% { transform: translate(1px, 2px) rotate(0deg) scale(1.1); }
+  100% { transform: translate(1px, -2px) rotate(-1deg) scale(1.1); }
+}
+
+.toggleCardSelect {
+  background: linear-gradient(#f6d743, #fff  70%, #f6d743);
+  transition: all .2s ease-in-out;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+  top: -4px;
+}
+
+
 .imageCardBoard{
-  height: 70%;
+  height: 75%;
   border-radius: 5px;
+  
 }
 
 .containerBottomBoard{
@@ -25,23 +60,89 @@
   display: flex;
   justify-content: space-between;
 }
+
 .atkBoard, .hpBoard{
-  width: 5vh;
-  height: 5vh;
-  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
   align-self: flex-end;
   display: flex;
   justify-content: center;
   align-self: center;
 }
+
 .atkBoard p, .hpBoard p{
+  font-size: 7px;
   display: flex;
   justify-content: center;
   align-self: center;
 }
+
 .atkBoard{
   background-color: rgba(255,0,0,0.8);
 }
+
 .hpBoard{
   background-color:rgba(20, 255, 0, 0.8)
+}
+
+.isAttacking{
+  border: 5px solid red;
+}
+
+@media screen and (min-width: 897px) {
+
+  .atkBoard, .hpBoard{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+  }
+
+  .atkBoard p, .hpBoard p{
+    font-size: 10px;
+  }
+
+}
+
+@media screen and (min-width: 1100px) {
+
+  .handCard:not(:first-child) {
+    margin-left: -50px;
+  }
+  
+  .handCard:hover {
+    transform: translateY(-20px);
+    transition: 0.4s ease-out;
+  }
+  
+  .handCard:hover ~ .handCard {
+    position: relative;
+    left: 50px;
+    transition: 0.4s ease-out;
+  }
+  
+  .atkBoard, .hpBoard{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+  }
+
+  .atkBoard p, .hpBoard p{
+    font-size: 13px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  
+  .atkBoard, .hpBoard{
+    width: 15px;
+    height: 15px;
+    border-radius: 8px;
+  }
+
+  .atkBoard p, .hpBoard p{
+    font-size: 6px;
+  }
+
 }
