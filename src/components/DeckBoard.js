@@ -318,7 +318,7 @@ class DeckBoard extends React.Component {
     return (
       <div className='deckBoard'>
         <div className='leftBoardContainer'>
-          <a className='button-config' id='button-rageQuit' href='http://localhost:3000/'>Rage Quit</a> {/* https://cards-battle-of-heroes-us11.netlify.app */}
+          <a className='button-config' id='button-rageQuit' href='https://cards-battle-of-heroes.netlify.app/'>Rage Quit</a>
           <aside className='dead-card-container'> {/* Cimetiere */}
             <History history={this.state.history} />
           </aside>
@@ -378,12 +378,12 @@ const Modals = ({ showModal, endGame, pseudo }) => {
   return (
     <div className={showHideClassName}>
       <section id='enGame-settings' className='modal-main'>
-        <h2 className='endGameTitle'>{endGameTitle}</h2>
+        <h2>{endGameTitle}</h2>
         <div className='endGameImg-Container'>
           <img src={enGameImage} alt={endGame} />
         </div>
         <div className='button-modal-container'>
-          <button type='button' className='button-config'><a className='return-home' href='http://localhost:3000'>Return Home</a></button>
+          <button type='button' className='button-config'><a className='return-home' href='https://cards-battle-of-heroes.netlify.app/'>Return Home</a></button>
         </div>
       </section>
     </div>

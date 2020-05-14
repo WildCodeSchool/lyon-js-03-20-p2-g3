@@ -11,7 +11,7 @@ import Rules from './components/Rules';
 import DeckChoice from './components/DeckChoice';
 import axios from 'axios';
 import DeckBoard from './components/DeckBoard';
-import HomeMusic from './components/audio/musics/undertale-papyrus-theme-song-bonetrousle.mp3';
+import HomeMusic from './components/audio/musics/AudioCardsBattleOfHeroes_online-audio-converter.com.mp3';
 import DefeatJingle from './components/audio/musics/defeat_jingle.ogg';
 import WinJingle from './components/audio/musics/win-jingle.mp3';
 import EgalityJingle from './components/audio/musics/egality-jingle.mp3';
@@ -93,7 +93,7 @@ class App extends Component {
   }
 
   getHeroesFromAPI = () => {
-    const url = 'https://heroes-api-wrapper.herokuapp.com/heroes?heroIds=354,310,555,711,527,313,638,307,566,381,514,214,561,165,692,341,298,251,107,383,127,30,352,201,196,522,634,627,530,418,551,708,630,599,538,370,398,228,149,480,106,729,309,207,542,333,208,536,431,225,649,60,226,69,678,487,457,145,345,299,361,350,405,602236,620,216717,213,176,581,687,386,414,322,600,303,280,690,467,416,485,423,572,38,697,732,396,275,389,498';
+    const url = 'https://heroes-api-wrapper.herokuapp.com/heroes?heroIds=354,310,555,711,527,313,638,307,566,381,514,214,561,165,692,341,298,251,107,383,127,30,352,201,196,522,634,627,530,418,551,708,630,599,538,370,398,228,149,480,106,729,309,207,542,333,208,536,431,225,649,60,226,69,678,487,457,145,345,299,361,350,405,602236,620,216717,213,176,581,687,386,414,322,600,303,280,690,467,416,485,423,572,38,697,732,396,275,502';
     axios.get(url)
       .then(res => res.data)
       .then(data => {

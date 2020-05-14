@@ -86,7 +86,7 @@ const overCards = [
       'hair-color': '-'
     },
     work: {
-      occupation: 'Cards',
+      occupation: 'Ruine ses potes au poker',
       base: '-'
     },
     connections: {
@@ -232,7 +232,7 @@ const overCards = [
         '- kg'
       ],
       'eye-color': '',
-      'hair-color': '-'
+      'hair-color': 'yellow'
     },
     work: {
       occupation: 'Dictator',
@@ -270,10 +270,10 @@ const overCards = [
       alignment: ''
     },
     appearance: {
-      gender: '',
-      race: '',
+      gender: 'Male',
+      race: 'Human',
       height: [
-        '',
+        '178',
         ''
       ],
       weight: [
@@ -284,7 +284,7 @@ const overCards = [
       'hair-color': 'yellow'
     },
     work: {
-      occupation: 'forms',
+      occupation: 'Double double burgers et Pectoraux',
       base: '-'
     },
     connections: {
@@ -301,12 +301,12 @@ const overCards = [
     id: '101001',
     name: 'JS',
     powerstats: {
-      intelligence: '102',
-      strength: '102',
-      speed: '102',
-      durability: '102',
-      power: '102',
-      combat: '102'
+      intelligence: '101',
+      strength: '101',
+      speed: '101',
+      durability: '101',
+      power: '101',
+      combat: '101'
     },
     biography: {
       'full-name': 'JS',
@@ -384,7 +384,7 @@ const overCards = [
       'hair-color': '-'
     },
     work: {
-      occupation: 'forms',
+      occupation: '',
       base: '-'
     },
     connections: {
@@ -402,9 +402,9 @@ const overCards = [
     name: 'Riri',
     powerstats: {
       intelligence: '100',
-      strength: '20',
+      strength: '80',
       speed: '100',
-      durability: '42',
+      durability: '80',
       power: '100',
       combat: '0'
     },
@@ -434,7 +434,7 @@ const overCards = [
       'hair-color': '-'
     },
     work: {
-      occupation: 'forms',
+      occupation: 'Trapu, large dos',
       base: '-'
     },
     connections: {
@@ -443,6 +443,56 @@ const overCards = [
     },
     image: {
       url: 'https://i.imgur.com/Mx8JDrw.png'
+    }
+  },
+
+  {
+    response: 'success',
+    id: '6667',
+    name: 'Chef Laëticia',
+    powerstats: {
+      intelligence: '100',
+      strength: '50',
+      speed: '100',
+      durability: '80',
+      power: '100',
+      combat: '0'
+    },
+    biography: {
+      'full-name': 'Chef Laëticia',
+      'alter-egos': 'THE Master',
+      aliases: [
+        '-'
+      ],
+      'place-of-birth': '',
+      'first-appearance': '-',
+      publisher: '',
+      alignment: ''
+    },
+    appearance: {
+      gender: 'Human',
+      race: 'Human',
+      height: [
+        '',
+        ''
+      ],
+      weight: [
+        '- lb',
+        '60 kg'
+      ],
+      'eye-color': '',
+      'hair-color': '-'
+    },
+    work: {
+      occupation: 'questionnaires',
+      base: '-'
+    },
+    connections: {
+      'group-affiliation': '-',
+      relatives: '-'
+    },
+    image: {
+      url: 'https://i.imgur.com/2dC1jpi.png'
     }
   }
 ];

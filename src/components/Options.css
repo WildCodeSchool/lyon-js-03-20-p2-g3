@@ -76,10 +76,18 @@
   cursor: pointer;
 }
 
+.pseudo-container {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
+
 .pseudo {
   box-sizing: border-box;
   border-radius: 20px;
   padding: 10px;
+  margin: 0 auto;
+  font-size: 12px;
 }
 
 .music-icon i {
@@ -112,6 +120,7 @@
   .pseudo {
     border-radius: 40px;
     padding: 20px;
+    font-size: 16px;
   }
   
 }

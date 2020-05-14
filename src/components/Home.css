@@ -118,7 +118,7 @@ footer {
   background-color: white;
 }
 
-@media only screen and (min-width: 897px) {
+@media only screen and (min-width: 1100px) {
   
   .h1-home {
     font-size: 72px;

@@ -45,8 +45,8 @@
 
 .modal .modal-main h2 {
   color: #FFAA29;
-  font-size: 16px;
-  line-height: 25px;
+  font-size: 12px;
+  line-height: 2;
   margin: 0;
   text-align: center;
 }
@@ -84,7 +84,7 @@
   }
 
   .modal .modal-main h2 {
-    font-size: 25px;
+    font-size: 20px;
   }
   
 }
