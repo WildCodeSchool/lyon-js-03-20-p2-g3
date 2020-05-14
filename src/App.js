@@ -30,7 +30,7 @@ class App extends Component {
     this.state = {
       cards: [],
       deck: [],
-      maxPower: 800,
+      maxPower: 200,
       musicOn: false,
       effectsOn: true,
       musicVolume: 50,
@@ -66,7 +66,6 @@ class App extends Component {
 
   handlePlayMusic = () => {
     const audio = this.audioMusic.current;
-    console.log(audio);
     audio.volume = this.state.musicVolume * 0.01;
     this.setState({ musicOn: !this.state.musicOn });
     audio.paused ? audio.play() : audio.pause();

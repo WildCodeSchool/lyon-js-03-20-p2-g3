@@ -252,9 +252,9 @@ const overCards = [
     name: 'Baptiste',
     powerstats: {
       intelligence: 50,
-      strength: 60,
+      strength: 70,
       speed: 80,
-      durability: 80,
+      durability: 75,
       power: 60,
       combat: 70
     },

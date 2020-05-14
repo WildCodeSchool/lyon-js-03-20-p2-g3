@@ -7,7 +7,7 @@ import _ from 'lodash';
 import Timer from './Timer';
 import PlayerTurn from './PlayerTurn';
 import History from './History';
-import IaTurn from './IaTurn'
+import IaTurn from './IaTurn';
 
 const delay = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 class DeckBoard extends React.Component {
@@ -51,17 +51,14 @@ class DeckBoard extends React.Component {
     const deadCardsIaLength = this.state.cardsAvalaibleForIA.filter(heroe => heroe.position !== 'dead').length;
     if (deadCardsPlayerLength === 0 && deadCardsIaLength === 0) {
       this.setState({ endGame: 'equality' }); // affichage d'égalité
-      console.log('equality');
       this.handleShowModal();
       this.props.onPlayEffects(this.props.audioEgality);
     } else if (deadCardsPlayerLength === 0) {
       this.setState({ endGame: 'lose' }); // affichage To lose !== TOULOUSE
-      console.log('you suck');
       this.handleShowModal();
       this.props.onPlayEffects(this.props.audioDefeat);
     } else if (deadCardsIaLength === 0) {
       this.setState({ endGame: 'win' }); // affichage WIIIIIIN !
-      console.log('you wiiiiiin !');
       this.handleShowModal();
       this.props.onPlayEffects(this.props.audioWin);
     }
@@ -220,19 +217,18 @@ class DeckBoard extends React.Component {
   }
 
   handleIaTurn = async () => {
-
     if (this.state.endGame === undefined) {
+      this.setState({ playerTurn: false });
       this.props.onPlayEffects(this.props.audioIaTurn);
       if (this.state.isAllowedToPutCardOnBoard) {
         this.handleHandToBoardPlayer();
-
         await delay(1000);
-
       }
-      this.setState({ isIaTurnDisplay: true, playerTurn: false});
-  
+
+      this.setState({ isIaTurnDisplay: true });
+
       await delay(2000);
-  
+
       this.setState({ isIaTurnDisplay: false }); // set le state de playerTurn à false pour permettre à l'IA de débloquer ses actions.
       const heroesSelected = this.state.heroesChosen.map(heroe => {
         return { ...heroe, selected: false, isAbleToAttack: true };
