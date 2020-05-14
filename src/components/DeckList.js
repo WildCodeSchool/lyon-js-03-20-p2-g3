@@ -15,7 +15,7 @@ function DeckList (props) {
   return (
     <div className='aside'>
       <div type='text' id='player_indicator'>
-        Player 1
+        {props.pseudo}
       </div>
       <div className='deck_aside'>
         <div className='deck_title_container'>

@@ -20,14 +20,11 @@ function CardOfDeckBoard ({ selected, heroe, switchCards, lastCard, onHandToBoar
     <div
       className={heroe.selected ? 'cardBoard toggleCardSelect' // classe pour la carte selectionnée sur le board
         : heroe.position === 'hand' && !heroe.iaDeck ? 'handCard cardBoard' // classe animation au hover dans la main joueur
-          : heroe.isFighting ? 'cardBoard fighting' // classe animation d'attaque
+          : heroe.isFighting ? 'cardBoard fighting'// classe animation d'attaque
             : heroe.position === 'hand' && heroe.iaDeck ? 'cardBoard iaHandCards'
               : 'cardBoard'}
       onClick={handleClickOnCardOfDeckBoard}
     >
-      {/* <section className='pwBoard'>
-        {heroe.power} PW
-      </section> */}
       <img className='imageCardBoard' src={heroe.img} alt={heroe.name} />
       <section className='containerBottomBoard'>
         <div className='atkBoard'>

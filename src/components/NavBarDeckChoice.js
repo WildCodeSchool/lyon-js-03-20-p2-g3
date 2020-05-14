@@ -33,7 +33,7 @@ class NavBarDeckChoice extends Component {
               </li>
               <li id='title'>Choose your Heroes</li>
               <li>
-                <button type='button' id='button-start' className={this.props.heroesChosen.length === 0 ? 'button-config button-config-disable' : 'button-config button-config-enable'} onClick={this.handleShowModal}>Start</button>
+                <div className={this.props.heroesChosen.length === 0 ? 'button-config button-config-disable' : 'button-config button-config-enable'} onClick={this.handleShowModal}>Start</div>
                 <Modal show={this.state.show} heroesChosen={this.props.heroesChosen} onClose={this.handleHideModal}>
                   {this.props.heroesChosen
                     .map(heroe => {

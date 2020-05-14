@@ -26,7 +26,7 @@
   --neon-text-color: black;  
   text-align: center;
   box-shadow: black;
-  font-size: 25px;
+  font-size: 14px;
   margin: 0;
   margin-top: -12.5px;
 }
@@ -35,18 +35,18 @@
 
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
     
-      text-shadow:
-          -0.2rem -0.2rem 1rem #fff,
-          0.2rem 0.2rem 1rem black,
-          0 0 2rem var(--neon-text-color),
-          0 0 4rem var(--neon-text-color),
-          0 0 6rem var(--neon-text-color),
-          0 0 8rem var(--neon-text-color),
-          0 0 10rem var(--neon-text-color);
+    text-shadow:
+      -0.2rem -0.2rem 1rem #fff,
+      0.2rem 0.2rem 1rem black,
+      0 0 2rem var(--neon-text-color),
+      0 0 4rem var(--neon-text-color),
+      0 0 6rem var(--neon-text-color),
+      0 0 8rem var(--neon-text-color),
+      0 0 10rem var(--neon-text-color);
   }
 
   20%, 24%, 55% {        
-      text-shadow: none;
+    text-shadow: none;
   }    
 }
 
@@ -135,7 +135,6 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
- /*  border: 4px solid blue; */
   width: 20vw;
 }
 
@@ -178,16 +177,21 @@
 
 #button-endTurn {
   font-size: 10px;
+  margin-right: 10px;
+  width: auto;
 }
 
 @media only screen and (min-width: 897px) {
   
-  .timer-container h2{
+  .timer-container h2 {
     font-size: 16px;
   }
   
-  #button-endTurn{
+  #button-endTurn {
     font-size: 16px;
+  }
+  .playerTurn {
+    font-size: 25px;
   }
 
 }

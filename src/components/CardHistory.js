@@ -7,7 +7,6 @@ function CardHistory ({ deadHeroe }) {
       <img className='historyImg' src={deadHeroe.img} alt={deadHeroe.name} />
       <p className='historyName'>{deadHeroe.name}</p>
     </div>
-
   );
 }
 

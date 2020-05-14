@@ -1,4 +1,4 @@
-.graveyardsTitle {
+.graveyardTitle {
   display: flex;
   justify-content: center;
   color: white;
@@ -54,7 +54,10 @@
 
 }
 
-@media screen and (max-width: 600px) {
-  
+@media screen and (max-width: 880px) {
+
+  .graveyardTitle {    
+    font-size: 10px;
+  }
 
 }
